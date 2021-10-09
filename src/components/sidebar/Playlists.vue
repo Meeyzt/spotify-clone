@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-6 flex-auto border-t border-white border-opacity-20 overflow-auto">
+  <div class="ml-6 flex-auto border-t border-white border-opacity-20 overflow-auto">
     <div
     v-for="index in 40"
     :key="index"
