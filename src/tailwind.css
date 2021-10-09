@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html,body,#app {
+        @apply h-full antialiased
+    }
+    .wrapper{
+        height: calc(100vh - theme('spacing.24'));
+        @apply flex
+    }
+}
