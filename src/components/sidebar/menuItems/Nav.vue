@@ -1,8 +1,8 @@
 <template>
     <ul class="py-3">
       <li
-      class="text-sm align-center
-       px-4 py-2 opacity-100 flex flex-row rounded mx-2 bg-activeColor cursor-pointer gap-x-4"
+      class="text-sm align-center px-4 py-2 opacity-100 flex
+      flex-row rounded mx-2 bg-activeColor cursor-pointer gap-x-4"
       >
          <img src="@/assets/home.svg" alt="home"/> Ana sayfa
       </li>
