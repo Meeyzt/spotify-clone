@@ -1,9 +1,15 @@
 <template>
-  <div>Content</div>
+  <main class="flex-auto">
+    <Navbar/>
+  </main>
 </template>
 
 <script>
-export default {
+import Navbar from '@/components/Navbar.vue';
 
+export default {
+  components: {
+    Navbar,
+  },
 };
 </script>

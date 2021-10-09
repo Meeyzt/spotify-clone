@@ -1,7 +1,7 @@
 <template>
-  <div class="w-60 bg-menuColor">
+  <aside class="w-60 pt-6 flex-col bg-menuColor">
 
-    <div class="px-6 pt-6 pb-3">
+    <div class="px-6 pb-3">
       <a href="#">
         <img src="@/assets/logo.svg" alt="spotify logo"/>
       </a>
@@ -9,15 +9,19 @@
 
     <Menu />
 
-  </div>
+    <Playlists/>
+
+  </aside>
 </template>
 
 <script>
 import Menu from './sidebar/Menu.vue';
+import Playlists from './sidebar/Playlists.vue';
 
 export default {
   components: {
     Menu,
+    Playlists,
   },
 };
 </script>
