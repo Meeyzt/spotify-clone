@@ -7,7 +7,7 @@
         @apply h-full antialiased
     }
     .wrapper{
-        height: calc(100vh - theme('spacing.14'));
+        height: calc(100vh - theme('spacing.24'));
         @apply flex
     }
 }

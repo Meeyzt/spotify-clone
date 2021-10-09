@@ -11,17 +11,21 @@
 
     <Playlists/>
 
+    <DownloadApp/>
+
   </aside>
 </template>
 
 <script>
 import Menu from './sidebar/Menu.vue';
 import Playlists from './sidebar/Playlists.vue';
+import DownloadApp from './sidebar/DownloadApp.vue';
 
 export default {
   components: {
     Menu,
     Playlists,
+    DownloadApp,
   },
 };
 </script>
