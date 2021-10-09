@@ -10,6 +10,9 @@ module.exports = {
         brandColor: '#1ed760',
         activeColor: '#282828',
       },
+      fontSize: {
+        's': '.815rem',
+      },
     },
   },
   variants: {
