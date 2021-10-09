@@ -3,7 +3,7 @@
 
     <div class="px-6 pt-6 pb-4">
       <a href="#">
-        <img src="../assets/logo.svg" alt="spotify logo"/>
+        <img src="@/assets/logo.svg" alt="spotify logo"/>
       </a>
     </div>
 
