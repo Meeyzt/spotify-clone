@@ -1,5 +1,5 @@
 <template>
-   <div class="grid grid-cols-4 gap-6">
+   <div class="grid grid-cols-4 gap-4">
         <Item v-for="index in 8" :key="index"/>
     </div>
 </template>
