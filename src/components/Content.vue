@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-auto">
+  <main class="flex-auto bg-contentColor">
     <Navbar/>
   </main>
 </template>
