@@ -18,6 +18,7 @@
       <div class="px-2 font-semibold">Meeyzt</div>
       <img class="pr-2" src="@/assets/downArrow.svg" alt="downArrow"/>
     </div>
+  <div>
   </div>
 </template>
 

@@ -9,9 +9,10 @@ module.exports = {
         contentColor: '#1e1e1e',
         brandColor: '#1ed760',
         activeColor: '#282828',
+        minimalColor: '#1b1718',
       },
       fontSize: {
-        's': '.815rem',
+        's': '.875rem',
       },
     },
   },
