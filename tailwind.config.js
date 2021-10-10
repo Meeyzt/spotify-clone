@@ -12,7 +12,7 @@ module.exports = {
         minimalColor: '#1b1718',
       },
       fontSize: {
-        's': '.875rem',
+        's': '.800rem',
       },
     },
   },

@@ -1,9 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap');
 
 @layer base {
     html,body,#app {
+        font-family: 'Montserrat', sans-serif;
         @apply h-full antialiased
     }
     .wrapper{
