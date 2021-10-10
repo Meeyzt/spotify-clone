@@ -10,4 +10,7 @@
         height: calc(100vh - theme('spacing.24'));
         @apply flex
     }
+    .bgimg{
+        background-image:url(https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038);
+    }
 }
