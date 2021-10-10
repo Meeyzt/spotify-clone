@@ -1,7 +1,7 @@
 <template>
   <main class="flex-auto bg-contentColor">
     <Navbar/>
-    <div class="p-8 flex flex-col items-start">
+    <div class="pt-9 px-8 flex flex-col items-start">
       <Head/>
       <Headbar/>
     </div>
