@@ -10,7 +10,7 @@
       <li class="text-s px-4 opacity-70 cursor-pointer flex font-semibold
       flex-row hover:rounded hover:opacity-100 gap-x-4 mx-2">
           <img src="@/assets/search.svg" class="py-2" alt="search"/>
-          <span class="pt-3">Arsa</span>
+          <span class="pt-3">Ara</span>
       </li>
       <li class="text-s font-semibold px-4 opacity-70 cursor-pointer
        flex flex-row hover:rounded hover:opacity-100 gap-x-4 mx-2">
