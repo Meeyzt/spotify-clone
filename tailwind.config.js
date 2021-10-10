@@ -14,7 +14,7 @@ module.exports = {
         headbarColor: '#423f3fa6',
       },
       fontSize: {
-        's': '.875rem',
+        's': '.800rem',
         'header': ['1.80rem','36px']
       },
     },
