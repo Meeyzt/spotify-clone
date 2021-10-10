@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between px-8 pt-3.5">
+  <div class="flex flex-row justify-between pl-8 pr-7 pt-3.5">
    <div class="flex flex-row">
       <div class="bg-black opacity-50 rounded-full
       cursor-pointer p-1">

@@ -1,7 +1,7 @@
 <template>
 
-<div class="text-header float-left font-extrabold text-white mb-4">
-    {{getTime()}}
+<div class="text-header float-left font-extrabold text-white mb-6 tracking-tighter">
+{{getTime()}}
 </div>
 
 </template>
