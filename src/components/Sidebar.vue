@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-56 pt-6 flex flex-col bg-menuColor">
+  <aside class="w-60 pt-6 flex flex-col bg-menuColor">
 
     <div class="px-6 pb-3">
       <a href="#">
