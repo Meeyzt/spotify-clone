@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         themeColor: '#fff',
         menuColor: '#000',
-        contentColor: '#1e1e1e',
+        contentColor: '#121212',
         activeColor: '#282828',
         minimalColor: '#181818',
         hoverHeadbar: '#424040',
@@ -14,8 +14,9 @@ module.exports = {
         spotifyGreen: '#1db954',
       },
       fontSize: {
-        's': '.800rem',
-        'header': ['1.80rem','36px']
+        's': ['.800rem','16px'],
+        'header': ['1.80rem','36px'],
+        '2xs': ['.625rem', '16px'],
       },
       spacing: {
         13: '3.25rem',
