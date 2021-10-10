@@ -1,7 +1,7 @@
 <template>
     <ul class="py-4">
       <li
-        class="text-s pl-4 opacity-70 cursor-pointer flex font-bold
+        class="text-s pl-4 opacity-70 cursor-pointer flex font-semibold
       flex-row hover:rounded hover:opacity-100 gap-x-4 mx-2"
       >
         <span
@@ -13,7 +13,7 @@
       </li>
 
       <li
-       class="text-s pt-4 px-4 opacity-70 cursor-pointer flex font-bold
+       class="text-s pt-4 px-4 opacity-70 cursor-pointer flex font-semibold
       flex-row hover:rounded hover:opacity-100 gap-x-4 mx-2"
       >
       <span class="w-6 h-6 flex items-center justify-center
