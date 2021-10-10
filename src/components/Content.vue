@@ -1,10 +1,11 @@
 <template>
-  <main class="flex-auto bg-contentColor">
+  <main class="flex-auto bg-contentColor overflow-auto">
     <Navbar/>
     <div class="pt-9 px-8 flex flex-col items-start">
       <Head/>
       <Headbar/>
-      <Shelf/>
+      <Shelf title="Yeşim'in ŞifaEvi dinleyicileri arasında popüler" />
+      <Shelf title="En beğenilenler" />
     </div>
   </main>
 </template>
