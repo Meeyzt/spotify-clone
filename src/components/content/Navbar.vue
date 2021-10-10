@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between px-7 py-3.5">
+  <div class="flex flex-row justify-between px-7 pt-3.5">
    <div class="flex flex-row">
       <div class="bg-black opacity-50 rounded-full
       cursor-pointer p-1">
@@ -18,7 +18,6 @@
       <div class="px-2 font-semibold">Meeyzt</div>
       <img class="pr-2" src="@/assets/downArrow.svg" alt="downArrow"/>
     </div>
-  <div>
   </div>
 </template>
 
