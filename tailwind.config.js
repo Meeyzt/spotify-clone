@@ -10,9 +10,12 @@ module.exports = {
         brandColor: '#1ed760',
         activeColor: '#282828',
         minimalColor: '#1b1718',
+        hoverHeadbar: '#424040',
+        headbarColor: '#423f3fa6',
       },
       fontSize: {
-        's': '.800rem',
+        's': '.875rem',
+        'header': ['1.80rem','36px']
       },
     },
   },

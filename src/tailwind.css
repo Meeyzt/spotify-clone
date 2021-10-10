@@ -1,15 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500&display=swap');
 
 @layer base {
     html,body,#app {
         font-family: 'Montserrat', sans-serif;
-        @apply h-full antialiased
+        @apply h-full antialiased        
     }
     .wrapper{
         height: calc(100vh - theme('spacing.24'));
         @apply flex
+    }
+    .bgimg{
+        background-image:url(https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038);
+    }
+    .headerImg{
+        background-image:url(https://seed-mix-image.spotifycdn.com/v6/img/rock/3eedpDhV8pocvTvTHLGq9R/tr/default);
     }
 }
