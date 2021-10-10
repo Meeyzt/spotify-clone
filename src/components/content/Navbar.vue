@@ -1,13 +1,11 @@
 <template>
-  <div>Navbar</div>
+  <div>
+    Navbar
+  </div>
 </template>
 
 <script>
 export default {
 
-}
+};
 </script>
-
-<style>
-
-</style>
