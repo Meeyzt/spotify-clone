@@ -6,10 +6,22 @@
 @layer base {
     html,body,#app {
         font-family: 'Montserrat', sans-serif;
-        @apply h-full antialiased
+        @apply h-full antialiased        
     }
     .wrapper{
         height: calc(100vh - theme('spacing.24'));
         @apply flex
+    }
+    .bgimg{
+        background-image:url(https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038);
+    }
+    .headerImg{
+        background-image:url(https://seed-mix-image.spotifycdn.com/v6/img/rock/3eedpDhV8pocvTvTHLGq9R/tr/default);
+    }
+    .itemImg{
+        background-image:url(https://i.scdn.co/image/94b0c5f23272e9ed7ba7790271de20b2c0d28b39);
+    }
+    .musicImg{
+        background-image: url(https://i.scdn.co/image/ab67616d00004851896c2176f22d9b1ba4d75749);
     }
 }
