@@ -6,13 +6,17 @@
         <div class="transition ml-10 bg-spotifyGreen w-10 h-10 rounded-full flex items-center
         justify-center invisible bg-opacity-0 group-hover:bg-opacity-100 group-hover:visible">
         <!-- grouphover -->
-            <img src="@/assets/play.svg" alt="play"/>
+        <PlayIcon class="text-black"/>
         </div>
   </div>
 </template>
 
 <script>
-export default {
+import PlayIcon from '@/components/icons/PlayIcon.vue';
 
+export default {
+  components: {
+    PlayIcon,
+  },
 };
 </script>

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import LeftFooter from './Footer/LeftFooter.vue';
-import MiddleFooter from './Footer/MiddleFooter.vue';
-import RightFooter from './Footer/RightFooter.vue';
+import LeftFooter from '@/components/footer/LeftFooter.vue';
+import MiddleFooter from '@/components/footer/MiddleFooter.vue';
+import RightFooter from '@/components/footer/RightFooter.vue';
 
 export default {
   components: {
