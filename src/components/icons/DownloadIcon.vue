@@ -1,10 +1,9 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    width="24"
+    :height="height"
+    :width="width"
     viewBox="0 0 24 24"
-    v-on="$listeners"
   >
     <path
       fill="currentColor"
@@ -15,3 +14,19 @@
     />
   </svg>
 </template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 24,
+    },
+
+    height: {
+      type: Number,
+      default: 24,
+    },
+  },
+};
+</script>

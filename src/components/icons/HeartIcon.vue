@@ -5,8 +5,6 @@
     :width="width"
     aria-hidden="true"
     viewBox="0 0 16 16"
-    class="prefix__Svg-sc-1bi12j5-0 prefix__gSLhUO"
-    v-on="$listeners"
   >
     <path fill="none" d="M0 0h16v16H0z"></path>
     <path
