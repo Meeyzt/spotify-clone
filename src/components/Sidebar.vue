@@ -3,7 +3,7 @@
 
     <div class="px-6 pb-3">
       <a href="#">
-        <SpotifyLogo height="40"/>
+        <SpotifyLogo :height="40"/>
       </a>
     </div>
 

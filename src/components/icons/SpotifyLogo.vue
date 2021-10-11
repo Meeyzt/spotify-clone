@@ -2,7 +2,7 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1134 340"
-    height="40"
+    :height="height"
     class="prefix__spotify-logo--text"
     v-on="$listeners"
   >
