@@ -1,13 +1,11 @@
 <template>
   <div class="flex flex-row justify-between pl-8 pr-7 pt-3.5">
    <div class="flex flex-row">
-      <div class="bg-black opacity-50 rounded-full
-      cursor-pointer p-1">
-      <img class="transform rotate-180" src="@/assets/arrow.svg" alt="arrow"/>
-    </div>
-    <div class="bg-black opacity-50 rounded-full
-    cursor-pointer p-1 ml-4">
-      <img src="@/assets/arrow.svg" alt="arrow"/>
+      <div class="text-white bg-black opacity-50 rounded-full cursor-pointer p-1">
+        <ArrowIcon class="rotate-180"/>
+      </div>
+      <div class="bg-black opacity-50 rounded-full cursor-pointer p-1 ml-4">
+        <ArrowIcon/>
     </div>
    </div>
     <div class="float-right flex flex-row bg-black rounded-full items-center justify-center
@@ -16,13 +14,20 @@
       <div class="rounded-full bg-clip-content bg-center bg-cover bg-no-repeat bgimg
       h-7 w-7"/>
       <div class="px-2 font-semibold">Meeyzt</div>
-      <img class="pr-2" src="@/assets/downArrow.svg" alt="downArrow"/>
+      <DownArrow class="pr-2"/>
     </div>
   </div>
 </template>
 
 <script>
+import ArrowIcon from '@/components/icons/ArrowIcon.vue';
+import DownArrow from '@/components/icons/DownArrow.vue';
+
 export default {
+  components: {
+    ArrowIcon,
+    DownArrow,
+  },
 
 };
 </script>

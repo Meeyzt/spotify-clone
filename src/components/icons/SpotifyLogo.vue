@@ -3,8 +3,6 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1134 340"
     :height="height"
-    class="prefix__spotify-logo--text"
-    v-on="$listeners"
   >
     <path
       fill="#fff"
@@ -31,7 +29,7 @@
        8-19 18zm245 69c10 0 19-8 19-18s-9-18-19-18-18 8-18 18 8 18 18 18zm0-34c9 0 17
        7 17 16s-8 16-17 16-16-7-16-16 7-16 16-16zm4 18c3-1 5-3 5-6
        0-4-4-6-8-6h-8v19h4v-6h4l4 6h5zm-3-9c2 0 4 1 4 3s-2 3-4 3h-4v-6h4z"
-    ></path>
+    />
   </svg>
 </template>
 
