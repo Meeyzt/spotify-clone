@@ -7,7 +7,7 @@
         <span
           class="bg-white flex align-center justify-center rounded-xs px-1.5 py-1.5"
         >
-          <img src="@/assets/plus.svg" alt="plus" />
+          <PlusIcon width="12" height="12"/>
         </span>
        <span class="pt-1 overflow-hidden"> Çalma Listesi Oluştur</span>
       </li>
@@ -18,7 +18,7 @@
       >
       <span class="w-6 h-6 flex items-center justify-center
       bg-gradient-to-br from-purple-900 to-blue-300">
-        <img src="@/assets/heart.svg" alt="hearth">
+        <HeartIcon width="12" height="12"/>
       </span>
         <span class="pt-1">Beğenilen Şarkılar</span>
       </li>
@@ -26,7 +26,15 @@
 </template>
 
 <script>
+import PlusIcon from '@/components/icons/PlusIcon.vue';
+import HeartIcon from '@/components/icons/HeartIcon.vue';
+
 export default {
+
+  components: {
+    PlusIcon,
+    HeartIcon,
+  },
 
 };
 </script>

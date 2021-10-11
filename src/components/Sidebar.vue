@@ -3,7 +3,7 @@
 
     <div class="px-6 pb-3">
       <a href="#">
-        <img src="@/assets/logo.svg" alt="spotify logo"/>
+        <SpotifyLogo height="40"/>
       </a>
     </div>
 
@@ -20,12 +20,14 @@
 import Menu from './sidebar/Menu.vue';
 import Playlists from './sidebar/Playlists.vue';
 import DownloadApp from './sidebar/DownloadApp.vue';
+import SpotifyLogo from './icons/SpotifyLogo.vue';
 
 export default {
   components: {
     Menu,
     Playlists,
     DownloadApp,
+    SpotifyLogo,
   },
 };
 </script>
