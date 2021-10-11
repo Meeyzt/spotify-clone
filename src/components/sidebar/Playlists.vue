@@ -3,8 +3,7 @@
     <div
     v-for="index in 40"
     :key="index"
-    class="text-s opacity-70 cursor-pointer flex pt-2
-    flex-row hover:rounded hover:opacity-100 gap-x-4 text-white">
+    class="text-s cursor-pointer flex pt-2 flex-row gap-x-4 text-normalColor hover:text-white">
         new playlist #001
     </div>
   </div>

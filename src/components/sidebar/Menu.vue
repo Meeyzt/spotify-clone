@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white">
+  <div>
 
     <Nav />
 

@@ -1,23 +1,19 @@
 <template>
     <ul class="py-3">
       <li
-      class="text-s align-center px-4 opacity-100 flex font-semibold
-      flex-row rounded mx-2 bg-activeColor cursor-pointer gap-x-4"
-      >
+      class="text-s align-center px-4 flex font-semibold flex-row rounded text-white mx-2 bg-activeColor cursor-pointer gap-x-4">
          <div class="py-2">
            <HomeIcon/>
          </div>
-         <span class="pt-3" >Ana sayfa</span>
+         <span class="pt-3">Ana sayfa</span>
       </li>
-      <li class="text-s px-4 opacity-70 cursor-pointer flex font-semibold
-      flex-row hover:opacity-100 gap-x-4 mx-2">
+      <li class="text-s px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white">
          <div class="py-2">
            <SearchIcon/>
          </div>
           <span class="pt-3">Ara</span>
       </li>
-      <li class="text-s font-semibold px-4 opacity-70 cursor-pointer
-       flex flex-row hover:opacity-100 gap-x-4 mx-2">
+      <li class="text-s font-semibold px-4 cursor-pointer flex flex-row gap-x-4 mx-2 text-normalColor hover:text-white">
           <div class="py-2">
            <CollectionIcon/>
          </div>

@@ -13,6 +13,7 @@ module.exports = {
         hoverHeadbar: '#424040',
         headbarColor: '#423f3fa6',
         spotifyGreen: '#1db954',
+        normalColor: '#b3b3b3',
       },
       fontSize: {
         s: ['.800rem', '16px'],

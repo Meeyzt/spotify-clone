@@ -25,6 +25,6 @@
         background-image: url(https://i.scdn.co/image/ab67616d00004851896c2176f22d9b1ba4d75749);
     }
     .footerItem{
-        @apply ml-3 opacity-70 hover:opacity-100 cursor-pointer
+        @apply ml-3 text-normalColor hover:text-white cursor-pointer
     }
 }
