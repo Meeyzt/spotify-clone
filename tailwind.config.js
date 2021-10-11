@@ -15,14 +15,15 @@ module.exports = {
         spotifyGreen: '#1db954',
       },
       fontSize: {
-        's': ['.800rem','16px'],
-        'header': ['1.80rem','36px'],
+        s: ['.800rem', '16px'],
+        header: ['1.80rem', '36px'],
         '2xs': ['.625rem', '16px'],
       },
       spacing: {
         13: '3.25rem',
         180: '11.354rem',
         150: '9.375rem',
+        player: 'calc(100vw/3)',
       },
     },
   },
