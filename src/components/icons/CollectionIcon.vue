@@ -4,7 +4,6 @@
     :width="width"
     :height="height"
     xmlns="http://www.w3.org/2000/svg"
-    v-on="$listeners"
   >
     <path
       d="M291.301 81.778L457.65 455.365 438.349 464 272 90.413zM64 463.746v-384h21.334v384H64zm128

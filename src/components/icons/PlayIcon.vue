@@ -5,7 +5,6 @@
     width="16"
     viewBox="0 0 24 24"
     aria-hidden="true"
-    v-on="$listeners"
   >
     <path fill="currentColor" d="M21.57 12L5.98 3v18l15.59-9z"></path>
   </svg>
