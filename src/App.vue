@@ -5,7 +5,7 @@
         <Sidebar />
          <main class="flex flex-auto flex-col overflow-hidden relative w-[calc(100vw-210px)]">
             <Navbar/>
-            <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto">
+            <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
               <router-view/>
             </div>
           </main>

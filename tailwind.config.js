@@ -16,6 +16,7 @@ module.exports = {
         normalColor: '#b3b3b3',
         arrowBgColor: '#060a11',
         player: '#535353',
+        nicePurple: '#8D67AB',
       },
       fontSize: {
         s: ['.875rem', '16px'],
@@ -39,6 +40,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         180: 'repeat(auto-fill,minmax(180px,1fr))',
+        226: 'repeat(auto-fill,226px)',
       },
       gridTemplateRows: {
         bir: '1fr',
