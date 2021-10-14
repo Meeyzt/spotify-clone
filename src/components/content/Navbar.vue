@@ -1,20 +1,17 @@
 <template>
-  <div class="flex flex-row justify-between pl-8 pr-7 pt-3.5">
-   <div class="flex flex-row">
-      <div class="text-white bg-black opacity-50 rounded-full cursor-pointer p-1">
+  <div class="bg-contentColor flex flex-row flex-shrink-0 justify-between py-3.5 w-full z-10">
+   <div class="flex flex-row pl-4 lg:pl-8">
+      <div class="text-white bg-arrowBgColor bg-opacity-50 rounded-full cursor-pointer p-1 ">
         <ArrowIcon class="rotate-180"/>
       </div>
-      <div class="bg-black opacity-50 rounded-full cursor-pointer p-1 ml-4">
+      <div class="hidden lg:block opacity-50 bg-arrowBgColor text-white bg-opacity-50 rounded-full cursor-pointer p-1 ml-4">
         <ArrowIcon/>
     </div>
    </div>
-    <div class="float-right flex flex-row bg-black rounded-full items-center justify-center
-    opacity-90 text-white text-s px-0.5 cursor-pointer hover:opacity-70 mx-1">
-      <!-- <img class="rounded-full bg-clip-content" src="https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038" alt="userPhoto"/> -->
-      <div class="rounded-full bg-clip-content bg-center bg-cover bg-no-repeat bgimg
-      h-7 w-7"/>
-      <div class="px-2 font-semibold">Meeyzt</div>
-      <DownArrow class="pr-2"/>
+    <div class="flex flex-row bg-black rounded-full items-center justify-center text-white text-s px-0.5 cursor-pointer mx-4 hover:bg-hoverHeadbar">
+      <div class="rounded-full bg-clip-content bg-center bg-cover bg-no-repeat bgimg h-7 w-7"/>
+      <div class="hidden lg:block px-2 my-auto font-semibold">Meeyzt</div>
+      <DownArrow class="hidden lg:block pr-2 pb-0.5"/>
     </div>
   </div>
 </template>

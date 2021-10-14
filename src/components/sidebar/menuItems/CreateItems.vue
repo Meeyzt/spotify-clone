@@ -1,7 +1,7 @@
 <template>
-    <ul class="py-4">
+    <ul class="pt-6 pb-5">
       <li
-        class="group text-s pl-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
+        class="group text-sm pl-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
       >
         <span
           class="bg-normalColor group-hover:bg-white flex align-center justify-center rounded-xs px-1.5 py-1.5"
@@ -12,7 +12,7 @@
       </li>
 
       <li
-       class="text-s pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
+       class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white"
       >
       <span class="w-6 h-6 flex items-center justify-center bg-gradient-to-br from-purple-900 to-blue-300">
         <HeartIcon :width="12" :height="12"/>

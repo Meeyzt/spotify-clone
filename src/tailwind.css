@@ -5,11 +5,31 @@
 
 @layer base {
     html,body,#app {
-        font-family: 'Montserrat', sans-serif;
-        @apply h-full antialiased        
+        font-family: 'spotifyinternal-artistnpv-spotify-circular', sans-serif;
+        @apply h-full antialiased bg-black min-w-[759px]
+    }
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Book.woff2)
+    }
+    
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 700;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Bold.woff2)
+    }
+    
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 900;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Black.woff2)
     }
     .wrapper{
-        height: calc(100vh - theme('spacing.24'));
+        height: calc(100vh - 90px);
         @apply flex
     }
     .bgimg{
@@ -25,6 +45,9 @@
         background-image: url(https://i.scdn.co/image/ab67616d00004851896c2176f22d9b1ba4d75749);
     }
     .footerItem{
-        @apply ml-3 text-normalColor hover:text-white cursor-pointer
+        @apply text-normalColor hover:text-white cursor-pointer h-4 w-4
+    }
+    .clipText{
+        overflow:hidden;
     }
 }

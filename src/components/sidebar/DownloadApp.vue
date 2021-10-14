@@ -1,7 +1,7 @@
 <template>
-  <div class="text-s py-3 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 text-normalColor hover:text-white">
-      <DownloadIcon/>
-      <span class="pt-1">Uygulamayı Yükle</span>
+  <div class="text-s h-10 mx-2 cursor-pointer items-center flex font-semibold flex-row gap-x-4 text-normalColor hover:text-white">
+      <DownloadIcon class="m-1" height="19" width="19"/>
+      <span>Uygulamayı Yükle</span>
     </div>
 </template>
 
@@ -10,6 +10,5 @@ import DownloadIcon from '@/components/icons/DownloadIcon.vue';
 
 export default {
   components: { DownloadIcon },
-
 };
 </script>

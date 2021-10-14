@@ -5,7 +5,7 @@
     :width="width"
     viewBox="0 0 24 24"
   >
-    <path fill="none" stroke="#181818" d="M8 4l9 8-9 8"/>
+    <path fill="none" stroke="currentColor" d="M8 4l9 8-9 8"/>
   </svg>
 </template>
 
