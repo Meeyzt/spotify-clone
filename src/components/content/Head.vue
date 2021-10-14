@@ -1,6 +1,6 @@
 <template>
 
-<div class="text-header float-left font-extrabold text-white mb-6 tracking-tighter">
+<div class="text-[2rem] float-left font-extrabold text-white mb-3 tracking-tighter">
 {{getTime()}}
 </div>
 

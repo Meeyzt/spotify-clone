@@ -1,0 +1,30 @@
+<template>
+  <svg
+    :width="width"
+    :height="height"
+  >
+    <g fill="currentColor" fill-rule="evenodd">
+      <path
+        d="M1 3v9h14V3H1zm0-1h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
+        fill-rule="nonzero"
+      ></path>
+      <path d="M10 8h4v3h-4z"></path>
+    </g>
+  </svg>
+</template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 24,
+    },
+
+    height: {
+      type: Number,
+      default: 24,
+    },
+  },
+};
+</script>

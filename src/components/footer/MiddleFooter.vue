@@ -1,13 +1,21 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <div class="text-white flex flex-row items-center">
-      <ShuffleIcon :height="18" :width="18" class="opacity-70 mr-4 hover:opacity-100"/>
-      <NavigationIcon :height="18" :width="18" class="opacity-70 hover:opacity-100"/>
-      <div class="rounded-full bg-white w-8 h-8 flex mx-4 items-center justify-center opacity-70 hover:opacity-100">
-        <PlayIcon :height="18" :width="18" class="text-black"/>
+  <div class="flex flex-col justify-center items-center px-4 w-1/2 gap-2">
+    <div class="text-normalColor flex flex-row gap-2 items-center">
+      <div>
+        <ShuffleIcon class="footerItem"/>
       </div>
-      <NavigationIcon :height="18" :width="18" class="opacity-70 rotate-180 hover:opacity-100"/>
-      <RepeatIcon :height="18" :width="18" class="opacity-70 ml-4 hover:opacity-100" />
+      <div>
+      <NavigationIcon class="footerItem" />
+      </div>
+      <div class="transition-colors rounded-full w-8 h-8 cursor-pointer flex items-center justify-center bg-normalColor hover:bg-white">
+        <PlayIcon class="text-black"/>
+      </div>
+      <div>
+      <NavigationIcon class="footerItem rotate-180" />
+      </div>
+      <div class="color-normalColor hover:color-white">
+      <RepeatIcon class="footerItem" />
+      </div>
     </div>
     <PlayerBar/>
   </div>
