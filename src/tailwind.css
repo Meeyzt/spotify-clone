@@ -50,4 +50,9 @@
     .clipText{
         overflow:hidden;
     }
+    .showChilds:nth-child(4),
+    .showChilds:nth-child(5),
+    .showChilds:nth-child(6) {
+      @apply !block
+    }
 }

@@ -1,24 +1,23 @@
 <template>
-    <ul class="my-1.5">
-      <li
-      class="text-sm align-center px-4 h-10 flex font-bold flex-row rounded text-white mx-2 bg-activeColor cursor-pointer gap-x-4">
+    <ul class="my-1.5 text-normalColor">
+      <router-link to="/" exact tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
          <div class="py-2">
            <HomeIcon/>
          </div>
          <span class="pt-3">Ana sayfa</span>
-      </li>
-      <li class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 text-normalColor hover:text-white">
+      </router-link>
+      <router-link to="/Search" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
          <div class="py-2">
            <SearchIcon/>
          </div>
           <span class="pt-3">Ara</span>
-      </li>
-      <li class="text-sm font-bold mx-2 px-4 cursor-pointer flex flex-row gap-x-4 text-normalColor hover:text-white">
+      </router-link>
+      <router-link to="/Collection" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
           <div class="py-2">
            <CollectionIcon/>
          </div>
           <span class="pt-3">Kitaplığın</span>
-      </li>
+      </router-link>
     </ul>
 </template>
 

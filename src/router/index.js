@@ -10,6 +10,16 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import(/* webpackChunkName: "Search" */'@/views/Search.vue'),
+  },
+  {
+    path: '/collection',
+    name: 'Collection',
+    component: () => import(/* webpackChunkName: "koleksiyon" */'@/views/Collection.vue'),
+  },
 ];
 
 const router = new VueRouter({

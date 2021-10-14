@@ -1,0 +1,33 @@
+{
+    "data": [{
+      "text": "Beğenilen Şarkılar",
+      "subText": "1.001 şarkı",
+      "source": "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
+    },
+    { 
+      "text": "Playlist2",
+      "subText": "12.001 şarkı",
+      "source": "https://mosaic.scdn.co/300/ab67616d00001e020dda9c11454b9053d07f585aab67616d00001e025621f132b6d5ce5254b5aa2aab67616d00001e029683e5d7361bb80bfb00f46dab67616d00001e029ccc759e39a5e5fc86101972"
+    },
+    {
+      "text": "Playlist3",
+      "subText": "13.001 şarkı",
+      "source": "https://i.scdn.co/image/ab67706c0000da840a9104176e2b5c1bad660b9b"
+    },
+    {
+        "text": "Deli Hayko",
+        "subText": "14.001 şarkı",
+        "source": "https://mosaic.scdn.co/300/ab67616d00001e0234342e528c307e81d6940e70ab67616d00001e028c841a3a9ec22546a26e8b8fab67616d00001e02a1d869c946fbb59a897cb910ab67616d00001e02ba4e40cd7dd3b9f26feb94c2"      
+    },
+    { 
+        "text": "Playlist5",
+        "subText": "15.001 şarkı",
+        "source": "https://mosaic.scdn.co/300/ab67616d00001e020dda9c11454b9053d07f585aab67616d00001e025621f132b6d5ce5254b5aa2aab67616d00001e029683e5d7361bb80bfb00f46dab67616d00001e029ccc759e39a5e5fc86101972"
+      },
+      {
+        "text": "Playlist6",
+        "subText": "16.001 şarkı",
+        "source": "https://i.scdn.co/image/ab67706c0000da840a9104176e2b5c1bad660b9b"
+      }
+    ]
+}
