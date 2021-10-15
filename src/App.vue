@@ -4,7 +4,7 @@
       <div class="wrapper">
         <Sidebar />
          <main class="flex flex-auto flex-col overflow-hidden relative w-[calc(100vw-210px)]">
-            <Navbar/>
+            <Header/>
             <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
               <router-view/>
             </div>
@@ -17,13 +17,13 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue';
-import Navbar from '@/components/Navbar.vue';
+import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     Sidebar,
-    Navbar,
+    Header,
     Footer,
   },
 };
