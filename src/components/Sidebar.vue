@@ -2,9 +2,9 @@
   <aside class="min-w-[240px] pt-6 flex flex-col bg-menuColor">
 
     <div class="px-6 pb-5">
-      <a href="#">
+      <router-link tag="a" to="/">
         <SpotifyLogo :height="40"/>
-      </a>
+      </router-link>
     </div>
 
     <Menu />
