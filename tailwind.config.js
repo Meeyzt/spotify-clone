@@ -17,6 +17,7 @@ module.exports = {
         arrowBgColor: '#060a11',
         player: '#535353',
         nicePurple: '#8D67AB',
+        podcastGreen: '#27856a',
       },
       fontSize: {
         s: ['.875rem', '16px'],
