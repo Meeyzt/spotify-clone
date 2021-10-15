@@ -1,5 +1,6 @@
 <template>
     <ul class="my-1.5 text-normalColor">
+      <!--TODO: $route.name ile hangi sayfanın seçili olduğu gösterilebilir.-->
       <router-link to="/" exact tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
          <div class="py-2">
            <HomeIcon/>

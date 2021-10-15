@@ -1,13 +1,18 @@
 <template>
-    <Search/>
+  <div class="w-full h-full">
+    <SearchSlider />
+    <ComponentShelf />
+  </div>
 </template>
 
 <script>
-import Search from '@/components/search/Search.vue';
+import SearchSlider from '@/components/search/SearchSlider.vue';
+import ComponentShelf from '@/components/search/componentShelf.vue';
 
 export default {
   components: {
-    Search,
+    SearchSlider,
+    ComponentShelf,
   },
 };
 </script>
