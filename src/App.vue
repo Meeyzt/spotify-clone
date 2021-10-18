@@ -26,5 +26,11 @@ export default {
     Header,
     Footer,
   },
+  created() {
+    this.$store.dispatch('getplaylistData');
+    this.$store.dispatch('getCategoryData');
+    this.$store.dispatch('getFeatured');
+    this.$store.dispatch('getArtists');
+  },
 };
 </script>

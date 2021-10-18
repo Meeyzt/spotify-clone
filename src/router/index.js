@@ -18,7 +18,32 @@ const routes = [
   {
     path: '/collection',
     name: 'Collection',
-    component: () => import(/* webpackChunkName: "koleksiyon" */'@/views/Collection.vue'),
+    component: () => import(/* webpackChunkName: "Collection" */'@/views/Collection.vue'),
+    redirect: {
+      name: 'CollectionPlaylists',
+    },
+    children: [
+      {
+        name: 'CollectionPlaylists',
+        path: 'playlists',
+        component: () => import(/* webpackChunkName: "CollectionPlaylists" */'@/views/collection/Playlists.vue'),
+      },
+      {
+        name: 'CollectionArtists',
+        path: 'artists',
+        component: () => import(/* webpackChunkName: "CollectionArtists" */'@/views/collection/Artists.vue'),
+      },
+      {
+        name: 'CollectionPodcasts',
+        path: 'podcasts',
+        component: () => import(/* webpackChunkName: "CollectionPodcasts" */'@/views/collection/Podcasts.vue'),
+      },
+      {
+        name: 'CollectionAlbums',
+        path: 'albums',
+        component: () => import(/* webpackChunkName: "CollectionAlbums" */'@/views/collection/Albums.vue'),
+      },
+    ],
   },
 ];
 

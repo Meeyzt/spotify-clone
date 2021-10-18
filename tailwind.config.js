@@ -18,6 +18,9 @@ module.exports = {
         player: '#535353',
         nicePurple: '#8D67AB',
         podcastGreen: '#27856a',
+        gradientBlue: '#450af5',
+        gradientPurple: '#8e8ee5',
+        collectionHeadbarColor: '#333',
       },
       fontSize: {
         s: ['.875rem', '16px'],
@@ -38,6 +41,9 @@ module.exports = {
         xlarge: '1453px',
         xxlarge: '1502px',
         xxxlarge: '1902px',
+      },
+      gridColumn: {
+        '2-span': 'span 2',
       },
       gridTemplateColumns: {
         180: 'repeat(auto-fill,minmax(180px,1fr))',

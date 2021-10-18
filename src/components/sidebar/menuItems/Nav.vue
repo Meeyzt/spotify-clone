@@ -3,21 +3,21 @@
       <!--TODO: $route.name ile hangi sayfanın seçili olduğu gösterilebilir.-->
       <router-link to="/" exact tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
          <div class="py-2">
-           <HomeIcon v-if="$route.name !== 'Home'"/>
+           <HomeIcon v-if="$route.name !== 'home'"/>
            <ActiveHomeIcon v-else/>
          </div>
          <span class="pt-3">Ana sayfa</span>
       </router-link>
-      <router-link to="/Search" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
+      <router-link to="/search" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
          <div class="py-2">
-           <SearchIcon v-if="$route.name !== 'Search'"/>
+           <SearchIcon v-if="$route.name !== 'search'"/>
            <ActiveSearchIcon v-else/>
          </div>
           <span class="pt-3">Ara</span>
       </router-link>
-      <router-link to="/Collection" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
+      <router-link to="/collection" tag="li" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
           <div class="py-2">
-           <CollectionIcon v-if="$route.name !== 'Collection'"/>
+           <CollectionIcon v-if="$route.name !== 'collection'"/>
            <ActiveCollectionIcon v-else />
          </div>
           <span class="pt-3">Kitaplığın</span>

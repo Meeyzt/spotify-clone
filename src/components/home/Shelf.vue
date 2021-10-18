@@ -9,22 +9,19 @@
           HEPSİNİ GÖR
         </a>
       </div>
-      <div class="relative grid-rows-bir grid grid-cols-180 overflow-y-hidden auto-rows-sifir gap-6">
-          <Item class="seekChilds lg:showChilds" :type="type" v-for="(playlistInfo,index) in playlistData.data" :playlistInfo="playlistInfo" :key="index"/>
+       <div v-if="type === 'artist' || type === 'albums'" class="relative grid grid-cols-180 overflow-y-hidden auto-rows-auto gap-6">
+          <Item class="seekChilds lg:showChilds" :type="type" v-for="playlistInfo in data" :playlistInfo="playlistInfo" :key="playlistInfo.id"/>
+      </div>
+      <div v-else class="relative grid-rows-bir grid grid-cols-180 overflow-y-hidden auto-rows-sifir gap-6">
+          <Item class="seekChilds lg:showChilds" :type="type" v-for="playlistInfo in data" :playlistInfo="playlistInfo" :key="playlistInfo.id"/>
       </div>
   </div>
 </template>
 
 <script>
 import Item from '@/components/home/shelf/Item.vue';
-import playlistData from '@/data.json';
 
 export default {
-  data() {
-    return {
-      playlistData,
-    };
-  },
   props: {
     title: {
       type: String,
@@ -37,6 +34,10 @@ export default {
     type: {
       type: String,
       default: 'playlist',
+    },
+    data: {
+      type: Object,
+      required: true,
     },
   },
   components: {

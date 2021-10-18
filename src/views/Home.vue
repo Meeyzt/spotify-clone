@@ -1,8 +1,8 @@
 <template>
   <div class="w-full">
-      <Shelf title="Yakınlarda çalınanlar" />
-      <Shelf title="Podcasts" type="podcast" />
-      <Shelf title="Meeyzt İçin Derlendi" subTitle="Daha çok dinledikçe daha iyi tavsiyeler al." />
+      <Shelf title="Yakınlarda çalınanlar" :data="$store.state.playlists" />
+      <Shelf title="Podcasts" type="podcast" :data="$store.state.playlists" />
+      <Shelf title="Meeyzt İçin Derlendi" :data="$store.state.featured" subTitle="Daha çok dinledikçe daha iyi tavsiyeler al." />
   </div>
 </template>
 
