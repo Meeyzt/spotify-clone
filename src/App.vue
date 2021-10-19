@@ -5,9 +5,7 @@
         <Sidebar />
          <main class="flex flex-auto flex-col overflow-hidden relative w-[calc(100vw-210px)]">
             <Header/>
-            <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
-              <router-view/>
-            </div>
+            <router-view/>
           </main>
       </div>
       <Footer/>
@@ -31,6 +29,7 @@ export default {
     this.$store.dispatch('getCategoryData');
     this.$store.dispatch('getFeatured');
     this.$store.dispatch('getArtists');
+    this.$store.dispatch('getSaved');
   },
 };
 </script>

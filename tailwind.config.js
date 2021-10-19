@@ -23,6 +23,7 @@ module.exports = {
         collectionHeadbarColor: '#333',
       },
       fontSize: {
+        xs: ['0.813rem', '16px'],
         s: ['.875rem', '16px'],
         header: ['1.80rem', '36px'],
         '2xs': ['.688rem', '16px'],
@@ -48,6 +49,8 @@ module.exports = {
       gridTemplateColumns: {
         180: 'repeat(auto-fill,minmax(180px,1fr))',
         226: 'repeat(auto-fill,226px)',
+        400: '[index] 16px [first] 4fr [var1] 2fr [last] minmax(120px,1fr)',
+        500: '[index] 16px [first] 6fr [var1] 4fr [var2] 3fr [last] minmax(120px,1fr)',
       },
       gridTemplateRows: {
         bir: '1fr',

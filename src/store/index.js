@@ -8,15 +8,7 @@ Vue.use(Vuex);
 const config = {
   headers: {
     Accept: 'application/json',
-    Authorization: 'Bearer BQCybnE4YgcLrWZJlVX5cjsKtRtDYFCVkXEnUsEvKBKPoM1NaU7UxyeZq7D67aa6mYSaXBeO0OfZ7aGTa6Qgj1DqZLThKtMAUmT1c_zt7R0DfJdLVEBUfQSB8mtqPB7fsB7Yeel4FB3k51kkW1Ik',
-    'Content-Type': 'application/json',
-  },
-};
-
-const config2 = {
-  headers: {
-    Accept: 'application/json',
-    Authorization: 'Bearer BQDmG0FGj4gEGsKv_zoOpQvVHGQ948lXK_EMdw_ah-LytUSFeMNHI3xOZpSPguzKNb8UwT04EK_T4P6KrX3Vvleg6mH0O-k2yB9oSN2-Xakrx7HAV5h2AHMDQYvgbwROjgkUeNA4hTmkU8FSHiimKJWYT13qbvvuI1AW',
+    Authorization: 'Bearer BQAiMzu_UtFpNQbHR_Ksw7tZW7XghMt3ndxCk6_stsdumMFOz5Cn3f7IsQD_qPU9o7_axtIEwFUJCb27PYhBL5gmWs8UCpeE0_hnp94SraWIHsSQ8hIy4B6JYDFTD9DEn_ytdW1dkgIC9OgbGiJm3luDGztIPIPQyh45BL-qWSvmFQ5o9A0FVAAVwZTVJptB',
     'Content-Type': 'application/json',
   },
 };
@@ -25,10 +17,28 @@ export default new Vuex.Store({
   state: {
     isAuthenticated: true,
     collectionData,
-    playlists: {},
-    categories: {},
-    featured: {},
-    artists: {},
+    playlists: null,
+    categories: null,
+    featured: null,
+    artists: null,
+    saved: null,
+  },
+  getters: {
+    playlists(state) {
+      return (state.playlists !== null ? state.playlists : collectionData);
+    },
+    categories(state) {
+      return (state.categories !== null ? state.categories : collectionData);
+    },
+    featureds(state) {
+      return (state.featured !== null ? state.featured : collectionData);
+    },
+    artists(state) {
+      return (state.artists !== null ? state.artists : collectionData);
+    },
+    saved(state) {
+      return (state.saved !== null ? state.saved : collectionData);
+    },
   },
   mutations: {
     setPlaylists(state, playlists) {
@@ -43,29 +53,36 @@ export default new Vuex.Store({
     setArtists(state, artists) {
       state.artists = artists;
     },
+    setSaved(state, saved) {
+      state.saved = saved;
+    },
   },
   actions: {
-    getplaylistData(context) {
+    getplaylistData({ commit }) {
       axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&limit=6', config)
-        .then((res) => context.commit('setPlaylists', res.data.playlists.items))
+        .then((res) => commit('setPlaylists', res.data.playlists.items))
         .catch((e) => console.log(e));
     },
-    getCategoryData(context) {
+
+    getCategoryData({ commit }) {
       axios.get('https://api.spotify.com/v1/browse/categories?country=TR&locale=TR&limit=6&offset=5', config)
-        .then((res) => context.commit('setCategories', res.data.categories.items))
+        .then((res) => commit('setCategories', res.data.categories.items))
         .catch((e) => console.log(e));
     },
-    getFeatured(context) {
+    getFeatured({ commit }) {
       axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=TR&timestamp=2021-10-18T09%3A00%3A00.000Z&limit=10&offset=5', config)
-        .then((res) => context.commit('setFeatured', res.data.playlists.items))
+        .then((res) => commit('setFeatured', res.data.playlists.items))
         .catch((e) => console.log(e));
     },
-    getArtists(context) {
-      axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50', config2)
-        .then((res) => context.commit('setArtists', res.data.artists.items))
+    getArtists({ commit }) {
+      axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50', config)
+        .then((res) => commit('setArtists', res.data.artists.items))
         .catch((e) => console.log(e));
     },
-  },
-  modules: {
+    getSaved() {
+      axios.get('https://api.spotify.com/v1/me/tracks?market=TR&limit=10&offset=5', config)
+        .then((res) => this.commit('setSaved', res.data.items))
+        .catch((e) => console.log(e));
+    },
   },
 });

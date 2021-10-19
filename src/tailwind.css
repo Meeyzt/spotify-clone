@@ -8,6 +8,7 @@
         font-family: 'spotifyinternal-artistnpv-spotify-circular', sans-serif;
         @apply h-full antialiased bg-black min-w-[759px]
     }
+    
     @font-face {
         font-family: spotifyinternal-artistnpv-spotify-circular;
         font-style: normal;

@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-slider-component": "^4.0.0-beta.4",

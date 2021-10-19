@@ -10,15 +10,13 @@
         </span>
        <span class="pt-1 overflow-hidden"> Çalma Listesi Oluştur</span>
       </li>
+      <router-link to='/collection/tracks' tag="li" active-class="opacity-100" class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white">
 
-      <li
-       class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white"
-      >
       <span class="w-6 h-6 flex items-center justify-center bg-gradient-to-br from-purple-900 to-blue-300">
         <HeartIcon :width="12" :height="12"/>
       </span>
         <span class="pt-1">Beğenilen Şarkılar</span>
-      </li>
+      </router-link>
     </ul>
 </template>
 

@@ -6,8 +6,8 @@
           <img v-if="type !== 'artist'" class="w-full h-full left-0 absolute top-0 block object-cover object-center" :src="playlistInfo.images[0].url" alt="dsad"/>
           <img v-else class="w-full h-full left-0 absolute top-0 rounded-full block object-cover object-center" :src="playlistInfo.images[0].url" alt="dsad"/>
         </div>
-        <div v-if="type !== 'podcast'" class="transition right-2 bottom-2 rounded-full absolute z-2 opacity-0 group-hover:opacity-100 hover:transform group-hover:-translate-y-2">
-            <div class="transition bg-spotifyGreen w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+        <div v-if="type !== 'podcast'" class="transition right-2 bottom-2 rounded-full absolute z-2 opacity-0 group-hover:opacity-100 hover:transform drop-shadow-lg group-hover:-translate-y-2">
+            <div class="transition-all bg-spotifyGreen w-10 h-10 rounded-full flex items-center hover:scale-110 justify-center">
               <PlayIcon class="text-white"/>
             </div>
         </div>
