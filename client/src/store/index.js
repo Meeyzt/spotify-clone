@@ -102,7 +102,6 @@ export default new Vuex.Store({
     },
 
     addPlaylists(state, payload) {
-      state.playlists.push(payload);
       state.userPlaylists.push(payload);
     },
   },
@@ -178,13 +177,17 @@ export default new Vuex.Store({
     },
 
     getPlaylist({ state, commit }, playlistID) {
-      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`, state.config)
-        .then((res) => {
-          commit('setPlaylist', res.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      return new Promise((resolve, reject) => {
+        axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`, state.config)
+          .then((res) => {
+            commit('setPlaylist', res.data);
+            resolve();
+          })
+          .catch((e) => {
+            reject();
+            console.log(e);
+          });
+      });
     },
 
     getUserData({ state, commit }) {
@@ -193,6 +196,7 @@ export default new Vuex.Store({
           .then((res) => {
             commit('setUserData', res.data);
             commit('setIsAuthenticated', true);
+
             resolve();
           })
           .catch((e) => {
@@ -207,6 +211,7 @@ export default new Vuex.Store({
 
     createPlaylist({ commit }) {
       commit('addPlaylists', {
+        newPlaylist: true,
         images: [
           {
             url: '@/EmptyPlaylist.png',

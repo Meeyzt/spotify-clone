@@ -1,5 +1,5 @@
 <template>
-  <div v-if="playlists !== null && featureds !== null " class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
+  <div v-if="$store.state.playlists !== null && $store.state.featured !== null " class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
 
     <div class="w-full">
 
