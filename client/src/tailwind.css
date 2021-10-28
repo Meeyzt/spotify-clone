@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap');
+
+@layer base {
+    html,body,#app {
+        font-family: 'spotifyinternal-artistnpv-spotify-circular', sans-serif;
+        @apply h-full antialiased bg-black min-w-[759px]
+    }
+    
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Book.woff2)
+    }
+    
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 700;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Bold.woff2)
+    }
+    
+    @font-face {
+        font-family: spotifyinternal-artistnpv-spotify-circular;
+        font-style: normal;
+        font-weight: 900;
+        src: url(https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-Black.woff2)
+    }
+    .wrapper{
+        height: calc(100vh - 90px);
+        @apply flex
+    }
+    .footerItem{
+        @apply text-normalColor hover:text-white cursor-pointer h-4 w-4
+    }
+    .clipText{
+        overflow:hidden;
+    }
+
+    .ofSixShow:nth-child(3),
+    .ofSixShow:nth-child(4) {
+        display: flex !important;
+    }
+
+    .ofFourShow:nth-child(5),
+    .ofFourShow:nth-child(6) {
+        display: flex !important;
+    }
+
+    .ofTwoShow:nth-child(7),
+    .ofTwoShow:nth-child(8) {
+        display: flex !important;
+    }
+
+    .showChilds:nth-child(4),
+    .showChilds:nth-child(5),
+    .showChilds:nth-child(6) {
+        display: block !important;
+    }
+    
+    .loading {
+        height: 40px;
+        width: 100px;
+    }
+    
+    .blob {
+        border-radius: 50%;
+        background-color: white;
+        display: block;
+        float: left;
+        margin: 5px 7px;
+        position: relative;
+        top: 5px;
+        height: 10px;
+        width: 10px;
+    
+        -webkit-animation: loading-blob 1.2s infinite;
+        -moz-animation:    loading-blob 1.2s infinite;
+        -o-animation:      loading-blob 1.2s infinite;
+        animation:         loading-blob 1.2s infinite;
+    
+        -webkit-animation-timing-function: ease-in-out;
+        -moz-animation-timing-function: ease-in-out;
+        -ms-animation-timing-function: ease-in-out;
+        -o-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+    
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    @-webkit-keyframes loading-blob {
+        0% { height: 10px; top: 5px; width: 10px; }
+        25% { height: 15px; top: 0; width: 15px; }
+        50% { height: 10px; top: 5px; width: 10px; }
+        100% { height: 10px; width: 10px; }
+    }
+    
+    @-moz-keyframes loading-blob {
+        0% { height: 10px; top: 5px; width: 10px; }
+        25% { height: 15px; top: 0; width: 15px; }
+        50% { height: 10px; top: 5px; width: 10px; }
+        100% { height: 10px; width: 10px; }
+    }
+    
+    @-o-keyframes loading-blob {
+        0% { height: 10px; top: 5px; width: 10px; }
+        25% { height: 15px; top: 0; width: 15px; }
+        50% { height: 10px; top: 5px; width: 10px; }
+        100% { height: 10px; width: 10px; }
+    }
+    
+    @keyframes loading-blob {
+        0% { height: 10px; top: 5px; width: 10px; }
+        25% { height: 15px; top: 0; width: 15px; }
+        50% { height: 10px; top: 5px; width: 10px; }
+        100% { height: 10px; width: 10px; }
+    }
+    
+    .blob2 {
+        -webkit-animation-delay: 150ms;
+        -moz-animation-delay: 150ms;
+        -o-animation-delay: 150ms;
+        animation-delay: 150ms;
+    }
+    
+    .blob3 {
+        -webkit-animation-delay: 300ms;
+        -moz-animation-delay: 300ms;
+        -o-animation-delay: 300ms;
+        animation-delay: 300ms;
+    }
+}

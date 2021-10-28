@@ -1,0 +1,780 @@
+{
+    "href": "https://api.spotify.com/v1/users/them4nq4/playlists?offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "<a href=spotify:playlist:37i9dQZF1EIYonM0yE7V69>Hardal</a>, <a href=spotify:playlist:37i9dQZF1EIW2iPtgIFnJw>Camel</a>, <a href=spotify:playlist:37i9dQZF1EIUM2jEUjpio2>Cem Karaca</a> ve daha fazlası",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EQpVaHRDcozEz"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EQpVaHRDcozEz",
+        "id": "37i9dQZF1EQpVaHRDcozEz",
+        "images": [
+          {
+            "height": null,
+            "url": "https://seed-mix-image.spotifycdn.com/v6/img/seventies/7qyzljARZ2H0lYjBuRiTM3/tr/large",
+            "width": null
+          }
+        ],
+        "name": "70'ler Mix",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDc5NiwwMDAwMDAwMDczZDljMmJjODVhZjE1ZjRhOTc2YzljMTAxZGYzMDhl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EQpVaHRDcozEz/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EQpVaHRDcozEz"
+      },
+      {
+        "collaborative": false,
+        "description": "Melisa ile Meeyzt için müzik derlemesi. Her gün yenilenir.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EJzIi4w6lP3GS"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EJzIi4w6lP3GS",
+        "id": "37i9dQZF1EJzIi4w6lP3GS",
+        "images": [
+          {
+            "height": null,
+            "url": "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-azure-pink-tr-tr.jpg",
+            "width": null
+          }
+        ],
+        "name": "Melisa ve Meeyzt",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MCwwMDAwMDAwMGEzZTA3MjU4MDEyNzExOWZjNjQyZGZlN2EyMmI4ZTY0",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EJzIi4w6lP3GS/tracks",
+          "total": 0
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EJzIi4w6lP3GS"
+      },
+      {
+        "collaborative": false,
+        "description": "<a href=spotify:playlist:37i9dQZF1EIWzxsIy8S0Ow>Teoman</a>, <a href=spotify:playlist:37i9dQZF1EIWkTr2LzqIrY>Gece</a>, <a href=spotify:playlist:37i9dQZF1EIZG8vJHm1sgB>Kargo</a> ve daha fazlası",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EQpj7X7UK8OOF"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EQpj7X7UK8OOF",
+        "id": "37i9dQZF1EQpj7X7UK8OOF",
+        "images": [
+          {
+            "height": null,
+            "url": "https://seed-mix-image.spotifycdn.com/v6/img/rock/40KlwpvpKEQtZTJgbml8lT/tr/large",
+            "width": null
+          }
+        ],
+        "name": "Rock Mix",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDc5NiwwMDAwMDAwMGJmYzQxYTYxZGI5YzVhMDRlNzcyNDJjODQyZWU5Mzk2",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EQpj7X7UK8OOF/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EQpj7X7UK8OOF"
+      },
+      {
+        "collaborative": false,
+        "description": "Haftalık taptaze müzik derlemen. Yeni ve ender duyulan müziklerin tadını çıkar. Her Pazartesi güncellenir.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZEVXcPsxXZC3rI8z"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXcPsxXZC3rI8z",
+        "id": "37i9dQZEVXcPsxXZC3rI8z",
+        "images": [
+          {
+            "height": null,
+            "url": "https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/dFWbaxN8t-q02XimHHDRGknrMFQl_Lf0oXpuWQhr9XuZWhLLznLMInqCa04s5i5lvWru-iWTkcKyaZJS2C24XHId8uGMaZ3d_VbbqjnO5vY=/NDM6NzQ6NDFUMTAtMTEtMQ==",
+            "width": null
+          }
+        ],
+        "name": "Haftalık Keşif",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MCwwMDAwMDAwMDQ4ZTNiZGUwZmU3ZjZlZDRiOWFkNjJmYjgxY2EyNjFl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXcPsxXZC3rI8z/tracks",
+          "total": 30
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZEVXcPsxXZC3rI8z"
+      },
+      {
+        "collaborative": false,
+        "description": "Takip ettiğin sanatçıların en son müziklerinin hepsini, artı sadece senin için seçilmiş yeni single'ları yakala. Her Cuma güncellenir.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZEVXbhuZuSWfpKVe"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXbhuZuSWfpKVe",
+        "id": "37i9dQZEVXbhuZuSWfpKVe",
+        "images": [
+          {
+            "height": null,
+            "url": "https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb862d34354ecd0f54ea47e70f/tr/large",
+            "width": null
+          }
+        ],
+        "name": "Yeni Müzik Radarı",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjcyMzc0MjAsMDAwMDAwMDBkYTdkYTdiMTA2NWIyNTk4NTYxMGQ3ZGEzNmEwODY1Ng==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXbhuZuSWfpKVe/tracks",
+          "total": 30
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZEVXbhuZuSWfpKVe"
+      },
+      {
+        "collaborative": false,
+        "description": "<a href=spotify:playlist:37i9dQZF1EIUYeBt09qoVI>Grizu</a>, <a href=spotify:playlist:37i9dQZF1EIZh31jSq5WR3>Hayko Cepkin</a>, <a href=spotify:playlist:37i9dQZF1EIVieauzTUSnv>Mabel Matiz</a> ve daha fazlası",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EIWSf6WayhJZ9"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIWSf6WayhJZ9",
+        "id": "37i9dQZF1EIWSf6WayhJZ9",
+        "images": [
+          {
+            "height": null,
+            "url": "https://seed-mix-image.spotifycdn.com/v6/img/artist/3vJJGsSAF5zQegZo5sJEh6/tr/large",
+            "width": null
+          }
+        ],
+        "name": "Can Bonomo Mix",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDc5NiwwMDAwMDAwMGI0ZTg2ZTZiNDBhNDYyNzFhZTk1NmI3YmI2MTVhYWY2",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIWSf6WayhJZ9/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EIWSf6WayhJZ9"
+      },
+      {
+        "collaborative": false,
+        "description": "<a href=spotify:playlist:37i9dQZF1EIYXcFxuuxU1a>Yüksek Sadakat</a>, <a href=spotify:playlist:37i9dQZF1EIV4eiKpyhYqf>maNga</a>, <a href=spotify:playlist:37i9dQZF1EIWeJUIk3z5IZ>Duman</a> ve daha fazlası",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EIZh31jSq5WR3"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIZh31jSq5WR3",
+        "id": "37i9dQZF1EIZh31jSq5WR3",
+        "images": [
+          {
+            "height": null,
+            "url": "https://seed-mix-image.spotifycdn.com/v6/img/artist/3hzijSzD6IwOV4SY2SiWQp/tr/large",
+            "width": null
+          }
+        ],
+        "name": "Hayko Cepkin Mix",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDc5NiwwMDAwMDAwMDZjMDljMmE0MzI1NzJjMDUzNjI3M2E3YzNmZGJjZDMy",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIZh31jSq5WR3/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EIZh31jSq5WR3"
+      },
+      {
+        "collaborative": false,
+        "description": "<a href=spotify:playlist:37i9dQZF1EIZG8vJHm1sgB>Kargo</a>, <a href=spotify:playlist:37i9dQZF1EIYXcFxuuxU1a>Yüksek Sadakat</a>, <a href=spotify:playlist:37i9dQZF1EIXtVxsSvBopr>Ceza</a> ve daha fazlası",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EIV4eiKpyhYqf"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIV4eiKpyhYqf",
+        "id": "37i9dQZF1EIV4eiKpyhYqf",
+        "images": [
+          {
+            "height": null,
+            "url": "https://seed-mix-image.spotifycdn.com/v6/img/artist/7rEIUw67hRTgievwuKQGSj/tr/large",
+            "width": null
+          }
+        ],
+        "name": "maNga Mix",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDc5NiwwMDAwMDAwMDQ4YmRhY2VmMTlmZmFlNDBmYTU1NGNiYTM3MDhlMTVi",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EIV4eiKpyhYqf/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EIV4eiKpyhYqf"
+      },
+      {
+        "collaborative": false,
+        "description": "Gitar ve davulu konuşturanlar. Kapak: Koray Candemir",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX3RfxtU3KC3j"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX3RfxtU3KC3j",
+        "id": "37i9dQZF1DX3RfxtU3KC3j",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f000000034c3baf229cb1934b0b5cd917",
+            "width": null
+          }
+        ],
+        "name": "Türkçe Rock",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzNDI4OTQ0MiwwMDAwMDBjNTAwMDAwMTdjODMzZGRlYjMwMDAwMDE3YzgzM2FlMGEx",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX3RfxtU3KC3j/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX3RfxtU3KC3j"
+      },
+      {
+        "collaborative": false,
+        "description": "playlist ama playlistten çok rock olarak ne bulduysam attım.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/48G0fUeW9AbRMCJMkbFugz"
+        },
+        "href": "https://api.spotify.com/v1/playlists/48G0fUeW9AbRMCJMkbFugz",
+        "id": "48G0fUeW9AbRMCJMkbFugz",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb5946f1eaa0f72f6c4fd9e7f6",
+            "width": null
+          }
+        ],
+        "name": "İki",
+        "owner": {
+          "display_name": "Meeyzt",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/them4nq4"
+          },
+          "href": "https://api.spotify.com/v1/users/them4nq4",
+          "id": "them4nq4",
+          "type": "user",
+          "uri": "spotify:user:them4nq4"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "NDk3LDVhODQ1OGZmODNlOWYzNmMzZGM1OGZlOWNjYWRlNmIzZTljODRhN2Y=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/48G0fUeW9AbRMCJMkbFugz/tracks",
+          "total": 462
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:48G0fUeW9AbRMCJMkbFugz"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/7kbgn6RRKMSegEgvXh5IbP"
+        },
+        "href": "https://api.spotify.com/v1/playlists/7kbgn6RRKMSegEgvXh5IbP",
+        "id": "7kbgn6RRKMSegEgvXh5IbP",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb70f5f38dcb3acc00a47046db",
+            "width": null
+          }
+        ],
+        "name": "Grimz Türkçe",
+        "owner": {
+          "display_name": "grimnax",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/grimnax"
+          },
+          "href": "https://api.spotify.com/v1/users/grimnax",
+          "id": "grimnax",
+          "type": "user",
+          "uri": "spotify:user:grimnax"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTg3LGFjY2U1MTE4ZTAxYWNmZmYzYjA1MDVjMzhmODJiNjYxZDIwNjU4YTE=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/7kbgn6RRKMSegEgvXh5IbP/tracks",
+          "total": 200
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:7kbgn6RRKMSegEgvXh5IbP"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2UYR5hS1RY09RHKD3ozRnL"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2UYR5hS1RY09RHKD3ozRnL",
+        "id": "2UYR5hS1RY09RHKD3ozRnL",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb0a9104176e2b5c1bad660b9b",
+            "width": null
+          }
+        ],
+        "name": "Grimz",
+        "owner": {
+          "display_name": "grimnax",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/grimnax"
+          },
+          "href": "https://api.spotify.com/v1/users/grimnax",
+          "id": "grimnax",
+          "type": "user",
+          "uri": "spotify:user:grimnax"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjgxLDRiOTNlMzA5Mzg0MDFjZDFhMmY0ODUyYzBhZDUyNmM1OGI5NTUwNjk=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2UYR5hS1RY09RHKD3ozRnL/tracks",
+          "total": 231
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2UYR5hS1RY09RHKD3ozRnL"
+      },
+      {
+        "collaborative": false,
+        "description": "Hayko abimi çok seviyom keşke beni öpse",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3RKJxchfyaH0Se4qqd1DVt"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3RKJxchfyaH0Se4qqd1DVt",
+        "id": "3RKJxchfyaH0Se4qqd1DVt",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b27334342e528c307e81d6940e70ab67616d0000b2738c841a3a9ec22546a26e8b8fab67616d0000b273a1d869c946fbb59a897cb910ab67616d0000b273ba4e40cd7dd3b9f26feb94c2",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b27334342e528c307e81d6940e70ab67616d0000b2738c841a3a9ec22546a26e8b8fab67616d0000b273a1d869c946fbb59a897cb910ab67616d0000b273ba4e40cd7dd3b9f26feb94c2",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b27334342e528c307e81d6940e70ab67616d0000b2738c841a3a9ec22546a26e8b8fab67616d0000b273a1d869c946fbb59a897cb910ab67616d0000b273ba4e40cd7dd3b9f26feb94c2",
+            "width": 60
+          }
+        ],
+        "name": "DELİ HAYKO",
+        "owner": {
+          "display_name": "Meeyzt",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/them4nq4"
+          },
+          "href": "https://api.spotify.com/v1/users/them4nq4",
+          "id": "them4nq4",
+          "type": "user",
+          "uri": "spotify:user:them4nq4"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NjQsMWYwZmNjYzlmZDkzOTI0ZjhmNTZkMjdkMTVkNjJlM2JkMTljYzc3OA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3RKJxchfyaH0Se4qqd1DVt/tracks",
+          "total": 61
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3RKJxchfyaH0Se4qqd1DVt"
+      },
+      {
+        "collaborative": false,
+        "description": "Efsanelerin yorumlarıyla saykedelik rock. Kapak: Erkin Koray",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX9bvVeeesP1m"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX9bvVeeesP1m",
+        "id": "37i9dQZF1DX9bvVeeesP1m",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003d9c35bb892a28bc6dbb2da17",
+            "width": null
+          }
+        ],
+        "name": "Anadolu Rock",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYwOTA3ODU1OSwwMDAwMDAxNDAwMDAwMTc2YTQ4ZTUzYzEwMDAwMDE2ZDE1MjA3Mzhk",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX9bvVeeesP1m/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX9bvVeeesP1m"
+      },
+      {
+        "collaborative": true,
+        "description": "isminden de anlaşıldığı gibi yabancı rock ama metalde var ayrıca size ne amk",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2pnDor6uaBdcOkoPvc3V3Q"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2pnDor6uaBdcOkoPvc3V3Q",
+        "id": "2pnDor6uaBdcOkoPvc3V3Q",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b273254e63ff486c2d89636dac32ab67616d0000b2737d12ebf1c4ca5c7c06d72952ab67616d0000b273e319baafd16e84f0408af2a0ab67616d0000b273efd0d11e67201ebb23e96267",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b273254e63ff486c2d89636dac32ab67616d0000b2737d12ebf1c4ca5c7c06d72952ab67616d0000b273e319baafd16e84f0408af2a0ab67616d0000b273efd0d11e67201ebb23e96267",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b273254e63ff486c2d89636dac32ab67616d0000b2737d12ebf1c4ca5c7c06d72952ab67616d0000b273e319baafd16e84f0408af2a0ab67616d0000b273efd0d11e67201ebb23e96267",
+            "width": 60
+          }
+        ],
+        "name": "YABOCK",
+        "owner": {
+          "display_name": "Meeyzt",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/them4nq4"
+          },
+          "href": "https://api.spotify.com/v1/users/them4nq4",
+          "id": "them4nq4",
+          "type": "user",
+          "uri": "spotify:user:them4nq4"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "NDMsNGI3MzZiZmVhOTc2Y2ZkMWJkOTM4MWFjNWUyMmE1ZTIwNzA5MzE2YQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2pnDor6uaBdcOkoPvc3V3Q/tracks",
+          "total": 33
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2pnDor6uaBdcOkoPvc3V3Q"
+      },
+      {
+        "collaborative": true,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/7tQk97lhODOldr3wckqSl0"
+        },
+        "href": "https://api.spotify.com/v1/playlists/7tQk97lhODOldr3wckqSl0",
+        "id": "7tQk97lhODOldr3wckqSl0",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2735621f132b6d5ce5254b5aa2aab67616d0000b2739683e5d7361bb80bfb00f46dab67616d0000b2739ccc759e39a5e5fc86101972",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2735621f132b6d5ce5254b5aa2aab67616d0000b2739683e5d7361bb80bfb00f46dab67616d0000b2739ccc759e39a5e5fc86101972",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2735621f132b6d5ce5254b5aa2aab67616d0000b2739683e5d7361bb80bfb00f46dab67616d0000b2739ccc759e39a5e5fc86101972",
+            "width": 60
+          }
+        ],
+        "name": "Hard Rock & Heavy-Progresif Metal",
+        "owner": {
+          "display_name": "Damla",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/or4k7ltf17pzeyl1j54wa2skh"
+          },
+          "href": "https://api.spotify.com/v1/users/or4k7ltf17pzeyl1j54wa2skh",
+          "id": "or4k7ltf17pzeyl1j54wa2skh",
+          "type": "user",
+          "uri": "spotify:user:or4k7ltf17pzeyl1j54wa2skh"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NjgsZjY1ZjE1NjIxNGE1NTNkZjFlNWM3YWY2NmJiNzUzNTdiOWJmOGU5Zg==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/7tQk97lhODOldr3wckqSl0/tracks",
+          "total": 63
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:7tQk97lhODOldr3wckqSl0"
+      },
+      {
+        "collaborative": false,
+        "description": "You wanted the worst, you got the worst, the one, the only, Limp Bizkit.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWSyORK2fDImV"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWSyORK2fDImV",
+        "id": "37i9dQZF1DWSyORK2fDImV",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003f67596000f8b5f05ba511f7d",
+            "width": null
+          }
+        ],
+        "name": "This Is Limp Bizkit",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzMzAwMjQ3MiwwMDAwMDAyNjAwMDAwMTdjMzY4ODQ0NTMwMDAwMDE3NGY5MGI2NzMy",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWSyORK2fDImV/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWSyORK2fDImV"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3zmnAjNypZYBdGr2aqSu6T"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3zmnAjNypZYBdGr2aqSu6T",
+        "id": "3zmnAjNypZYBdGr2aqSu6T",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2731b3c09cb3ec9f618664f2622ab67616d0000b273458cdf57129e1fa18ac3245fab67616d0000b2734694c5b97d3a88efb5fc71b5ab67616d0000b273b3994c94dfb241923664bb4d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2731b3c09cb3ec9f618664f2622ab67616d0000b273458cdf57129e1fa18ac3245fab67616d0000b2734694c5b97d3a88efb5fc71b5ab67616d0000b273b3994c94dfb241923664bb4d",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2731b3c09cb3ec9f618664f2622ab67616d0000b273458cdf57129e1fa18ac3245fab67616d0000b2734694c5b97d3a88efb5fc71b5ab67616d0000b273b3994c94dfb241923664bb4d",
+            "width": 60
+          }
+        ],
+        "name": "Grimz Oldies",
+        "owner": {
+          "display_name": "grimnax",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/grimnax"
+          },
+          "href": "https://api.spotify.com/v1/users/grimnax",
+          "id": "grimnax",
+          "type": "user",
+          "uri": "spotify:user:grimnax"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTIsMzU5NTExYzdiZDBlNmIxYjRmZWUwNTViYWEzY2Y2ZjQzZTIxYWFjYg==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3zmnAjNypZYBdGr2aqSu6T/tracks",
+          "total": 426
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3zmnAjNypZYBdGr2aqSu6T"
+      },
+      {
+        "collaborative": false,
+        "description": "Türkçe rock'ın unutulmazları. Kapak: Duman ",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdJK5t0CJ27H"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXdJK5t0CJ27H",
+        "id": "37i9dQZF1DXdJK5t0CJ27H",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003145a1bf38d46cb8a2d8db613",
+            "width": null
+          }
+        ],
+        "name": "Kült Rock",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzMDM0MjA1OCwwMDAwMDAwYjAwMDAwMTdiOTdmNTkxNDMwMDAwMDE3OTM3ZjhiODVi",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXdJK5t0CJ27H/tracks",
+          "total": 60
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DXdJK5t0CJ27H"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/59RHF0GN7jU4O1zOuN4zUb"
+        },
+        "href": "https://api.spotify.com/v1/playlists/59RHF0GN7jU4O1zOuN4zUb",
+        "id": "59RHF0GN7jU4O1zOuN4zUb",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2732e6c16f721a1be6d6612a253ab67616d0000b2738ac5768205ad97df3f4f4c0eab67616d0000b273b393efe59c94214cdd269548ab67616d0000b273f95ee4c9946564fe530cb5c3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2732e6c16f721a1be6d6612a253ab67616d0000b2738ac5768205ad97df3f4f4c0eab67616d0000b273b393efe59c94214cdd269548ab67616d0000b273f95ee4c9946564fe530cb5c3",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2732e6c16f721a1be6d6612a253ab67616d0000b2738ac5768205ad97df3f4f4c0eab67616d0000b273b393efe59c94214cdd269548ab67616d0000b273f95ee4c9946564fe530cb5c3",
+            "width": 60
+          }
+        ],
+        "name": "Cheers darlin'",
+        "owner": {
+          "display_name": "Damla",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/or4k7ltf17pzeyl1j54wa2skh"
+          },
+          "href": "https://api.spotify.com/v1/users/or4k7ltf17pzeyl1j54wa2skh",
+          "id": "or4k7ltf17pzeyl1j54wa2skh",
+          "type": "user",
+          "uri": "spotify:user:or4k7ltf17pzeyl1j54wa2skh"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTA4LDg5YzZmOTg3YWJlNmE5Nzg2MDRmNjg5MDc2MWExODQ1Y2MxMzQ2NDU=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/59RHF0GN7jU4O1zOuN4zUb/tracks",
+          "total": 107
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:59RHF0GN7jU4O1zOuN4zUb"
+      }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/users/them4nq4/playlists?offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 31
+  }
