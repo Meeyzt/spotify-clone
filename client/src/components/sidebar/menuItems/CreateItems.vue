@@ -1,6 +1,7 @@
 <template>
     <ul class="pt-6 pb-5">
       <li
+        @click="createPlaylist()"
         class="group text-sm pl-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
       >
         <span
@@ -42,6 +43,12 @@ export default {
   components: {
     PlusIcon,
     HeartIcon,
+  },
+
+  methods: {
+    createPlaylist() {
+      this.$store.dispatch('createPlaylist');
+    },
   },
 
 };

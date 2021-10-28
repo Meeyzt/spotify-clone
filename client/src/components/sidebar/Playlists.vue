@@ -4,20 +4,15 @@
     v-if="userPlaylists"
   >
 
-    <div
-      class="text-s cursor-default flex pt-2 flex-row gap-x-4 text-normalColor hover:text-white"
+    <router-link
+      tag="div"
+      class="text-s cursor-pointer flex pt-2 flex-row gap-x-4 text-normalColor hover:text-white"
       v-for="playlist in userPlaylists"
       :key="playlist.id"
+      :to="`/playlist/${playlist.id}`"
     >
-      <router-link
-        class="w-full truncate"
-        tag="a"
-        :key="playlist.id"
-        :to="`/playlist/${playlist.id}`"
-      >
-        {{ playlist.name }}
-      </router-link>
-    </div>
+      {{ playlist.name }}
+    </router-link>
   </div>
 </template>
 

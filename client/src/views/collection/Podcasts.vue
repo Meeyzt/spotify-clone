@@ -2,16 +2,15 @@
 <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
   <div class="w-full">
 
-    <Shelf title="En çok dinlenen podcastler" :data="playlists" type="podcast" />
+    <Shelf title="En çok dinlenen podcastler" :data="$store.getters.playlists(6)" type="shelfPodcast" />
 
-    <Shelf title="Kategoriler" type="podcast" :data="playlists" />
+    <Shelf title="Kategoriler" type="albums" :data="$store.getters.playlists(20)" />
 
   </div>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Shelf from '@/components/home/Shelf.vue';
 
 export default {
@@ -19,10 +18,5 @@ export default {
     Shelf,
   },
 
-  computed: {
-    ...mapGetters([
-      'playlists',
-    ]),
-  },
 };
 </script>

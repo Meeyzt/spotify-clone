@@ -1,5 +1,9 @@
 <template>
-  <div class="group cursor-pointer w-full bg-headbarColor flex flex-row gap-3 items-center rounded-md hover:bg-hoverHeadbar justify-between">
+  <router-link
+  class="group cursor-pointer w-full bg-headbarColor flex flex-row gap-3 items-center rounded-md hover:bg-hoverHeadbar justify-between"
+  :to="`/playlist/${data.id}`"
+  tag="div"
+  >
 
     <img
       class="object-cover w-20 h-20 rounded-l"
@@ -15,7 +19,7 @@
       <PlayIcon />
     </div>
 
-  </div>
+  </router-link>
 </template>
 
 <script>

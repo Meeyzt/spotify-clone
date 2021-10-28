@@ -100,6 +100,10 @@ export default new Vuex.Store({
         },
       };
     },
+
+    addPlaylists(state, payload) {
+      state.userPlaylists.push(payload);
+    },
   },
 
   actions: {
@@ -173,13 +177,17 @@ export default new Vuex.Store({
     },
 
     getPlaylist({ state, commit }, playlistID) {
-      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`, state.config)
-        .then((res) => {
-          commit('setPlaylist', res.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      return new Promise((resolve, reject) => {
+        axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`, state.config)
+          .then((res) => {
+            commit('setPlaylist', res.data);
+            resolve();
+          })
+          .catch((e) => {
+            reject();
+            console.log(e);
+          });
+      });
     },
 
     getUserData({ state, commit }) {
@@ -188,6 +196,7 @@ export default new Vuex.Store({
           .then((res) => {
             commit('setUserData', res.data);
             commit('setIsAuthenticated', true);
+
             resolve();
           })
           .catch((e) => {
@@ -197,6 +206,30 @@ export default new Vuex.Store({
 
             reject();
           });
+      });
+    },
+
+    createPlaylist({ commit }) {
+      commit('addPlaylists', {
+        newPlaylist: true,
+        images: [
+          {
+            url: '@/EmptyPlaylist.png',
+          },
+        ],
+        name: '5. Çalma Listesi',
+        tracks: {
+          items: {
+          },
+          total: '0',
+        },
+        follower: {
+          total: '0',
+        },
+        id: Math.ceil(Math.random(16000) * 100),
+        owner: {
+          display_name: 'Meeyzt',
+        },
       });
     },
   },
