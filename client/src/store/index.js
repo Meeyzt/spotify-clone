@@ -100,6 +100,11 @@ export default new Vuex.Store({
         },
       };
     },
+
+    addPlaylists(state, payload) {
+      state.playlists.push(payload);
+      state.userPlaylists.push(payload);
+    },
   },
 
   actions: {
@@ -197,6 +202,29 @@ export default new Vuex.Store({
 
             reject();
           });
+      });
+    },
+
+    createPlaylist({ commit }) {
+      commit('addPlaylists', {
+        images: [
+          {
+            url: '@/EmptyPlaylist.png',
+          },
+        ],
+        name: '5. Çalma Listesi',
+        tracks: {
+          items: {
+          },
+          total: '0',
+        },
+        follower: {
+          total: '0',
+        },
+        id: Math.ceil(Math.random(16000) * 100),
+        owner: {
+          display_name: 'Meeyzt',
+        },
       });
     },
   },
