@@ -11,25 +11,4 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.isAuthenticated) {
-    if (localStorage.getItem('accessToken') !== (undefined || null)) {
-      store.commit('setAccessToken', localStorage.getItem('accessToken'));
-
-      store.dispatch('getUserData')
-        .then(() => next())
-        .catch(() => next('/login'));
-
-      next(`/callback/?access_token=${localStorage.getItem('accessToken')}`);
-    } else {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath },
-      });
-    }
-  } else {
-    next();
-  }
-});
-
 export default router;
