@@ -1,19 +1,18 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-import authModule from './store.module.auth';
+import collectionData from '@/collectionData.json';
+import userPlaylistsData from '@/userPlaylists.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-
-  modules: {
-    authModule,
-  },
-
   state: {
     isAuthenticated: false,
-    accessToken: null,
+    collectionData,
+    userPlaylistsData,
+    accessCode: null,
+    config: null,
     playlists: null,
     categories: null,
     featured: null,
@@ -22,7 +21,6 @@ export default new Vuex.Store({
     userPlaylists: null,
     playlist: null,
     userData: null,
-    isLoading: false,
   },
 
   getters: {
@@ -82,11 +80,7 @@ export default new Vuex.Store({
 
     setAccessToken(state, payload) {
       state.accessToken = payload;
-      localStorage.setItem('access_token', payload);
-    },
-
-    setRefreshToken(state, payload) {
-      state.refreshToken = payload;
+      localStorage.setItem('accessToken', payload);
     },
 
     setUserData(state, userData) {
@@ -97,44 +91,43 @@ export default new Vuex.Store({
       state.isAuthenticated = payload;
     },
 
-    addPlaylists(state, payload) {
-      state.userPlaylists.push(payload);
-      state.isLoading = false;
+    setConfig(state) {
+      state.config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      };
     },
 
-    setIsLoading(state, payload) {
-      state.isLoading = payload;
+    addPlaylists(state, payload) {
+      state.userPlaylists.push(payload);
     },
   },
 
   actions: {
     initProject({ dispatch, state }) {
-      return new Promise((resolve, reject) => {
-        if (state.isAuthenticated) {
-          dispatch('getplaylistData');
-          dispatch('getCategoryData');
-          dispatch('getFeatured');
-          dispatch('getArtists');
-          dispatch('getSaved');
-          dispatch('getUserPlaylists');
-
-          resolve();
-        } else {
-          reject();
-        }
-      });
+      if (state.isAuthenticated) {
+        dispatch('getplaylistData');
+        dispatch('getCategoryData');
+        dispatch('getFeatured');
+        dispatch('getArtists');
+        dispatch('getSaved');
+        dispatch('getUserPlaylists');
+      }
     },
 
-    getplaylistData({ commit }) {
-      axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&limit=20')
+    getplaylistData({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&limit=20', state.config)
         .then((res) => commit('setPlaylists', res.data.playlists.items))
         .catch((e) => {
           console.log(e);
         });
     },
 
-    getCategoryData({ commit }) {
-      axios.get('https://api.spotify.com/v1/browse/categories?country=TR&locale=TR&limit=6&offset=0')
+    getCategoryData({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/browse/categories?country=TR&locale=TR&limit=6&offset=0', state.config)
         .then((res) => {
           commit('setCategories', res.data.categories.items);
         })
@@ -143,8 +136,8 @@ export default new Vuex.Store({
         });
     },
 
-    getFeatured({ commit }) {
-      axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=TR&timestamp=2021-10-18T09%3A00%3A00.000Z&limit=10&offset=0')
+    getFeatured({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=TR&timestamp=2021-10-18T09%3A00%3A00.000Z&limit=10&offset=0', state.config)
         .then((res) => {
           commit('setFeatured', res.data.playlists.items);
         })
@@ -153,34 +146,28 @@ export default new Vuex.Store({
         });
     },
 
-    getArtists({ commit }) {
-      commit('setIsLoading', true);
-      axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50')
+    getArtists({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50', state.config)
         .then((res) => {
-          commit('setIsLoading', false);
           commit('setArtists', res.data.artists.items);
         })
         .catch((e) => {
-          commit('setIsLoading', false);
           console.log(e);
         });
     },
 
-    getSaved({ commit }) {
-      commit('setIsLoading', true);
-      axios.get('https://api.spotify.com/v1/me/tracks?market=TR&limit=20&offset=0')
+    getSaved({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/me/tracks?market=TR&limit=20&offset=0', state.config)
         .then((res) => {
           commit('setSaved', res.data.items);
-          commit('setIsLoading', false);
         })
         .catch((e) => {
-          commit('setIsLoading', false);
           console.log(e);
         });
     },
 
-    getUserPlaylists({ commit }) {
-      axios.get('https://api.spotify.com/v1/me/playlists?limit=20&offset=0')
+    getUserPlaylists({ state, commit }) {
+      axios.get('https://api.spotify.com/v1/me/playlists?limit=20&offset=0', state.config)
         .then((res) => {
           commit('setUserPlaylists', res.data.items);
         })
@@ -189,9 +176,9 @@ export default new Vuex.Store({
         });
     },
 
-    getPlaylist({ commit }, playlistID) {
+    getPlaylist({ state, commit }, playlistID) {
       return new Promise((resolve, reject) => {
-        axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`)
+        axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`, state.config)
           .then((res) => {
             commit('setPlaylist', res.data);
             resolve();
@@ -203,9 +190,9 @@ export default new Vuex.Store({
       });
     },
 
-    getUserData({ commit }) {
+    getUserData({ state, commit }) {
       return new Promise((resolve, reject) => {
-        axios.get('https://api.spotify.com/v1/me')
+        axios.get('https://api.spotify.com/v1/me', state.config)
           .then((res) => {
             commit('setUserData', res.data);
             commit('setIsAuthenticated', true);
@@ -223,7 +210,6 @@ export default new Vuex.Store({
     },
 
     createPlaylist({ commit }) {
-      commit('setIsLoading', true);
       commit('addPlaylists', {
         newPlaylist: true,
         images: [
@@ -245,12 +231,6 @@ export default new Vuex.Store({
           display_name: 'Meeyzt',
         },
       });
-    },
-
-    initAuth({ commit }) {
-      commit('setAccessToken', localStorage.getItem('access_token'));
-      commit('setRefreshToken', localStorage.getItem('refresh_token'));
-      commit('setExpiresAt', localStorage.getItem('expires_at'));
     },
   },
 });

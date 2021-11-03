@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-6 flex-auto overflow-y-auto overflow-x-hidden relative mt-2 w-full h-full relative"
+    class="px-6 flex-auto overflow-y-auto overflow-x-hidden mt-2 w-full h-full"
     v-if="userPlaylists"
   >
 
@@ -10,11 +10,9 @@
       v-for="playlist in userPlaylists"
       :key="playlist.id"
       :to="`/playlist/${playlist.id}`"
-      ref="sidebarPlaylist"
     >
       {{ playlist.name }}
     </router-link>
-
   </div>
 </template>
 
@@ -22,6 +20,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
+
   computed: {
     ...mapGetters([
       'userPlaylists',
