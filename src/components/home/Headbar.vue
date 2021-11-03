@@ -1,6 +1,6 @@
 <template>
   <router-link
-  class="group cursor-pointer w-full bg-headbarColor flex flex-row gap-3 items-center rounded-md hover:bg-hoverHeadbar justify-between"
+  class="group cursor-pointer w-full bg-minimalColor flex flex-row gap-3 items-center rounded-md hover:bg-hoverHeadbar justify-between"
   :to="`/playlist/${data.id}`"
   tag="div"
   >

@@ -25,7 +25,7 @@
 
       </router-link>
 
-      <router-link to="/collection" :class="$route.name!== 'CollectionPlaylists' ? 'bg-transparent text-normalColor rounded-none' : 'bg-activeColor rounded text-white'" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
+      <router-link to="/collection" :class="`text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white ${$route.name!== 'CollectionPlaylists' ? 'bg-transparent text-normalColor rounded-none' : 'bg-activeColor rounded text-white'}`">
 
           <div class="py-2">
 

@@ -5,9 +5,3 @@
     <div class="blob3 blob"/>
   </div>
 </template>
-
-<script>
-export default {
-
-};
-</script>
