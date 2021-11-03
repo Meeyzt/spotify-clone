@@ -1,8 +1,8 @@
 <template>
-  <div
-  id="app"
-  @click.right="rightClick($event)"
-  >
+    <div
+      id="app"
+      @click.right="rightClick($event)"
+    >
       <div class="wrapper">
         <Sidebar />
           <main class="flex flex-auto flex-col overflow-hidden relative w-[calc(100vw-210px)]">
@@ -26,10 +26,6 @@ export default {
     Sidebar,
     Header,
     Footer,
-  },
-
-  created() {
-    this.$store.dispatch('initAuth');
   },
 
   computed: {

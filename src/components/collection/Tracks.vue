@@ -7,6 +7,7 @@
     :style="{
       backgroundColor: pictureColor,
     }"
+    :key="playlistId"
   >
 
     <div class="h-full w-full pb-14 bg-gradient-to-b to-transparent from-[rgba(0,0,0,0.30)] overflow-auto">
@@ -47,6 +48,11 @@ export default {
   },
 
   props: {
+    playlistId: {
+      type: String,
+      required: true,
+    },
+
     playlistName: {
       type: String,
       required: true,

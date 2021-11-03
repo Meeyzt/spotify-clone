@@ -1,4 +1,4 @@
-# spotify-clone
+# spotify-clone3
 
 ## Project setup
 ```

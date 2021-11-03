@@ -11,32 +11,29 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  console.log('Match: ', to.matched.some((record) => record.meta.requiresAuth));
-  console.log('isAuthenticated: ', !store.state.isAuthenticated);
-  console.log('access_token: ', store.state.accessToken);
-  console.log('name: ', to.name);
-  console.log('expiresAt: ', store.state.expiresAt);
-  console.log('refreshToken: ', store.state.refreshToken);
-
+const beforeRoute = (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.isAuthenticated) {
-    console.log('1');
     if (store.state.accessToken && to.name !== 'login') {
-      console.log(2);
-      if (store.state.expiresAt <= Date().getTime()) {
-        console.log(3);
-        store.dispatch('getToken', { code: store.state.refreshToken, type: 'refreshToken' });
+      if (store.state.expiresAt <= Date.now()) {
+        store.dispatch('getToken', { code: store.state.refreshToken, type: 'refreshToken' }).then(() => next());
       } else {
-        console.log('e1');
         next();
       }
     } else {
-      console.log('e2');
       next('/login');
     }
   } else {
-    console.log('e3');
     next();
+  }
+};
+
+router.beforeEach((to, from, next) => {
+  if (store.state.appLoading) {
+    store.dispatch('initAuth').then(() => {
+      beforeRoute(to, from, next);
+    });
+  } else {
+    beforeRoute(to, from, next);
   }
 });
 

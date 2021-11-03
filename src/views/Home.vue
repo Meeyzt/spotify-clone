@@ -57,7 +57,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getUserData');
+    this.$store.dispatch('getUserData').then(() => {
+      this.$store.dispatch('initProject');
+    });
   },
 
   computed: {

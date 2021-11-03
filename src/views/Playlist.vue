@@ -10,6 +10,7 @@
       :playlist-author="playlist.owner.display_name"
       :playlist-song-count="playlist.tracks.total"
       :playlist-like-count="playlist.followers.total"
+      :playlist-id="playlist.id"
       v-if="playlist && isLoading === false"
     />
   </div>
@@ -20,11 +21,9 @@ import { mapState, mapGetters } from 'vuex';
 import Tracks from '@/components/collection/Tracks.vue';
 
 export default {
-
   components: {
     Tracks,
   },
-
   computed: {
     ...mapState([
       'userPlaylists',
@@ -34,15 +33,12 @@ export default {
       'playlist',
     ]),
   },
-
   created() {
     this.$store.commit('setIsLoading', true);
-    console.log(this.isLoading);
     this.$store.commit('setPlaylist', null);
     this.$store.dispatch('getPlaylist', this.$route.params.id)
       .then(() => {
         this.$store.commit('setIsLoading', false);
-        console.log(this.isLoading);
       });
   },
 };

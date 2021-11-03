@@ -30,7 +30,7 @@ export default {
     redirectUri: process.env.VUE_APP_SPOTIFY_REDIRECT_URI,
     scopes: INITIAL_SCOPES,
 
-    tokenGettin: false,
+    tokenGetting: false,
     tokenGettingError: null,
     tokenGettingErrorDescription: null,
 
@@ -64,7 +64,6 @@ export default {
 
     setExpiresAt(state, payload) {
       state.expiresAt = payload;
-      localStorage.setItem('expires_at', payload);
     },
 
     setCurrentUserGetting(state, payload) {
@@ -90,7 +89,7 @@ export default {
       })}`;
     },
 
-    async getToken({ state, commit }, { code, type = 'authorization_code' }) {
+    async getToken({ state, commit, dispatch }, { code, type = 'authorization_code' }) {
       return new Promise((resolve, reject) => {
         const url = 'https://accounts.spotify.com/api/token';
 
@@ -115,9 +114,16 @@ export default {
 
         axios.post(url, data, { auth }).then(async (response) => {
           commit('setAccessToken', response.data.access_token);
-          commit('setRefreshToken', response.data.refresh_token);
-          commit('setExpiresAt', Date.now() + response.data.expires_in);
-          axios.defaults.headers.authorization = `Bearer ${response.data.access_token}`;
+          if (type === 'authorization_code') {
+            commit('setRefreshToken', response.data.refresh_token);
+          }
+
+          const time = Date.now() + 36000;
+          commit('setExpiresAt', time);
+          localStorage.setItem('expires_at', time);
+          axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
+
+          dispatch('tokenTimer', time - Date.now());
 
           resolve();
         }).catch((err) => {

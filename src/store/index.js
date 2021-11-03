@@ -13,6 +13,7 @@ export default new Vuex.Store({
 
   state: {
     isAuthenticated: false,
+    appLoading: true,
     accessToken: null,
     playlists: null,
     categories: null,
@@ -85,10 +86,6 @@ export default new Vuex.Store({
       localStorage.setItem('access_token', payload);
     },
 
-    setRefreshToken(state, payload) {
-      state.refreshToken = payload;
-    },
-
     setUserData(state, userData) {
       state.userData = userData;
     },
@@ -104,6 +101,18 @@ export default new Vuex.Store({
 
     setIsLoading(state, payload) {
       state.isLoading = payload;
+    },
+
+    initLocalStorage(state, { accessToken, refreshToken, expiresAt }) {
+      state.accessToken = accessToken;
+      state.refreshToken = refreshToken;
+      state.expiresAt = expiresAt;
+
+      axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
+    },
+
+    setAppLoading(state, payload) {
+      state.appLoading = payload;
     },
   },
 
@@ -247,10 +256,28 @@ export default new Vuex.Store({
       });
     },
 
-    initAuth({ commit }) {
-      commit('setAccessToken', localStorage.getItem('access_token'));
-      commit('setRefreshToken', localStorage.getItem('refresh_token'));
-      commit('setExpiresAt', localStorage.getItem('expires_at'));
+    initAuth({ commit, dispatch }) {
+      return new Promise((resolve, reject) => {
+        try {
+          const expiresAt = localStorage.expires_at;
+          const refreshToken = localStorage.refresh_token || null;
+          const accessToken = localStorage.access_token || null;
+
+          commit('initLocalStorage', { accessToken, refreshToken, expiresAt });
+
+          dispatch('tokenTimer', expiresAt - Date.now());
+
+          resolve();
+        } catch (e) {
+          reject(e);
+        }
+      });
+    },
+
+    tokenTimer({ state, dispatch }, time) {
+      setTimeout(() => {
+        dispatch('getToken', { code: state.refreshToken, type: 'refreshToken' });
+      }, time);
     },
   },
 });
