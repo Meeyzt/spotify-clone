@@ -56,6 +56,10 @@ export default {
     Head,
   },
 
+  created() {
+    this.$store.dispatch('getUserData');
+  },
+
   computed: {
     ...mapState([
       'isAuthenticated',

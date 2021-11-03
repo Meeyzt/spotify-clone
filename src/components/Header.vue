@@ -72,19 +72,45 @@
 
       </div>
     </div>
-    <div class="flex flex-row bg-black rounded-full items-center justify-center text-white text-s px-0.5 py-0.5 cursor-pointer mx-4 hover:bg-hoverHeadbar">
+    <button class="group">
+      <span class="flex flex-row bg-black relative rounded-full items-center justify-center text-white text-s px-0.5 py-0.5 cursor-pointer mx-4 hover:bg-hoverHeadbar group-focus:bg-hoverHeadbar">
 
-      <div class="rounded-full h-7 w-7">
-        <img class="rounded-full overflow-hidden h-7 w-7 object-cover" :src="userData.images[0].url" alt="ProfilePicture" />
+        <div class="rounded-full h-7 w-7">
+          <img class="rounded-full overflow-hidden h-7 w-7 object-cover" :src="userData.images[0].url" alt="ProfilePicture" />
+        </div>
+
+        <div class="hidden lg:flex px-2 my-auto font-semibold items-center justify-center pt-1">
+          {{ userData.display_name }}
+        </div>
+
+        <DownArrow class="hidden lg:block mr-1 group-focus:transform group-focus:rotate-180" :height="16" :width="16"/>
+      </span>
+      <div class="hidden w-48 right-8 mt-2 text-left text-white flex-col absolute bg-hoverHeadbar rounded shadow-xl z-1 group-focus:flex shadow-xl">
+
+        <router-link
+          tag="a"
+          to="/"
+          class="p-3 m-1 pr-2 text-s hover:bg-player rounded flex justify-between"
+        >
+
+        <span>Hesap</span>
+        <span><browse-icon :height="16" :width="16"/></span>
+
+        </router-link>
+
+        <router-link
+          to="/"
+          class="m-1 p-3 pr-2 text-s hover:bg-player rounded"
+        >Profil</router-link>
+
+        <router-link
+          to="/"
+          class="m-1 p-3 pr-2 text-s hover:bg-player rounded"
+        >Oturumu Kapat</router-link>
+
       </div>
 
-      <div class="hidden lg:flex px-2 my-auto font-semibold items-center justify-center pt-1">
-        {{ userData.display_name }}
-      </div>
-
-      <DownArrow class="hidden lg:block pr-2 pb-0.5"/>
-
-    </div>
+    </button>
   </header>
 </template>
 
@@ -93,6 +119,7 @@ import { mapState } from 'vuex';
 import ArrowIcon from './icons/ArrowIcon.vue';
 import DownArrow from './icons/DownArrow.vue';
 import SearchIcon from './icons/SearchIcon.vue';
+import BrowseIcon from './icons/BrowseIcon.vue';
 
 export default {
   name: 'Header',
@@ -101,6 +128,7 @@ export default {
     ArrowIcon,
     DownArrow,
     SearchIcon,
+    BrowseIcon,
   },
 
   methods: {
