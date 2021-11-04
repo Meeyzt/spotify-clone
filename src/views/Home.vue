@@ -56,10 +56,9 @@ export default {
     Head,
   },
 
-  created() {
-    this.$store.dispatch('getUserData').then(() => {
-      this.$store.dispatch('initProject');
-    });
+  mounted() {
+    this.$store.dispatch('getplaylistData');
+    this.$store.dispatch('getFeatured');
   },
 
   computed: {

@@ -23,6 +23,10 @@ const beforeRoute = (to, from, next) => {
       next('/login');
     }
   } else {
+    if (to.name === 'playlist') {
+      store.commit('setIsLoading', true);
+      store.dispatch('getPlaylist', to.params.id);
+    }
     next();
   }
 };
@@ -30,6 +34,7 @@ const beforeRoute = (to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (store.state.appLoading) {
     store.dispatch('initAuth').then(() => {
+      store.dispatch('initProject');
       beforeRoute(to, from, next);
     });
   } else {

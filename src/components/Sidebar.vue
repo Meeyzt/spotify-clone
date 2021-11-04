@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import Menu from './sidebar/Menu.vue';
 import Playlists from './sidebar/Playlists.vue';
 import DownloadApp from './sidebar/DownloadApp.vue';
@@ -40,6 +40,9 @@ export default {
   computed: {
     ...mapState([
       'userData',
+    ]),
+    ...mapGetters([
+
     ]),
   },
 };

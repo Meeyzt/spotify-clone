@@ -22,6 +22,11 @@
 import { mapGetters } from 'vuex';
 
 export default {
+
+  mounted() {
+    this.$store.dispatch('getUserPlaylists');
+  },
+
   computed: {
     ...mapGetters([
       'userPlaylists',

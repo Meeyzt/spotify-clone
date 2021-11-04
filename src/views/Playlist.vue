@@ -11,35 +11,36 @@
       :playlist-song-count="playlist.tracks.total"
       :playlist-like-count="playlist.followers.total"
       :playlist-id="playlist.id"
-      v-if="playlist && isLoading === false"
+      v-if="playlist"
     />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import Tracks from '@/components/collection/Tracks.vue';
 
 export default {
+
   components: {
     Tracks,
   },
+
   computed: {
-    ...mapState([
-      'userPlaylists',
-      'isLoading',
-    ]),
+
     ...mapGetters([
       'playlist',
     ]),
   },
-  created() {
-    this.$store.commit('setIsLoading', true);
-    this.$store.commit('setPlaylist', null);
-    this.$store.dispatch('getPlaylist', this.$route.params.id)
-      .then(() => {
-        this.$store.commit('setIsLoading', false);
-      });
+
+  watch: {
+    playlist() {
+      console.log('rendered');
+    },
+  },
+
+  mounted() {
+    this.$store.commit('setIsLoading', false);
   },
 };
 </script>

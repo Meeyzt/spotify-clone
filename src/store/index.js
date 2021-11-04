@@ -31,7 +31,7 @@ export default new Vuex.Store({
 
     featureds: (state) => (count) => state.featured.slice(0, count ?? 6),
 
-    savedTracks: (state) => () => state.saved,
+    savedTracks: (state) => (count) => state.saved.items.slice(0, count ?? 6),
 
     categories(state) {
       return state.categories;
@@ -179,9 +179,9 @@ export default new Vuex.Store({
 
     getSaved({ commit }) {
       commit('setIsLoading', true);
-      axios.get('https://api.spotify.com/v1/me/tracks?market=TR&limit=20&offset=0')
+      axios.get('https://api.spotify.com/v1/me/tracks?market=TR&limit=50&offset=0')
         .then((res) => {
-          commit('setSaved', res.data.items);
+          commit('setSaved', { items: res.data.items, total: res.data.total });
           commit('setIsLoading', false);
         })
         .catch((e) => {

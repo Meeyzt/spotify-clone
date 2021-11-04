@@ -137,6 +137,10 @@ export default {
     },
   },
 
+  mounted() {
+    this.$store.dispatch('getUserData');
+  },
+
   computed: {
     ...mapState([
       'userData',
