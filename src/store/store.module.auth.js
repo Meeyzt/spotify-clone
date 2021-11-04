@@ -27,7 +27,7 @@ export default {
   state: () => ({
     clientId: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
     clientSecret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET,
-    redirectUri: process.env.VUE_APP_SPOTIFY_REDIRECT_URI,
+    redirectUri: `http://${window.location.host}/login`,
     scopes: INITIAL_SCOPES,
 
     tokenGetting: false,
@@ -90,6 +90,7 @@ export default {
     },
 
     async getToken({ state, commit, dispatch }, { code, type = 'authorization_code' }) {
+      console.log(window.location.host);
       return new Promise((resolve, reject) => {
         const url = 'https://accounts.spotify.com/api/token';
 

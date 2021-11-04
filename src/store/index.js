@@ -31,6 +31,8 @@ export default new Vuex.Store({
 
     featureds: (state) => (count) => state.featured.slice(0, count ?? 6),
 
+    savedTracks: (state) => () => state.saved,
+
     categories(state) {
       return state.categories;
     },
