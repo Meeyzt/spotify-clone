@@ -58,7 +58,9 @@ export default {
 
   mounted() {
     this.$store.dispatch('getplaylistData');
-    this.$store.dispatch('getFeatured');
+    this.$store.dispatch('getFeatured').then(() => {
+      this.$store.commit('setIsLoading', false);
+    });
   },
 
   computed: {

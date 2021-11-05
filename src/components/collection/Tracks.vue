@@ -7,19 +7,21 @@
     :style="{
       backgroundColor: pictureColor,
     }"
-    :key="playlistId"
+    :key="playlist.id"
+    v-if="playlist"
   >
 
     <div class="h-full w-full pb-14 bg-gradient-to-b to-transparent from-[rgba(0,0,0,0.30)] overflow-auto">
       <TrackHeader
-        v-if="type !== null"
-        :playlistName="playlistName"
-        :playlistPic="playlistPic"
-        :playlistAuthor="playlistAuthor"
-        :playlistSongCount="playlistSongCount"
+        v-if="type && playlist"
+        :key="playlist.id"
+        :playlistName="playlist.name"
+        :playlistPic="playlist.images[0].url"
+        :playlistAuthor="playlist.owner.display_name"
+        :playlistSongCount="playlist.tracks.total"
         :playlistAuthorProfilePic="playlistAuthorProfilePic"
         :type="type"
-        :playlistLikeCount="playlistLikeCount"
+        :playlistLikeCount="playlist.followers.total"
       />
       <div class="shadow-inner bg-contentColor w-full pt-6 px-4 lg:px-7">
 
@@ -27,7 +29,7 @@
           <PlayIcon :width="28" :height="28"/>
         </div>
 
-        <TrackContent v-if="playlistData.length > 0" :playlistData="playlistData"/>
+        <TrackContent v-if="playlist.tracks.items" :key="playlist.id" :playlistData="playlist.tracks.items" :type="type"/>
 
       </div>
     </div>
@@ -48,48 +50,19 @@ export default {
   },
 
   props: {
-    playlistId: {
-      type: String,
-      required: true,
-    },
-
-    playlistName: {
-      type: String,
-      required: true,
-    },
-
-    playlistPic: {
-      type: String,
-      required: true,
-    },
-
-    playlistAuthor: {
-      type: String,
-      required: true,
-    },
-
-    playlistSongCount: {
-      type: Number,
+    playlist: {
+      type: Object,
       required: true,
     },
 
     playlistAuthorProfilePic: {
       type: String,
-      default: '',
-    },
-
-    playlistData: {
-      type: Array,
       required: true,
     },
 
     type: {
       type: String,
       required: true,
-    },
-    playlistLikeCount: {
-      type: Number,
-      default: 0,
     },
   },
 
@@ -100,16 +73,16 @@ export default {
   },
 
   methods: {
-    setAverageColor() {
-      average(this.playlistPic, { format: 'hex' })
+    setAverageColor(initialColor) {
+      average(initialColor, { format: 'hex' })
         .then((color) => {
           this.pictureColor = color;
         });
     },
   },
 
-  mounted() {
-    this.setAverageColor();
+  created() {
+    this.setAverageColor(this.playlist.images[0].url);
   },
 
 };

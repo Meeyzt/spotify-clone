@@ -36,7 +36,7 @@
 
 <script>
 import PlusIcon from '@/components/icons/PlusIcon.vue';
-import HeartIcon from '@/components/icons/HeartIcon.vue';
+import HeartIcon from '@/components/icons/FilledHeartIcon.vue';
 
 export default {
 

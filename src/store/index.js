@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+
+import { cloneDeep } from 'lodash';
+
 import authModule from './store.module.auth';
 
 Vue.use(Vuex);
@@ -32,6 +36,15 @@ export default new Vuex.Store({
     featureds: (state) => (count) => state.featured.slice(0, count ?? 6),
 
     savedTracks: (state) => (count) => state.saved.items.slice(0, count ?? 6),
+
+    playlistTracksId(state) {
+      console.log(state.playlist);
+      let ids = '';
+      return state.playlist.tracks.items.map((item) => {
+        ids = `${ids}${item.track.id},`;
+        return ids;
+      });
+    },
 
     categories(state) {
       return state.categories;
@@ -120,20 +133,16 @@ export default new Vuex.Store({
 
   actions: {
     initProject({ dispatch, state }) {
-      return new Promise((resolve, reject) => {
-        if (state.isAuthenticated) {
-          dispatch('getplaylistData');
-          dispatch('getCategoryData');
-          dispatch('getFeatured');
-          dispatch('getArtists');
-          dispatch('getSaved');
-          dispatch('getUserPlaylists');
-
-          resolve();
-        } else {
-          reject();
-        }
-      });
+      state.isLoading = true;
+      if (state.isAuthenticated) {
+        dispatch('getplaylistData');
+        dispatch('getCategoryData');
+        dispatch('getFeatured');
+        dispatch('getArtists');
+        dispatch('getSaved');
+        dispatch('getUserPlaylists');
+        state.isLoading = false;
+      }
     },
 
     getplaylistData({ commit }) {
@@ -191,7 +200,7 @@ export default new Vuex.Store({
     },
 
     getUserPlaylists({ commit }) {
-      axios.get('https://api.spotify.com/v1/me/playlists?limit=20&offset=0')
+      axios.get('https://api.spotify.com/v1/me/playlists?limit=50&offset=0')
         .then((res) => {
           commit('setUserPlaylists', res.data.items);
         })
@@ -200,17 +209,13 @@ export default new Vuex.Store({
         });
     },
 
-    getPlaylist({ commit }, playlistID) {
-      return new Promise((resolve, reject) => {
-        axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=tr`)
-          .then((res) => {
-            commit('setPlaylist', res.data);
-            resolve();
-          })
-          .catch((e) => {
-            reject();
-            console.log(e);
-          });
+    getPlaylist({ commit, dispatch, getters }, playlistID) {
+      commit('setIsLoading', true);
+      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(name%2Cexternal_urls)))%2Cowner(display_name)`).then((res) => {
+        commit('setPlaylist', res.data);
+        dispatch('likedSongsThePlaylist', getters.playlistTracksId);
+      }).catch((e) => {
+        console.log(e);
       });
     },
 
@@ -273,6 +278,21 @@ export default new Vuex.Store({
         } catch (e) {
           reject(e);
         }
+      });
+    },
+
+    likedSongsThePlaylist({ state, getters, commit }) {
+      axios.get(`https://api.spotify.com/v1/me/tracks/contains?ids=${getters.playlistTracksId[getters.playlistTracksId.length - 1].split(',').slice(0, 20)}`).then((res) => {
+        const nextPlaylist = cloneDeep(state.playlist);
+
+        nextPlaylist.tracks.items = nextPlaylist.tracks.items.map((item, index) => ({
+          ...item,
+          liked: res.data[index],
+        }));
+
+        commit('setPlaylist', nextPlaylist);
+      }).catch((e) => {
+        console.log(e);
       });
     },
 

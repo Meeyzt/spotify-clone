@@ -3,14 +3,7 @@
     <Tracks
       type="playlist"
       playlist-author-profile-pic="sd"
-      :key="playlist.id"
-      :playlist-data="playlist.tracks.items"
-      :playlist-name="playlist.name"
-      :playlist-pic="playlist.images[0].url"
-      :playlist-author="playlist.owner.display_name"
-      :playlist-song-count="playlist.tracks.total"
-      :playlist-like-count="playlist.followers.total"
-      :playlist-id="playlist.id"
+      :playlist="playlist"
       v-if="playlist"
     />
   </div>
@@ -27,16 +20,9 @@ export default {
   },
 
   computed: {
-
     ...mapGetters([
       'playlist',
     ]),
-  },
-
-  watch: {
-    playlist() {
-      console.log('rendered');
-    },
   },
 
   mounted() {

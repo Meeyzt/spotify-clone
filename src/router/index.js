@@ -12,6 +12,11 @@ const router = new VueRouter({
 });
 
 const beforeRoute = (to, from, next) => {
+  if (to.name === 'playlist') {
+    store.commit('setIsLoading', true);
+    store.commit('setPlaylist', null);
+    store.dispatch('getPlaylist', to.params.id);
+  }
   if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.isAuthenticated) {
     if (store.state.accessToken && to.name !== 'login') {
       if (store.state.expiresAt <= Date.now()) {
@@ -23,10 +28,6 @@ const beforeRoute = (to, from, next) => {
       next('/login');
     }
   } else {
-    if (to.name === 'playlist') {
-      store.commit('setIsLoading', true);
-      store.dispatch('getPlaylist', to.params.id);
-    }
     next();
   }
 };

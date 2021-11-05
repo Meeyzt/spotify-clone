@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import HeartIcon from '@/components/icons/HeartIcon.vue';
+import HeartIcon from '@/components/icons/FilledHeartIcon.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import MiniScreen from '@/components/icons/MiniScreen.vue';
 
