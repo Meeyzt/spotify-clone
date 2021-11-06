@@ -13,9 +13,15 @@
           ÇALMA LİSTESİ
         </div>
 
-        <div class=" py-0.5 text-5xl lg:text-7xl font-black cursor-default tracking-tighter">
-          {{playlistName}}
+        <div class=" py-0.5 text-5xl playlistSmall:text-7xl playlistMedium:text-8xl font-black cursor-default tracking-tighter">
+          {{ playlistName }}
         </div>
+
+        <div
+          class="opacity-70 text-[14px] tracking-wide hover:underline"
+          v-html="playlistDescription"
+          v-if="type !== 'liked'"
+        />
 
         <div class="flex flex-row items-center gap-1">
 
@@ -26,18 +32,18 @@
               alt="profilePic"
             />
 
-            <div class="text-sm font-bold h-full pt-1">
+            <div class="text-sm font-bold h-full pt-1 cursor-pointer hover:underline">
               {{ playlistAuthor }}
             </div>
 
             <div
               v-if="playlistLikeCount != 0"
-              class="text-[14px] text-gray-400"
+              class="text-[14px] opacity-70"
             >
               • {{ playlistLike() }} beğenme
             </div>
 
-            <div class="text-[14px] text-gray-400">
+            <div class="text-[14px] opacity-70">
               • {{ playlistSongCount }} şarkı
             </div>
 
@@ -83,6 +89,10 @@ export default {
     },
     playlistLikeCount: {
       type: Number,
+      required: true,
+    },
+    playlistDescription: {
+      type: String,
       required: true,
     },
   },

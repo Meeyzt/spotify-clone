@@ -40,7 +40,7 @@
         :key="index"
       >
 
-        <td class="mt-10 text-right rounded-l text-base">
+        <td class="mt-10 text-right w-5 rounded-l text-base px-2">
           <div class="flex justify-center w-full">
               <span class="group-hover:hidden">
                 {{ index + 1 }}
@@ -53,7 +53,7 @@
           </div>
         </td>
 
-        <td class="py-2 pl-3 text-left text-base font-normal max-w-[14rem]">
+        <td class="py-2 text-left text-base font-normal max-w-[14rem] w-20 pr-4">
           <div class="flex w-full flex-row gap-2">
 
             <a
@@ -87,7 +87,7 @@
           </div>
         </td>
 
-        <td class="hidden md:table-cell max-w-[12rem] truncate">
+        <td class="hidden md:table-cell max-w-[12rem] w-20 truncate pr-4">
 
           <a
             class="text-xs text-normalColor hover:underline w-full"
@@ -99,7 +99,7 @@
           </a>
         </td>
 
-        <td class="hidden lg:table-cell">
+        <td class="hidden lg:table-cell w-14">
           {{ addTo(playlist.added_at) }}
         </td>
 
@@ -107,7 +107,7 @@
 
           <div class="flex flex-row justify-center w-full text-spotifyGreen gap-4">
             <FilledHeartIcon v-if="playlist.liked || type ==='liked'" :width="16" :height="16"/>
-            <HeartIcon v-else class="opacity-0 group-hover:opacity-100 text-white" :width="16" :height="16" />
+            <HeartIcon v-else class="opacity-0 group-hover:opacity-70 hover:opacity-100 text-white" :width="16" :height="16" />
 
             <div class="text-normalColor mr-2">
               {{ getSeconds(playlist.track.duration_ms) }}

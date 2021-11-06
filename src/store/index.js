@@ -209,11 +209,12 @@ export default new Vuex.Store({
         });
     },
 
-    getPlaylist({ commit, dispatch, getters }, playlistID) {
+    getPlaylist({ state, commit, dispatch, getters }, playlistID) {
       commit('setIsLoading', true);
       axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(name%2Cexternal_urls)))%2Cowner(display_name)`).then((res) => {
         commit('setPlaylist', res.data);
         dispatch('likedSongsThePlaylist', getters.playlistTracksId);
+        state.userPlaylists.contains();
       }).catch((e) => {
         console.log(e);
       });

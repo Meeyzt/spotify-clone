@@ -46,6 +46,8 @@ module.exports = {
         xlarge: '1453px',
         xxlarge: '1502px',
         xxxlarge: '1902px',
+        playlistSmall: '909px',
+        playlistMedium: '1094px',
       },
       gridColumn: {
         '2-span': 'span 2',

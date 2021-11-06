@@ -22,6 +22,7 @@
         :playlistAuthorProfilePic="playlistAuthorProfilePic"
         :type="type"
         :playlistLikeCount="playlist.followers.total"
+        :playlistDescription="playlist.description"
       />
       <div class="shadow-inner bg-contentColor w-full pt-6 px-4 lg:px-7">
 
