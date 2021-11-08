@@ -34,6 +34,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/artist/:id',
+    name: 'artist',
+    component: () => import(/* webpackChunkName: "Artist" */'@/views/Artist.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
     path: '/callback',
     name: 'Loggingin',
     component: () => import(/* webpackChunkName: "Loggin in" */'@/views/Callback.vue'),

@@ -1,6 +1,6 @@
 <template>
 <div
-  class="cursor-pointer px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full"
+  class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full"
 >
   <section class="text-white mt-0 w-full h-full">
 
@@ -12,13 +12,15 @@
         tag="div"
         to="/collection/tracks"
         class="group z-2 relative col-2-span pr-2 bg-gradient-to-br from-gradientBlue justify-end to-gradientPurple rounded-md p-6 flex flex-col gap-3"
-        >
+        v-if="saved"
+      >
 
         <div class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3">
 
           <span v-for="track in savedTracks(10)" :key="track.song" class="ml-1" >
 
             <span v-text="track.track.artists[0].name"/>
+
             <span class="ml-1 opacity-70">{{track.track.name}} • </span>
 
           </span>
@@ -30,11 +32,17 @@
         </div>
 
         <div>
+
           <div class="font-bold text-3xl">Beğenilen Şarkılar</div>
-          <div>1105 beğenilen şarkılar</div>
+
+          <div>{{saved.total }} beğenilen şarkılar</div>
+
         </div>
+
       </router-link>
-        <Item type="playlist" v-for="playlistInfo in $store.state.playlists" :playlistInfo="playlistInfo" :key="playlistInfo.id"/>
+
+        <shelf-item type="playlist" v-for="playlistInfo in $store.state.playlists" :playlistInfo="playlistInfo" :key="playlistInfo.id"/>
+
     </div>
   </section>
 </div>
@@ -42,15 +50,15 @@
 
 <script>
 
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
-import Item from '@/components/home/shelf/Item.vue';
+import ShelfItem from '@/components/home/shelf/Item.vue';
 import PlayIcon from '@/components/icons/PlayIcon.vue';
 
 export default {
   components: {
     PlayIcon,
-    Item,
+    ShelfItem,
   },
   created() {
     this.$store.dispatch('getSaved');
@@ -58,6 +66,10 @@ export default {
   },
 
   computed: {
+    ...mapState([
+      'saved',
+    ]),
+
     ...mapGetters([
       'savedTracks',
       'playlists',

@@ -118,7 +118,7 @@ export default {
             commit('setRefreshToken', response.data.refresh_token);
           }
 
-          const time = Date.now() + 36000;
+          const time = Date.now() + 3600000;
           commit('setExpiresAt', time);
           localStorage.setItem('expires_at', time);
           axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;

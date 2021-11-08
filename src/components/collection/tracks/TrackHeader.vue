@@ -40,7 +40,7 @@
               v-if="playlistLikeCount != 0"
               class="text-[14px] opacity-70"
             >
-              • {{ playlistLike() }} beğenme
+              • {{ playlistLike }} beğenme
             </div>
 
             <div class="text-[14px] opacity-70">
@@ -57,7 +57,7 @@
 <script>
 export default {
 
-  methods: {
+  computed: {
     playlistLike() {
       return this.playlistLikeCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     },

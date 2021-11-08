@@ -25,6 +25,11 @@ import SpotifyLogoMinimal from '../components/icons/SpotifyLogoMinimal.vue';
 
 export default {
   components: { SpotifyLogoMinimal },
+
+  created() {
+    this.$store.commit('setIsLoading', false);
+  },
+
   mounted() {
     if (this.$route.query.code && this.$route.query.state) {
       this.$store.dispatch('getToken', { code: this.$route.query.code })

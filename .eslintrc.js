@@ -17,5 +17,6 @@ module.exports = {
     'max-len': 0,
     'no-plusplus': 0,
     'object-curly-newline': 0,
+    'indent': 0,
   },
 };

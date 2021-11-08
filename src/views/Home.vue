@@ -18,20 +18,20 @@
 
         <Shelf
         title="Yakınlarda çalınanlar"
-        :data="$store.getters.playlists(6)"
+        :data="playlists(6)"
         type="shelfPlaylist"
         />
 
         <Shelf
         title="Podcasts"
         type="shelfPodcast"
-        :data="$store.getters.playlists(6)"
+        :data="playlists(6)"
         />
 
         <Shelf
         title="Meeyzt İçin Derlendi"
         subTitle="Daha çok dinledikçe daha iyi tavsiyeler al."
-        :data="$store.getters.featureds(6)"
+        :data="featureds(6)"
         type="shelfPlaylist"
         />
 
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import Shelf from '../components/home/Shelf.vue';
 import Headbar from '../components/home/Headbar.vue';
 import Head from '../components/home/Head.vue';
@@ -64,8 +64,7 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'isAuthenticated',
+    ...mapGetters([
       'playlists',
       'featureds',
     ]),

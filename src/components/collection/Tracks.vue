@@ -26,9 +26,17 @@
       />
       <div class="shadow-inner bg-contentColor w-full pt-6 px-4 lg:px-7">
 
-        <div class="w-14 h-14 rounded-full bg-spotifyGreen flex flex-row justify-center items-center text-white transition-all hover:scale-110">
+      <div class="flex flex-row items-center gap-6">
+          <div class="w-14 h-14 rounded-full bg-spotifyGreen flex flex-row justify-center items-center text-white transition-all hover:scale-110">
           <PlayIcon :width="28" :height="28"/>
         </div>
+        <div class="text-spotifyGreen">
+          <filled-heart-icon :height="32" :width="32"/>
+        </div>
+        <div class="text-3xl flex justify-center opacity-60 hover:opacity-100">
+          <details-icon/>
+        </div>
+      </div>
 
         <TrackContent v-if="playlist.tracks.items" :key="playlist.id" :playlistData="playlist.tracks.items" :type="type"/>
 
@@ -42,12 +50,16 @@ import { average } from 'color.js';
 import PlayIcon from '@/components/icons/PlayIcon.vue';
 import TrackHeader from '@/components/collection/tracks/TrackHeader.vue';
 import TrackContent from '@/components/collection/tracks/TrackContent.vue';
+import FilledHeartIcon from '../icons/FilledHeartIcon.vue';
+import DetailsIcon from '../icons/DetailsIcon.vue';
 
 export default {
   components: {
     PlayIcon,
     TrackHeader,
     TrackContent,
+    FilledHeartIcon,
+    DetailsIcon,
   },
 
   props: {

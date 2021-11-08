@@ -76,7 +76,7 @@
               </a>
 
               <a
-                :href="playlist.track.artists[0].external_urls.spotify"
+                :href="`/artist/${playlist.track.artists[0].id}`"
                 class="text-xs text-normalColor hover:underline"
               >
                 {{ playlist.track.artists[0].name }}
@@ -122,7 +122,9 @@
         </td>
 
       </tr>
-
+      <tr>
+        <td class="pb-10"/>
+      </tr>
     </tbody>
   </table>
 </template>

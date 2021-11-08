@@ -18,6 +18,7 @@ export default new Vuex.Store({
   state: {
     isAuthenticated: false,
     appLoading: true,
+    isLoading: false,
     accessToken: null,
     playlists: null,
     categories: null,
@@ -27,18 +28,18 @@ export default new Vuex.Store({
     userPlaylists: null,
     playlist: null,
     userData: null,
-    isLoading: false,
+    artist: null,
+    artistTopTracks: null,
   },
 
   getters: {
-    playlists: (state) => (count) => state.playlists.slice(0, count ?? 6),
+    playlists: (state) => (count) => (state.playlists ? state.playlists.slice(0, count ?? 6) : null),
 
     featureds: (state) => (count) => state.featured.slice(0, count ?? 6),
 
     savedTracks: (state) => (count) => state.saved.items.slice(0, count ?? 6),
 
     playlistTracksId(state) {
-      console.log(state.playlist);
       let ids = '';
       return state.playlist.tracks.items.map((item) => {
         ids = `${ids}${item.track.id},`;
@@ -126,6 +127,14 @@ export default new Vuex.Store({
       axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
     },
 
+    setArtist(state, payload) {
+      state.artist = payload;
+    },
+
+    setArtistTopTracks(state, payload) {
+      state.artistTopTracks = payload;
+    },
+
     setAppLoading(state, payload) {
       state.appLoading = payload;
     },
@@ -211,10 +220,11 @@ export default new Vuex.Store({
 
     getPlaylist({ state, commit, dispatch, getters }, playlistID) {
       commit('setIsLoading', true);
-      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(name%2Cexternal_urls)))%2Cowner(display_name)`).then((res) => {
+      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(id%2Cname%2Cexternal_urls)))%2Cowner(display_name)`).then((res) => {
         commit('setPlaylist', res.data);
         dispatch('likedSongsThePlaylist', getters.playlistTracksId);
-        state.userPlaylists.contains();
+        // TODO: Buraya userPlaylistde varsa Beğenildi işareti eklencek...
+        // state.userPlaylists.contains();
       }).catch((e) => {
         console.log(e);
       });
@@ -294,6 +304,22 @@ export default new Vuex.Store({
         commit('setPlaylist', nextPlaylist);
       }).catch((e) => {
         console.log(e);
+      });
+    },
+
+    async getArtist({ commit }, artistID) {
+      await axios.get(`https://api.spotify.com/v1/artists/${artistID}`).then((res) => {
+        commit('setArtist', res.data);
+      }).catch((e) => {
+      console.log('GetArtist: ', e);
+      });
+    },
+
+    getArtistTopTracks({ commit }, artistID) {
+      axios.get(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=TR`).then((res) => {
+        commit('setArtistTopTracks', res.data.tracks);
+      }).catch((e) => {
+        console.log('getArtistTopTracks: ', e);
       });
     },
 
