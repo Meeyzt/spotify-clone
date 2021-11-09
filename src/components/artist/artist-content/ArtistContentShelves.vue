@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Shelf from '@/components/home/Shelf.vue';
+import Shelf from '@/components/Shelf.vue';
 
 export default {
     props: {

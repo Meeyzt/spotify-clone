@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Tracks from '@/components/collection/Tracks.vue';
+import Tracks from '@/components/Playlist.vue';
 
 export default {
 

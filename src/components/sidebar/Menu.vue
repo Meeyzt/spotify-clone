@@ -1,21 +1,17 @@
 <template>
   <div>
 
-    <Nav />
-
-    <CreateItems/>
+    <menu-items />
 
   </div>
 </template>
 
 <script>
-import Nav from '@/components/sidebar/menuItems/Nav.vue';
-import CreateItems from '@/components/sidebar/menuItems/CreateItems.vue';
+import menuItems from './MenuItems.vue';
 
 export default {
   components: {
-    Nav,
-    CreateItems,
+    menuItems,
   },
 };
 </script>

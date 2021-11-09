@@ -7,9 +7,7 @@
 
       <NavigationIcon class="footerItem" />
 
-      <div class="transition-colors rounded-full w-8 h-8 cursor-pointer flex items-center justify-center bg-normalColor hover:bg-white">
-        <PlayIcon class="text-black"/>
-      </div>
+      <play-button color="white"/>
 
       <NavigationIcon class="footerItem rotate-180" />
 
@@ -25,18 +23,18 @@
 
 <script>
 import NavigationIcon from '@/components/icons/NavigationIcon.vue';
-import PlayIcon from '@/components/icons/PlayIcon.vue';
 import RepeatIcon from '@/components/icons/RepeatIcon.vue';
 import ShuffleIcon from '@/components/icons/ShuffleIcon.vue';
 import PlayerBar from '@/components/footer/middlefooter/PlayerBar.vue';
+import PlayButton from '../PlayButton.vue';
 
 export default {
   components: {
     ShuffleIcon,
     NavigationIcon,
-    PlayIcon,
     RepeatIcon,
     PlayerBar,
+    PlayButton,
   },
 };
 </script>

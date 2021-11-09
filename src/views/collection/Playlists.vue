@@ -27,8 +27,8 @@
 
         </div>
 
-        <div class="transition opacity-0 group-hover:opacity-100 group-hover:transform group-hover:-translate-y-2 p-3 bg-spotifyGreen rounded-full hover:scale-110 absolute right-2 bottom-2 drop-shadow-xl">
-            <PlayIcon :width="24" :height="24"/>
+        <div class="transition opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 absolute right-2 bottom-2">
+            <play-button :width="24" :height="24"/>
         </div>
 
         <div>
@@ -52,13 +52,13 @@
 
 import { mapGetters, mapState } from 'vuex';
 
-import ShelfItem from '@/components/home/shelf/Item.vue';
-import PlayIcon from '@/components/icons/PlayIcon.vue';
+import ShelfItem from '@/components/shelf/Item.vue';
+import PlayButton from '../../components/PlayButton.vue';
 
 export default {
   components: {
-    PlayIcon,
     ShelfItem,
+    PlayButton,
   },
   created() {
     this.$store.dispatch('getSaved');

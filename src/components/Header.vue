@@ -2,7 +2,7 @@
   <header v-if="this.$store.userData !== null"
   class="bg-contentColor relative flex flex-row flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px]"
   >
-    <header-nav/>
+    <header-route/>
 
     <header-search/>
 
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import HeaderNav from './header/HeaderNav.vue';
+import HeaderRoute from './header/HeaderRoute.vue';
 import HeaderSearch from './header/HeaderSearch.vue';
 import HeaderTabs from './header/HeaderTabs.vue';
 import HeaderProfile from './header/HeaderProfile.vue';
@@ -22,7 +22,7 @@ export default {
   name: 'Header',
 
   components: {
-    HeaderNav,
+    HeaderRoute,
     HeaderSearch,
     HeaderProfile,
     HeaderTabs,

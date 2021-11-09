@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Item from '@/components/home/shelf/Item.vue';
+import Item from '@/components/shelf/Item.vue';
 
 export default {
   props: {

@@ -12,7 +12,9 @@
     </div>
 
     <Menu />
+
     <div class="border-t border-white border-opacity-20 w-[calc(100%-20)] mx-6 h-1"/>
+
     <Playlists/>
 
     <div class="h-10 mx-2">

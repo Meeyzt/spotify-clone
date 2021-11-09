@@ -26,12 +26,11 @@
           </div>
 
           <div
-            v-if="type !== 'podcast'"
+            v-if="type !== 'shelfPodcast'"
             class="transition right-2 bottom-0 rounded-full absolute z-2 opacity-0 group-hover:opacity-100 hover:transform drop-shadow-lg group-hover:-translate-y-2"
           >
-            <div class="transition-all bg-spotifyGreen w-10 h-10 rounded-full flex items-center hover:scale-110 justify-center">
-              <PlayIcon class="text-white"/>
-            </div>
+
+            <play-button/>
 
           </div>
       </div>
@@ -53,11 +52,11 @@
 </template>
 
 <script>
-import PlayIcon from '@/components/icons/PlayIcon.vue';
+import PlayButton from '@/components/PlayButton.vue';
 
 export default {
   components: {
-    PlayIcon,
+    PlayButton,
   },
 
   props: {
