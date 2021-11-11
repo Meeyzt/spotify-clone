@@ -18,29 +18,25 @@
           />
         </div>
 
-        <a class="text-normalColor text-[12px] hover:underline cursor-pointer font-bold tracking-widest pt-4 overflow-clip whitespace-nowrap">
+        <router-link
+          class="text-normalColor text-[12px] hover:underline cursor-pointer font-bold tracking-widest pt-4 overflow-clip whitespace-nowrap"
+          tag="a"
+          v-if="link !== ''"
+          :to="link !== '#' ? link : ''"
+        >
           HEPSİNİ GÖR
-        </a>
+        </router-link>
       </div>
 
       <div
-        v-if="type === 'artist' || type === 'albums'"
-        class="relative grid grid-cols-180 overflow-y-hidden auto-rows-auto gap-6"
+        class="relative grid grid-cols-180 gap-6"
+        :class="{
+          'auto-rows-sifir grid-rows-1 overflow-y-hidden' : row <= 1,
+          'auto-rows-auto' : row > 1
+        }"
       >
         <Item
-          class="seekChilds lg:showChilds"
-          :type="type" v-for="playlistInfo in data"
-          :playlistInfo="playlistInfo"
-          :key="playlistInfo.id"
-        />
-      </div>
-
-      <div
-        v-else
-        class="relative grid-rows-bir grid grid-cols-180 overflow-y-hidden auto-rows-sifir gap-6"
-      >
-        <Item
-          class="seekChilds lg:showChilds"
+          :class="row <= 1 && 'seekChilds lg:showChilds'"
           :type="type"
           v-for="playlistInfo in data"
           :playlistInfo="playlistInfo"
@@ -59,14 +55,27 @@ export default {
       type: String,
       required: true,
     },
+
     subTitle: {
       type: String,
       default: '',
     },
+
     type: {
       type: String,
       default: 'playlist',
     },
+
+    row: {
+      type: Number,
+      default: 1,
+    },
+
+    link: {
+      type: String,
+      default: '#',
+    },
+
     data: {
       type: [Object, Array],
       required: true,

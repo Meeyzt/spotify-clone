@@ -58,7 +58,7 @@ export default {
     },
 
     author: {
-      type: String,
+      type: [String, Number],
     },
 
     songCount: {

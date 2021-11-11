@@ -41,19 +41,24 @@
       >
 
         <td class="mt-10 text-right w-5 rounded-l text-base px-2">
+
           <div class="flex justify-center w-full">
+
               <span class="group-hover:hidden">
                 {{ index + 1 }}
               </span>
+
               <play-arrow
                 class="flex-row justify-end group-hover:flex hidden"
                 :height="18"
                 :width="18"
               />
+
           </div>
+
         </td>
 
-        <td class="py-2 text-left text-base font-normal max-w-[14rem] w-20 pr-4">
+        <td class="py-2 text-left text-base font-normal max-w-[14rem] pr-4">
           <div class="flex w-full flex-row gap-2">
 
             <a

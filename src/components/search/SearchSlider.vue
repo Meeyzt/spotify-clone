@@ -21,7 +21,7 @@
 
           <div class="gap-6 flex flex-rows overflow-hidden w-[calc(400px*6)]">
             <SliderItem
-              v-for="category in $store.state.categories"
+              v-for="category in categories"
               :key="category.id"
               class="w-full text-[40px] bg-nicePurple text-white"
               imgSize="big"
@@ -38,10 +38,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import SliderItem from './SliderItem.vue';
 
 export default {
+  computed: {
+    ...mapState([
+      'categories',
+    ]),
+  },
+
   components: {
     SliderItem,
     ArrowIcon,

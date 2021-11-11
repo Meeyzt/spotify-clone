@@ -1,8 +1,16 @@
 <template>
   <div class="flex flex-row items-center text-white gap-3 w-auto">
 
-      <QueueIcon class="footerItem ml-0"/>
+      <router-link
+        to="/queue"
+      >
+
+        <QueueIcon class="footerItem ml-0"/>
+
+      </router-link>
+
       <DesktopIcon class="footerItem"/>
+
       <SoundIcon class="footerItem"/>
 
       <div class="w-[93px] flex flex-row justify-center items-center h-[4px]">

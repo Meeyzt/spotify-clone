@@ -30,6 +30,8 @@ export default new Vuex.Store({
     userData: null,
     artist: null,
     artistTopTracks: null,
+    currentTrack: null,
+    profile: null,
   },
 
   getters: {
@@ -120,9 +122,9 @@ export default new Vuex.Store({
     },
 
     initLocalStorage(state, { accessToken, refreshToken, expiresAt }) {
-      state.accessToken = accessToken;
-      state.refreshToken = refreshToken;
-      state.expiresAt = expiresAt;
+      state.accessToken = accessToken ?? null;
+      state.refreshToken = refreshToken ?? null;
+      state.expiresAt = expiresAt ?? null;
 
       axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
     },
@@ -135,6 +137,14 @@ export default new Vuex.Store({
       state.artistTopTracks = payload;
     },
 
+    setCurrentTrack(state, payload) {
+      state.currentTrack = payload;
+    },
+
+    setProfile(state, payload) {
+      state.profile = payload;
+    },
+
     setAppLoading(state, payload) {
       state.appLoading = payload;
     },
@@ -145,27 +155,32 @@ export default new Vuex.Store({
       state.isLoading = true;
       if (state.isAuthenticated) {
         dispatch('getplaylistData');
-        dispatch('getCategoryData');
         dispatch('getFeatured');
-        dispatch('getArtists');
-        dispatch('getSaved');
         dispatch('getUserPlaylists');
         state.isLoading = false;
       }
     },
 
     getplaylistData({ commit }) {
+      commit('setIsLoading', true);
+
       axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&limit=20')
-        .then((res) => commit('setPlaylists', res.data.playlists.items))
+        .then((res) => {
+          commit('setPlaylists', res.data.playlists.items);
+          commit('setIsLoading', false);
+        })
         .catch((e) => {
           console.log(e);
         });
     },
 
     getCategoryData({ commit }) {
+      commit('setIsLoading', true);
+
       axios.get('https://api.spotify.com/v1/browse/categories?country=TR&locale=TR&limit=6&offset=0')
         .then((res) => {
           commit('setCategories', res.data.categories.items);
+          commit('setIsLoading', false);
         })
         .catch((e) => {
           console.log(e);
@@ -173,9 +188,11 @@ export default new Vuex.Store({
     },
 
     getFeatured({ commit }) {
+      commit('setIsLoading', true);
       axios.get('https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=TR&timestamp=2021-10-18T09%3A00%3A00.000Z&limit=10&offset=0')
         .then((res) => {
           commit('setFeatured', res.data.playlists.items);
+          commit('setIsLoading', false);
         })
         .catch((e) => {
           console.log(e);
@@ -184,13 +201,13 @@ export default new Vuex.Store({
 
     getArtists({ commit }) {
       commit('setIsLoading', true);
+
       axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50')
         .then((res) => {
           commit('setIsLoading', false);
           commit('setArtists', res.data.artists.items);
         })
         .catch((e) => {
-          commit('setIsLoading', false);
           console.log(e);
         });
     },
@@ -203,15 +220,17 @@ export default new Vuex.Store({
           commit('setIsLoading', false);
         })
         .catch((e) => {
-          commit('setIsLoading', false);
           console.log(e);
         });
     },
 
     getUserPlaylists({ commit }) {
+      commit('setIsLoading', true);
+
       axios.get('https://api.spotify.com/v1/me/playlists?limit=50&offset=0')
         .then((res) => {
           commit('setUserPlaylists', res.data.items);
+          commit('setIsLoading', false);
         })
         .catch((e) => {
           console.log(e);
@@ -220,9 +239,14 @@ export default new Vuex.Store({
 
     getPlaylist({ state, commit, dispatch, getters }, playlistID) {
       commit('setIsLoading', true);
-      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(id%2Cname%2Cexternal_urls)))%2Cowner(display_name)`).then((res) => {
+
+      axios.get(`https://api.spotify.com/v1/playlists/${playlistID}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(name%2Cimages%2Cexternal_urls)%2Cartists(id%2Cname%2Cexternal_urls)))%2Cowner(display_name%2Cid)`).then((res) => {
         commit('setPlaylist', res.data);
+
         dispatch('likedSongsThePlaylist', getters.playlistTracksId);
+
+        commit('setIsLoading', false);
+
         // TODO: Buraya userPlaylistde varsa Beğenildi işareti eklencek...
         // state.userPlaylists.contains();
       }).catch((e) => {
@@ -231,11 +255,15 @@ export default new Vuex.Store({
     },
 
     getUserData({ commit }) {
+      commit('setIsLoading', true);
+
       return new Promise((resolve, reject) => {
         axios.get('https://api.spotify.com/v1/me')
           .then((res) => {
             commit('setUserData', res.data);
             commit('setIsAuthenticated', true);
+
+            commit('setIsLoading', false);
 
             resolve();
           })
@@ -250,7 +278,6 @@ export default new Vuex.Store({
     },
 
     createPlaylist({ commit }) {
-      commit('setIsLoading', true);
       commit('addPlaylists', {
         newPlaylist: true,
         images: [
@@ -275,6 +302,8 @@ export default new Vuex.Store({
     },
 
     initAuth({ commit, dispatch }) {
+      commit('setIsLoading', true);
+
       return new Promise((resolve, reject) => {
         try {
           const expiresAt = localStorage.expires_at;
@@ -285,6 +314,8 @@ export default new Vuex.Store({
 
           dispatch('tokenTimer', expiresAt - Date.now());
 
+          commit('setIsLoading', false);
+
           resolve();
         } catch (e) {
           reject(e);
@@ -293,7 +324,9 @@ export default new Vuex.Store({
     },
 
     likedSongsThePlaylist({ state, getters, commit }) {
-      axios.get(`https://api.spotify.com/v1/me/tracks/contains?ids=${getters.playlistTracksId[getters.playlistTracksId.length - 1].split(',').slice(0, 20)}`).then((res) => {
+      commit('setIsLoading', true);
+
+      axios.get(`https://api.spotify.com/v1/me/tracks/contains?ids=${getters.playlistTracksId[getters.playlistTracksId.length - 1].split(',').slice(0, 50)}`).then((res) => {
         const nextPlaylist = cloneDeep(state.playlist);
 
         nextPlaylist.tracks.items = nextPlaylist.tracks.items.map((item, index) => ({
@@ -302,24 +335,61 @@ export default new Vuex.Store({
         }));
 
         commit('setPlaylist', nextPlaylist);
-      }).catch((e) => {
+
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
         console.log(e);
       });
     },
 
     async getArtist({ commit }, artistID) {
+      commit('setIsLoading', true);
+
       await axios.get(`https://api.spotify.com/v1/artists/${artistID}`).then((res) => {
         commit('setArtist', res.data);
-      }).catch((e) => {
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
       console.log('GetArtist: ', e);
       });
     },
 
     getArtistTopTracks({ commit }, artistID) {
+      commit('setIsLoading', true);
+
       axios.get(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=TR`).then((res) => {
         commit('setArtistTopTracks', res.data.tracks);
-      }).catch((e) => {
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
         console.log('getArtistTopTracks: ', e);
+      });
+    },
+
+    getCurrentPlayingTrack({ commit }) {
+      commit('setIsLoading', true);
+
+      axios.get('https://api.spotify.com/v1/me/player/currently-playing?market=TR').then((res) => {
+        commit('setCurrentTrack', res.data);
+
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
+        console.log('getCurrentPlayingTrack: ', e.message);
+      });
+    },
+
+    getProfile({ commit }, userId) {
+      commit('setIsLoading', true);
+
+      axios.get(`https://api.spotify.com/v1/users/${userId}`).then((res) => {
+        commit('setProfile', res.data);
+
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
+        console.log('getCurrentPlayingTrack: ', e.message);
       });
     },
 

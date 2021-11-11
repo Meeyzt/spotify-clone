@@ -8,7 +8,10 @@
 
     <header-tabs/>
 
-    <header-profile/>
+    <header-profile
+      :key="$route.fullPath"
+    />
+
   </header>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <button class="group" v-if="userData">
-        <span class="flex flex-row bg-black relative rounded-full items-center justify-center text-white text-s px-0.5 py-0.5 cursor-pointer mx-4 hover:bg-hoverHeadbar group-focus:bg-hoverHeadbar">
+        <span class="flex flex-row bg-black relative rounded-full items-center justify-center text-white text-s px-0.5 py-0.5 mx-4 hover:bg-hoverHeadbar group-focus-within:bg-hoverHeadbar">
 
             <div class="rounded-full h-7 w-7">
                 <img class="rounded-full overflow-hidden h-7 w-7 object-cover" :src="userData.images[0].url" alt="ProfilePicture" />
@@ -10,15 +10,15 @@
                 {{ userData.display_name }}
             </div>
 
-            <DownArrow class="hidden lg:block mr-1 group-focus:transform group-focus:rotate-180" :height="16" :width="16"/>
+            <DownArrow class="hidden lg:block mr-1 group-focus-within:transform group-focus-within:rotate-180" :height="16" :width="16"/>
 
         </span>
-        <div class="hidden w-48 right-8 mt-2 text-left text-white flex-col absolute bg-hoverHeadbar rounded shadow-xl z-1 group-focus:flex">
+        <div class="hidden w-48 right-8 mt-2 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded shadow-xl z-1 group-focus-within:flex cursor-default">
 
             <router-link
-                tag="a"
-                to="/"
-                class="p-3 m-1 pr-2 text-s hover:bg-player rounded flex justify-between"
+                to=""
+                class="mx-1 p-3 text-s hover:bg-player rounded flex justify-between"
+                for="close-callback"
             >
 
                 <span> Hesap </span>
@@ -28,18 +28,18 @@
             </router-link>
 
             <router-link
-                to="/"
-                class="m-1 p-3 pr-2 text-s hover:bg-player rounded"
+                :to="`/user/${userData.id}`"
+                class="mx-1 p-3 text-s hover:bg-player rounded flex justify-between"
             >
                 Profil
             </router-link>
 
-            <router-link
-                to="/"
-                class="m-1 p-3 pr-2 text-s hover:bg-player rounded"
+            <a
+                @click="logOut()"
+                class="mx-1 p-3 text-s hover:bg-player rounded flex justify-between mb-1 cursor-pointer"
             >
                 Oturumu Kapat
-            </router-link>
+            </a>
 
         </div>
 
@@ -55,6 +55,23 @@ export default {
     components: {
         DownArrow,
         BrowseIcon,
+    },
+
+    methods: {
+      logOut() {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('expires_at');
+        this.$store.commit('setIsAuthenticated', false);
+        const state = { ...this.$store.state };
+        console.log(state);
+        const newState = {};
+        Object.keys(state).forEach((key) => {
+          newState[key] = null;
+        });
+        this.$store.replaceState(newState);
+        this.$router.go(0);
+      },
     },
 
     computed: {

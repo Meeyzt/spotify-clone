@@ -3,15 +3,18 @@
         <Shelf
             class="pt-10"
             title="Popüler yayınlar"
-            type="shelfPlaylist"
+            type="playlist"
             :data="playlists(6)"
+            link=""
+            :row="1"
             v-if="playlists()"
         />
         <Shelf
             class="pt-10"
             title="Albümler"
-            type="shelfPlaylist"
+            type="playlist"
             :data="playlists(6)"
+            :row="1"
             v-if="playlists()"
         />
     </div>

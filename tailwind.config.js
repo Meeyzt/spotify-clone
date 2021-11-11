@@ -1,3 +1,5 @@
+const lineClamp = require('@tailwindcss/line-clamp');
+
 module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   mode: 'jit',
@@ -77,5 +79,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    lineClamp,
+  ],
 };

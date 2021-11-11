@@ -1,8 +1,8 @@
 <template>
     <div
         :class="`
-        ${ color === 'green' ? 'bg-spotifyGreen ' : 'bg-white ' }
-        transition-all rounded-full flex items-center hover:scale-110 p-3 justify-center`"
+        ${ color === 'green' ? 'bg-spotifyGreen p-3' : 'bg-white p-2' }
+        transition-all rounded-full flex items-center hover:scale-110 justify-center`"
     >
         <play-icon :class="`${ color === 'green' ? 'text-white' : 'text-black' }`" :width="width" :height="height"/>
     </div>

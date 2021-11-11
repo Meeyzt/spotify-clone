@@ -28,6 +28,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "Login" */'@/views/Login.vue'),
   },
   {
+    path: '/queue',
+    name: 'queue',
+    component: () => import(/* webpackChunkName: "Login" */'@/views/Queue.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
     path: '/loading',
     name: 'loading',
     component: () => import(/* webpackChunkName: "Playlist" */'@/views/Loading.vue'),
@@ -43,6 +49,39 @@ const routes = [
     path: '/callback',
     name: 'Loggingin',
     component: () => import(/* webpackChunkName: "Loggin in" */'@/views/Callback.vue'),
+  },
+  {
+    path: '/user/:id',
+    name: 'user',
+    component: () => import(/* webpackChunkName: "Login" */'@/views/User.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        name: 'userProfile',
+        path: '',
+        component: () => import(/* webpackChunkName: "Login" */'@/views/user/Index.vue'),
+      },
+      {
+        name: 'userFollowing',
+        path: 'following',
+        component: () => import(/* webpackChunkName: "Collection" */'@/views/user/Following.vue'),
+      },
+      {
+        name: 'userFollowers',
+        path: 'followers',
+        component: () => import(/* webpackChunkName: "Collection" */'@/views/user/Followers.vue'),
+      },
+      {
+        name: 'userTopTracks',
+        path: 'top/tracks',
+        component: () => import(/* webpackChunkName: "Collection" */'@/views/user/TopTracks.vue'),
+      },
+      {
+        name: 'userTopArtists',
+        path: 'top/artists',
+        component: () => import(/* webpackChunkName: "Collection" */'@/views/user/TopArtists.vue'),
+      },
+    ],
   },
   {
     path: '/collection',

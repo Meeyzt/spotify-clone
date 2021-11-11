@@ -7,7 +7,7 @@
 
       <NavigationIcon class="footerItem" />
 
-      <play-button color="white"/>
+      <play-button color="white" :height="16" :width="16"/>
 
       <NavigationIcon class="footerItem rotate-180" />
 

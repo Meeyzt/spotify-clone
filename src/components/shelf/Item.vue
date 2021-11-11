@@ -2,7 +2,7 @@
   <router-link
     tag="div"
     class="group w-full h-auto bg-minimalColor cursor-pointer hover:bg-hoverHeadbar rounded-md flex-1 isolate p-4 relative"
-    :to="`/playlist/${playlistInfo.id}`"
+    :to="`/${type === 'artist' ? 'artist' : 'playlist' }/${playlistInfo.id}`"
   >
 
       <div class="h-full">
@@ -14,19 +14,19 @@
               v-if="type !== 'artist'"
               class="w-full h-full left-0 absolute top-0 block object-cover object-center"
               :src="playlistInfo.images[0].url"
-              alt="dsad"
+              alt="Photo"
             />
 
             <img
               v-else
               class="w-full h-full left-0 absolute top-0 rounded-full block object-cover object-center"
               :src="playlistInfo.images[0].url"
-              alt="dsad"
+              alt="Photo"
             />
           </div>
 
           <div
-            v-if="type !== 'shelfPodcast'"
+            v-if="type !== 'podcast'"
             class="transition right-2 bottom-0 rounded-full absolute z-2 opacity-0 group-hover:opacity-100 hover:transform drop-shadow-lg group-hover:-translate-y-2"
           >
 

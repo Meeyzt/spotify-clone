@@ -22,6 +22,7 @@
         :song-count="playlist.tracks.total"
         :author-picture="playlistAuthorProfilePic"
         :likeCount="playlist.followers.total"
+        :author-link="playlist.owner.id"
         :type="type"
         :description="playlist.description"
       />

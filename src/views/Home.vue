@@ -17,22 +17,25 @@
         </div>
 
         <Shelf
-        title="Yakınlarda çalınanlar"
-        :data="playlists(6)"
-        type="shelfPlaylist"
+          title="Yakınlarda çalınanlar"
+          type="playlist"
+          :row="1"
+          :data="playlists(6)"
         />
 
         <Shelf
-        title="Podcasts"
-        type="shelfPodcast"
-        :data="playlists(6)"
+          title="Podcasts"
+          type="podcast"
+          :row="1"
+          :data="playlists(6)"
         />
 
         <Shelf
-        title="Meeyzt İçin Derlendi"
-        subTitle="Daha çok dinledikçe daha iyi tavsiyeler al."
-        :data="featureds(6)"
-        type="shelfPlaylist"
+          title="Meeyzt İçin Derlendi"
+          sub-title="Daha çok dinledikçe daha iyi tavsiyeler al."
+          type="playlist"
+          :data="featureds(6)"
+          :row="1"
         />
 
       </div>

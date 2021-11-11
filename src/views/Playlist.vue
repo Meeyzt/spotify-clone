@@ -11,6 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
 import Tracks from '@/components/Playlist.vue';
 
 export default {
@@ -25,8 +26,12 @@ export default {
     ]),
   },
 
+  async beforeRouteUpdate(to) {
+    await this.$store.dispatch('getPlaylist', to.params.id);
+  },
+
   mounted() {
-    this.$store.commit('setIsLoading', false);
+    this.$store.dispatch('getPlaylist', this.$route.params.id);
   },
 };
 </script>

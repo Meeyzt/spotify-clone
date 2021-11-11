@@ -16,5 +16,9 @@ export default {
     SearchSlider,
     ComponentShelf,
   },
+
+  created() {
+    this.$store.dispatch('getCategoryData');
+  },
 };
 </script>

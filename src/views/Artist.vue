@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-full w-full text-white overflow-auto" v-if="!isLoading">
+    <div class="flex flex-col h-full w-full text-white overflow-auto" v-show="!isLoading">
 
         <playlist-header
             v-if="artist"
