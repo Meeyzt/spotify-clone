@@ -27,7 +27,7 @@ import DesktopIcon from '@/components/icons/DesktopIcon.vue';
 import FullscreenIcon from '@/components/icons/FullScreenIcon.vue';
 import QueueIcon from '@/components/icons/QueueIcon.vue';
 import SoundIcon from '@/components/icons/SoundIcon.vue';
-import PlayerBar from './middlefooter/PlayerBar.vue';
+import PlayerBar from './middle-footer/PlayerBar.vue';
 
 export default {
   components: {

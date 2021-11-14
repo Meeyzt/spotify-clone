@@ -32,6 +32,7 @@ export default new Vuex.Store({
     artistTopTracks: null,
     currentTrack: null,
     profile: null,
+    usersLikedAlbums: null,
   },
 
   getters: {
@@ -145,6 +146,10 @@ export default new Vuex.Store({
 
     setProfile(state, payload) {
       state.profile = payload;
+    },
+
+    setUsersLikedAlbums(state, payload) {
+      state.usersLikedAlbums = payload;
     },
 
     setAppLoading(state, payload) {
@@ -428,6 +433,17 @@ export default new Vuex.Store({
       })
       .catch((e) => {
         console.log('getCurrentPlayingTrack: ', e.message);
+      });
+    },
+
+    getUsersLikedAlbums({ commit }) {
+      axios.get('https://api.spotify.com/v1/me/albums?limit=10&offset=0&market=TR').then((res) => {
+        commit('setUsersLikedAlbums', res.data);
+
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
+        console.log('getUsersLikedAlbums: ', e.message);
       });
     },
 

@@ -25,7 +25,7 @@
 import NavigationIcon from '@/components/icons/NavigationIcon.vue';
 import RepeatIcon from '@/components/icons/RepeatIcon.vue';
 import ShuffleIcon from '@/components/icons/ShuffleIcon.vue';
-import PlayerBar from '@/components/footer/middlefooter/PlayerBar.vue';
+import PlayerBar from '@/components/footer/middle-footer/PlayerBar.vue';
 import PlayButton from '../PlayButton.vue';
 
 export default {
