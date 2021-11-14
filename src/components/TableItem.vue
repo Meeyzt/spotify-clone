@@ -60,7 +60,7 @@
         :href="track.album.external_urls.spotify"
       >
         <span class="truncate">
-          {{ type === 'playlist' || type === 'liked' ?  track.album.name : '16.000.000' }}
+          {{ type === 'playlist' || type === 'liked' || type === 'profile' ?  track.album.name : '16.000.000' }}
         </span>
       </a>
     </td>

@@ -1,34 +1,52 @@
 <template>
-  <div class="text-white h-full p-8 bg-contentColor overflow-y-auto" v-if="playlists()">
-    <shelf
-        title="Bu ayın en çok dinlenen parçaları"
-        subTitle="Yalnızca sana görünür"
-        type="topTracks"
-        :row="2"
-        link=""
-        :data="playlists(50)"
-      />
-  </div>
+    <div
+      class="w-full bg-contentColor text-white p-3"
+      v-if="playlist"
+    >
+      <div class="flex w-full justify-between">
+
+        <div class="text-xl font-bold">En çok dinlenenler </div>
+        <div>yalnızca sana görünür</div>
+
+      </div>
+
+      <table class="w-full">
+        <tbody>
+          <table-item
+            class="w-full"
+            type="profile"
+            :key="index+'user'"
+            :index="index"
+            :track="track.track"
+            :added_at="track.added_at"
+            :liked="track.liked"
+            v-for="(track, index) in playlist.tracks.items"
+          />
+        </tbody>
+      </table>
+
+    </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
-import Shelf from '@/components/Shelf.vue';
+import TableItem from '@/components/TableItem.vue';
 
 export default {
   computed: {
-    ...mapGetters([
-      'playlists',
+    ...mapState([
+      'playlist',
+      'userPlaylists',
     ]),
   },
 
   components: {
-    Shelf,
+    TableItem,
   },
 
   created() {
-    this.$store.dispatch('getplaylistData');
+    this.$store.dispatch('getPlaylist', this.userPlaylists[0].id);
   },
 };
 </script>

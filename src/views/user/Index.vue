@@ -54,7 +54,7 @@
               <tbody>
                 <table-item
                   class="w-full"
-                  type="artist"
+                  type="profile"
                   :key="index+'user'"
                   :index="index"
                   :track="track.track"
