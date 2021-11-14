@@ -34,99 +34,16 @@
         <td class="pt-4"></td>
       </tr>
 
-      <tr
-        class="group hover:bg-activeColor text-[12px]"
-        v-for="(playlist, index) in playlistData"
+      <table-item
+        :type="type"
         :key="index"
-      >
+        :index="index"
+        :track="playlist.track"
+        :added_at="playlist.added_at"
+        :liked="playlist.liked"
+        v-for="(playlist, index) in playlistData"
+      />
 
-        <td class="mt-10 text-right w-5 rounded-l text-base px-2">
-
-          <div class="flex justify-center w-full">
-
-              <span class="group-hover:hidden">
-                {{ index + 1 }}
-              </span>
-
-              <play-arrow
-                class="flex-row justify-end group-hover:flex hidden"
-                :height="18"
-                :width="18"
-              />
-
-          </div>
-
-        </td>
-
-        <td class="py-2 text-left text-base font-normal max-w-[14rem] pr-4">
-          <div class="flex w-full flex-row gap-2">
-
-            <a
-              :href="playlist.track.album.external_urls.spotify"
-              class="min-w-[40px] h-10"
-            >
-              <img
-                :src="playlist.track.album.images[0].url"
-                alt="profileImg" class="w-full h-full bg-contain"
-              />
-            </a>
-
-            <div class="flex flex-col w-full truncate">
-
-              <a
-                :href="playlist.track.external_urls.spotify"
-                class="text-white truncate overflow-hidden"
-              >
-                <span class="truncate">{{ playlist.track.name }}</span>
-              </a>
-
-              <a
-                :href="`/artist/${playlist.track.artists[0].id}`"
-                class="text-xs text-normalColor hover:underline"
-              >
-                {{ playlist.track.artists[0].name }}
-              </a>
-
-            </div>
-
-          </div>
-        </td>
-
-        <td class="hidden md:table-cell max-w-[12rem] w-20 truncate pr-4">
-
-          <a
-            class="text-xs text-normalColor hover:underline w-full"
-            :href="playlist.track.album.external_urls.spotify"
-          >
-            <span class="truncate">
-              {{ playlist.track.album.name }}
-            </span>
-          </a>
-        </td>
-
-        <td class="hidden lg:table-cell w-14">
-          {{ addTo(playlist.added_at) }}
-        </td>
-
-        <td class="rounded-r pr-2 mr-2 w-2">
-
-          <div class="flex flex-row justify-center w-full text-spotifyGreen gap-4">
-            <FilledHeartIcon v-if="playlist.liked || type ==='liked'" :width="16" :height="16"/>
-            <HeartIcon v-else class="opacity-0 group-hover:opacity-70 hover:opacity-100 text-white" :width="16" :height="16" />
-
-            <div class="text-normalColor mr-2">
-              {{ getSeconds(playlist.track.duration_ms) }}
-            </div>
-
-            <div class="text-white invisible group-hover:visible">
-              <DetailsIcon :height="16" :width="16"/>
-            </div>
-
-          </div>
-
-        </td>
-
-      </tr>
       <tr>
         <td class="pb-10"/>
       </tr>
@@ -137,10 +54,7 @@
 <script>
 import dayjs from 'dayjs';
 import DurationIcon from '@/components/icons/DurationIcon.vue';
-import FilledHeartIcon from '@/components/icons/FilledHeartIcon.vue';
-import HeartIcon from '@/components/icons/HeartIcon.vue';
-import DetailsIcon from '@/components/icons/DetailsIcon.vue';
-import PlayArrow from '@/components/icons/PlayArrowIcon.vue';
+import TableItem from '@/components/TableItem.vue';
 
 const relativeTime = require('dayjs/plugin/relativeTime');
 require('dayjs/locale/tr');
@@ -151,10 +65,7 @@ dayjs.locale('tr');
 export default {
   components: {
     DurationIcon,
-    FilledHeartIcon,
-    HeartIcon,
-    DetailsIcon,
-    PlayArrow,
+    TableItem,
   },
 
   props: {

@@ -1,6 +1,11 @@
 <template>
     <ul class="my-1.5 text-normalColor">
-      <router-link to="/" exact active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
+      <router-link
+        to="/"
+        exact
+        active-class="bg-activeColor rounded text-white"
+        class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
+      >
 
           <div class="py-2">
 
@@ -12,7 +17,11 @@
           <span class="pt-3">Ana sayfa</span>
       </router-link>
 
-      <router-link to="/search" active-class="bg-activeColor rounded text-white" class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white">
+      <router-link
+        to="/search"
+        active-class="bg-activeColor rounded text-white"
+        class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
+      >
 
           <div class="py-2">
 
@@ -27,12 +36,13 @@
 
       <router-link
         to="/collection"
-        :class="`text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white ${$route.name!== 'CollectionPlaylists' ? 'bg-transparent text-normalColor rounded-none' : 'bg-activeColor rounded text-white'}`"
+        active-class="bg-activeColor rounded text-white"
+        class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
       >
 
           <div class="py-2">
 
-            <CollectionIcon v-if="$route.name !== 'CollectionPlaylists'"/>
+            <CollectionIcon v-if="!$route.meta.showCollectionTabs"/>
             <ActiveCollectionIcon v-else />
 
           </div>
@@ -60,9 +70,10 @@
       </li>
 
       <router-link
-      to='/collection/tracks'
-      tag="li" active-class="opacity-100"
-      class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white"
+        to='/collection/tracks'
+        tag="li"
+        active-class="opacity-100"
+        class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white"
       >
 
       <span class="w-6 h-6 flex items-center justify-center bg-gradient-to-br from-purple-900 to-blue-300">

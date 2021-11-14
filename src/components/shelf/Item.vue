@@ -9,7 +9,7 @@
 
         <div class="mb-4 relative">
 
-          <div class="w-full shadow-lg pb-[100%] relative">
+          <div class="w-full pb-[100%] relative">
             <img
               v-if="type !== 'artist'"
               class="w-full h-full left-0 absolute top-0 block object-cover object-center"
@@ -19,7 +19,7 @@
 
             <img
               v-else
-              class="w-full h-full left-0 absolute top-0 rounded-full block object-cover object-center"
+              class="w-full h-full left-0 absolute top-0 rounded-full shadow-lg block object-cover object-center"
               :src="playlistInfo.images[0].url"
               alt="Photo"
             />

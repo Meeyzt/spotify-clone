@@ -1,10 +1,12 @@
 <template>
-  <div class="flex flex-row h-full w-full text-white justify-center items-center">
-    <Tracks
+  <div
+    class="flex flex-row h-full w-full text-white justify-center items-center"
+    v-if="playlist"
+  >
+    <Playlist
       type="playlist"
-      playlist-author-profile-pic="sd"
+      playlist-author-profile-pic=""
       :playlist="playlist"
-      v-if="playlist"
     />
   </div>
 </template>
@@ -12,12 +14,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import Tracks from '@/components/Playlist.vue';
+import Playlist from '@/components/Playlist.vue';
 
 export default {
 
   components: {
-    Tracks,
+    Playlist,
   },
 
   computed: {
@@ -26,8 +28,12 @@ export default {
     ]),
   },
 
-  async beforeRouteUpdate(to) {
-    await this.$store.dispatch('getPlaylist', to.params.id);
+  beforeRouteUpdate(to, from, next) {
+    this.$store.dispatch('getPlaylist', to.params.id);
+
+    if (!(to.params.id === from.params.id)) {
+      next();
+    }
   },
 
   mounted() {

@@ -6,7 +6,7 @@
 
         <tbody>
 
-            <tr> <td class="pt-4"/></tr>
+            <tr><td class="pt-4"/></tr>
 
         <!-- TODO: 5 tane gizleme yapılacak -->
             <table-item
@@ -14,7 +14,8 @@
               :key="track.id"
               :index="index"
               :track="track"
-              type="quarterTable"
+              :liked="track.liked"
+              type="artist"
             />
 
         </tbody>

@@ -12,7 +12,6 @@
   >
 
     <div class="h-full w-full pb-14 bg-gradient-to-b to-transparent from-[rgba(0,0,0,0.30)] overflow-auto">
-
       <playlist-header
         v-if="type && playlist"
         :key="playlist.id"
@@ -33,11 +32,12 @@
 
           <play-button :width="32" :height="32"/>
 
-          <div class="text-spotifyGreen">
-
-            <filled-heart-icon :height="32" :width="32"/>
-
-          </div>
+          <component
+            :is="playlist.liked ? 'FilledHeartIcon' : 'HeartIcon'"
+            :class="!playlist.liked ? 'opacity-60 hover:opacity-100 text-white':'text-spotifyGreen'"
+            :width="32"
+            :height="32"
+          />
 
           <div class="text-3xl flex justify-center opacity-60 hover:opacity-100">
 
@@ -47,7 +47,12 @@
 
       </div>
 
-        <TrackContent v-if="playlist.tracks.items" :key="playlist.id" :playlistData="playlist.tracks.items" :type="type"/>
+        <playlist-content
+          v-if="playlist.tracks.items"
+          :key="playlist.id"
+          :playlistData="playlist.tracks.items"
+          :type="type"
+        />
 
       </div>
     </div>
@@ -55,57 +60,59 @@
 </template>
 
 <script>
-import { average } from 'color.js';
-import PlaylistHeader from '@/components/PlaylistHeader.vue';
-import TrackContent from '@/components/playlist/PlaylistContent.vue';
-import FilledHeartIcon from './icons/FilledHeartIcon.vue';
-import DetailsIcon from './icons/DetailsIcon.vue';
-import PlayButton from './PlayButton.vue';
+  import { average } from 'color.js';
 
-export default {
-  components: {
-    PlaylistHeader,
-    TrackContent,
-    FilledHeartIcon,
-    DetailsIcon,
-    PlayButton,
-  },
+  import PlaylistHeader from '@/components/PlaylistHeader.vue';
+  import PlaylistContent from '@/components/playlist/PlaylistContent.vue';
+  import FilledHeartIcon from './icons/FilledHeartIcon.vue';
+  import DetailsIcon from './icons/DetailsIcon.vue';
+  import PlayButton from './PlayButton.vue';
+  import HeartIcon from '@/components/icons/HeartIcon.vue';
 
-  props: {
-    playlist: {
-      type: Object,
-      required: true,
+  export default {
+    components: {
+      PlaylistHeader,
+      PlaylistContent,
+      FilledHeartIcon,
+      DetailsIcon,
+      PlayButton,
+      HeartIcon,
     },
 
-    playlistAuthorProfilePic: {
-      type: String,
-      required: true,
+    props: {
+      playlist: {
+        type: Object,
+        required: true,
+      },
+
+      playlistAuthorProfilePic: {
+        type: String,
+      },
+
+      type: {
+        type: String,
+        required: true,
+      },
     },
 
-    type: {
-      type: String,
-      required: true,
+    data() {
+      return {
+        pictureColor: undefined,
+      };
     },
-  },
 
-  data() {
-    return {
-      pictureColor: undefined,
-    };
-  },
-
-  methods: {
-    setAverageColor(initialColor) {
-      average(initialColor, { format: 'hex' })
-        .then((color) => {
-          this.pictureColor = color;
-        });
+    methods: {
+      setAverageColor(initialColor) {
+        average(initialColor, { format: 'hex' })
+          .then((color) => {
+            this.pictureColor = color;
+          });
+      },
     },
-  },
 
-  created() {
-    this.setAverageColor(this.playlist.images[0].url);
-  },
+    created() {
+      this.setAverageColor(this.playlist.images[0].url);
+    },
 
-};
+  };
 </script>

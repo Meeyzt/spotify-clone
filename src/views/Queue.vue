@@ -14,7 +14,7 @@
 
           <table-item
             :track="currentTrack.item"
-            type="halfTable"
+            type="profile"
             :index="0"
           />
 
@@ -45,7 +45,7 @@
               v-for="index in 10"
               :key="index"
               :track="currentTrack.item"
-              type="halfTable"
+              type="profile"
               :index="index"
             />
 

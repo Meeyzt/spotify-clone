@@ -1,5 +1,8 @@
 <template>
-  <div class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full">
+  <div
+    class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
+    v-if="savedTracks && saved && playlists"
+  >
     <section class="text-white mt-0 w-full h-full">
 
       <div class="mb-4 text-2xl font-bold">Çalma Listeleri</div>
@@ -10,7 +13,6 @@
           tag="div"
           to="/collection/tracks"
           class="group relative z-2 col-2-span bg-gradient-to-br from-gradientBlue justify-end to-gradientPurple rounded-md p-6 flex flex-col gap-3"
-          v-if="saved"
         >
 
           <div class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3 line-clamp-3 mr-4">

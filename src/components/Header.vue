@@ -1,6 +1,6 @@
 <template>
   <header v-if="this.$store.userData !== null"
-  class="bg-contentColor relative flex flex-row flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px]"
+  class="bg-contentColor relative flex flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px]"
   >
     <header-route/>
 

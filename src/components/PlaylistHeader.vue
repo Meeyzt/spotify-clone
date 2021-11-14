@@ -1,7 +1,7 @@
 <template>
   <div
     :style="type === 'artist' ? { backgroundImage:'url('+ picture +')' } : { backgroundColor: pictureColor }"
-    class="pt-[5.5rem] px-8 pb-6 bg-center bg-cover flex gap-6 flex-end items-end bg-opacity-50"
+    class="pt-[5.5rem] px-8 pb-6 bg-center bg-cover flex gap-6 flex-end items-end"
     :class="{
     'bg-gray-300': !pictureColor,
     }"
@@ -76,8 +76,15 @@
             • {{ songCount }} Takip Ediliyor
           </router-link>
 
-        <div v-else class="text-[14px] opacity-70">
-            {{ songCount }} şarkı
+        <div v-else class="text-[14px] opacity-60">
+            • {{ songCount }} şarkı {{ type === 'playlist' ? ',': ''}}
+        </div>
+
+        <div
+          class="text-[14px] opacity-60"
+          v-if="type === 'playlist'"
+        >
+          yaklaşık {{ Math.ceil((songCount * 3.66)/60) }} saat
         </div>
 
       </div>

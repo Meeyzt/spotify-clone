@@ -1,5 +1,5 @@
 <template>
-  <Tracks
+  <Playlist
     v-if="initPlaylistData !== null"
     :playlist="initPlaylistData"
     playlistAuthorProfilePic="https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038"
@@ -9,7 +9,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import Tracks from '@/components/Playlist.vue';
+import Playlist from '@/components/Playlist.vue';
 
 export default {
   created() {
@@ -50,7 +50,7 @@ export default {
   },
 
   components: {
-    Tracks,
+    Playlist,
   },
 };
 </script>

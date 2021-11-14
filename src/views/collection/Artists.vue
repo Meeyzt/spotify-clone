@@ -1,6 +1,7 @@
 <template>
   <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor w-full overflow-auto h-full">
     <Shelf
+      v-if="$store.state.artists"
       title="Sanatçılar"
       type="artist"
       link=""

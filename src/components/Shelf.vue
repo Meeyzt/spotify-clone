@@ -5,7 +5,7 @@
   >
       <div class="flex flex-row justify-between mb-4 gap-3">
 
-        <div class="flex flex-col items-start truncate">
+        <div class="truncate">
           <p
             class="text-white text-2xl hover:underline cursor-pointer font-bold tracking-tighter mr-2 truncate"
             v-text="title"

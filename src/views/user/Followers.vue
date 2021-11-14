@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 import Shelf from '@/components/Shelf.vue';
 
 export default {
   computed: {
-    ...mapGetters([
+    ...mapState([
       'artists',
     ]),
   },

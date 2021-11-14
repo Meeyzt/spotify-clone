@@ -11,7 +11,7 @@
         alt="image"
         />
 
-        <div class="text-white text-base font-semibold whitespace-normal pl-1 truncate flex-1">
+        <div class="text-white text-base font-semibold whitespace-normal pl-1 truncate line-clamp-2 flex-1">
         {{ data.name }}
         </div>
 

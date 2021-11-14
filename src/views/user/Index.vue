@@ -33,26 +33,54 @@
             v-if="playlists()"
           />
 
-          <shelf
-            type="playlist"
-            title="Bu ayın en çok dinlenen parçaları"
-            :link="`${this.$route.path}/top/tracks`"
-            :data="playlists(6)"
-            v-if="playlists()"
-          />
+          <div
+            class="w-full"
+            v-if="playlist"
+          >
+            <div class="flex w-full justify-between">
+
+              <div class="text-xl font-bold">En çok dinlenenler </div>
+
+              <router-link
+                :to="`${this.$route.path}/top/tracks`"
+                class="text-normalColor text-[12px] hover:underline cursor-pointer font-bold tracking-widest pt-4 overflow-clip whitespace-nowrap"
+              >
+                HEPSİNİ GÖR
+              </router-link>
+
+            </div>
+
+            <table class="w-full">
+              <tbody>
+                <table-item
+                  class="w-full"
+                  type="artist"
+                  :key="index+'user'"
+                  :index="index"
+                  :track="track.track"
+                  :added_at="track.added_at"
+                  :liked="track.liked"
+                  v-for="(track, index) in playlist.tracks.items.slice(0, 4)"
+                />
+              </tbody>
+            </table>
+
+          </div>
 
           <shelf
             type="artist"
             title="Takipçiler"
-            :data="playlists(6)"
-            v-if="playlists()"
+            :data="slicedArtists(6)"
+            :link="`${this.$route.path}/followers`"
+            v-if="slicedArtists()"
           />
 
           <shelf
-            v-if="playlists()"
-            title="Takip edilenler"
-            :data="playlists(6)"
             type="artist"
+            title="Takip edilenler"
+            :data="slicedArtists(6)"
+            :link="`${this.$route.path}/following`"
+            v-if="slicedArtists()"
           />
 
         </div>
@@ -62,38 +90,44 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
-import PlaylistHeader from '@/components/PlaylistHeader.vue';
-import DetailsIcon from '@/components/icons/DetailsIcon.vue';
-import Shelf from '@/components/Shelf.vue';
+  import { mapGetters, mapState } from 'vuex';
 
-export default {
-  computed: {
-    ...mapState([
-      'profile',
-      'artists',
-    ]),
+  import PlaylistHeader from '@/components/PlaylistHeader.vue';
+  import DetailsIcon from '@/components/icons/DetailsIcon.vue';
+  import Shelf from '@/components/Shelf.vue';
+  import TableItem from '../../components/TableItem.vue';
 
-    ...mapGetters([
-      'playlists',
-    ]),
-  },
+  export default {
+    computed: {
+      ...mapState([
+        'profile',
+        'artists',
+        'playlist',
+        'userPlaylists',
+      ]),
 
-  components: {
-    PlaylistHeader,
-    DetailsIcon,
-    Shelf,
-  },
+      ...mapGetters([
+        'playlists',
+        'slicedArtists',
+      ]),
+    },
 
-  beforeRouteUpdate(to) {
-    this.$store.dispatch('getProfile', to.params.id);
-  },
+    components: {
+      PlaylistHeader,
+      DetailsIcon,
+      Shelf,
+      TableItem,
+    },
 
-  created() {
-    this.$store.commit('setIsLoading', false);
-    this.$store.dispatch('getplaylistData');
-    this.$store.dispatch('getProfile', this.$route.params.id);
-    this.$store.dispatch('getArtists');
-  },
-};
+    beforeRouteUpdate(to) {
+      this.$store.dispatch('getProfile', to.params.id);
+    },
+
+    created() {
+      this.$store.dispatch('getplaylistData');
+      this.$store.dispatch('getProfile', this.$route.params.id);
+      this.$store.dispatch('getArtists');
+      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id);
+    },
+  };
 </script>
