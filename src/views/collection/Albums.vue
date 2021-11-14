@@ -2,24 +2,32 @@
   <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-y-auto h-full w-full">
 
     <Shelf
-      v-if="$store.state.artists"
+      v-if="usersLikedAlbums"
       title="En çok dinlenen podcastler"
-      type="playlist"
+      type="album"
       link=""
       :row="2"
-      :data="$store.state.artists"
+      :data="usersLikedAlbums.items"
     />
 
   </div>
 </template>
 
 <script>
+/* eslint-disable vue/no-unused-components */
+import { mapState } from 'vuex';
 
 import Shelf from '@/components/Shelf.vue';
 
 export default {
+  computed: {
+    ...mapState([
+      'usersLikedAlbums',
+    ]),
+  },
+
   created() {
-    this.$store.dispatch('getArtists');
+    this.$store.dispatch('getUsersLikedAlbums').then();
   },
 
   components: {

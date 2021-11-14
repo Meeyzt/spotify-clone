@@ -36,10 +36,10 @@
         }"
       >
         <Item
+          v-for="playlistInfo in data"
           :class="row <= 1 && 'seekChilds lg:showChilds'"
           :type="type"
-          v-for="playlistInfo in data"
-          :playlistInfo="playlistInfo"
+          :playlistInfo="playlistInfo.album || playlistInfo"
           :key="playlistInfo.id"
         />
       </div>

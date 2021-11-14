@@ -23,6 +23,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/album/:id',
+    name: 'album',
+    component: () => import(/* webpackChunkName: "Album" */'@/views/Album.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "Login" */'@/views/Login.vue'),

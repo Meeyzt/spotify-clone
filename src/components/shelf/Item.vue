@@ -2,7 +2,7 @@
   <router-link
     tag="div"
     class="group w-full h-auto bg-minimalColor cursor-pointer hover:bg-hoverHeadbar rounded-md flex-1 isolate p-4 relative"
-    :to="`/${type === 'artist' ? 'artist' : 'playlist' }/${playlistInfo.id}`"
+    :to="`/${linkType}/${playlistInfo.id}`"
   >
 
       <div class="h-full">
@@ -57,6 +57,18 @@ import PlayButton from '@/components/PlayButton.vue';
 export default {
   components: {
     PlayButton,
+  },
+
+  computed: {
+    linkType() {
+      if (this.type === 'artist') {
+        return 'artist';
+      }
+      if (this.type === 'album') {
+        return 'album';
+      }
+      return 'playlist';
+    },
   },
 
   props: {

@@ -20,7 +20,7 @@
       <div v-if="type === 'artist'" class="flex flex-row gap-1 text-xs mb-3 items-center"> <verified-icon/> Doğrulanmış Sanatçı</div>
 
       <div v-else class="text-[12px] mt-1 font-bold pb-1">
-          {{ type === 'profile' ? 'PROFİL' : 'ÇALMA LİSTESİ' }}
+          {{ headerText }}
       </div>
 
       <div class="py-0.5 text-5xl playlistSmall:text-7xl playlistMedium:text-8xl font-black cursor-default tracking-tighter line-clamp-2">
@@ -30,15 +30,18 @@
       <div
           class="opacity-70 text-[14px] tracking-wide hover:underline"
           v-html="description"
-          v-if="type !== 'liked' && type !== 'artist' && type !== 'profile'"
+          v-if="type !== 'liked' && type !== 'artist' && type !== 'profile' && type !== 'album'"
       />
 
-      <div v-if="type === 'artist'" class="pt-2">{{ Count }} aylık dinleyici</div>
+      <div
+        v-if="type === 'artist'"
+        class="pt-2"
+      >{{ Count }} aylık dinleyici</div>
 
       <div v-else class="flex flex-row items-center gap-1 flex-wrap">
 
         <img
-          v-if="type==='liked'"
+          v-if="type==='liked' || type==='album'"
           class="w-6 h-6 object-cover rounded-full"
           :src="authorPicture"
           alt="profilePic"
@@ -65,7 +68,7 @@
           v-else-if="likeCount !== 0"
           class="text-[14px] opacity-70"
         >
-          • {{ Count }} beğenme
+          • {{ type !== 'album' ? Count : likeCount.slice(0, 4) }} {{type !== 'album' ? 'beğenme' : ''}}
         </div>
 
         <router-link
@@ -77,12 +80,12 @@
           </router-link>
 
         <div v-else class="text-[14px] opacity-60">
-            • {{ songCount }} şarkı {{ type === 'playlist' ? ',': ''}}
+            • {{ songCount }} şarkı{{ type === 'playlist' || type === 'album' ? ',': ''}}
         </div>
 
         <div
           class="text-[14px] opacity-60"
-          v-if="type === 'playlist'"
+          v-if="type === 'playlist' || type === 'album'"
         >
           yaklaşık {{ Math.ceil((songCount * 3.66)/60) }} saat
         </div>
@@ -111,7 +114,7 @@ props: {
     },
 
     likeCount: {
-        type: Number,
+        type: [Number, String],
         required: true,
     },
 
@@ -167,6 +170,16 @@ methods: {
 computed: {
     Count() {
         return this.likeCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    },
+
+    headerText() {
+      if (this.type === 'profile') {
+        return 'PROFİL';
+      }
+      if (this.type === 'album') {
+        return 'ALBÜM';
+      }
+        return 'PLAYLİST';
     },
 },
 };

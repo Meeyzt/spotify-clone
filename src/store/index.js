@@ -24,6 +24,7 @@ export default new Vuex.Store({
     categories: null,
     featured: null,
     artists: null,
+    album: null,
     saved: null,
     userPlaylists: null,
     playlist: null,
@@ -150,6 +151,10 @@ export default new Vuex.Store({
 
     setUsersLikedAlbums(state, payload) {
       state.usersLikedAlbums = payload;
+    },
+
+    setAlbum(state, payload) {
+      state.album = payload;
     },
 
     setAppLoading(state, payload) {
@@ -437,8 +442,33 @@ export default new Vuex.Store({
     },
 
     getUsersLikedAlbums({ commit }) {
-      axios.get('https://api.spotify.com/v1/me/albums?limit=10&offset=0&market=TR').then((res) => {
+      commit('setIsLoading', true);
+
+      axios.get('https://api.spotify.com/v1/me/albums?limit=50&offset=0&market=TR').then((res) => {
         commit('setUsersLikedAlbums', res.data);
+
+        commit('setIsLoading', false);
+      })
+      .catch((e) => {
+        console.log('getUsersLikedAlbums: ', e.message);
+      });
+    },
+
+    getAlbum({ commit, dispatch }, albumId) {
+      commit('setIsLoading', true);
+
+      axios.get(`https://api.spotify.com/v1/albums/${albumId}`).then((res) => {
+        commit('setAlbum', res.data);
+        // let trakk = res.data;
+        // dispatch('likedSongsThePlaylist', trakk.tracks.items).then((tracks) => {
+        //   trakk = {
+        //     ...trakk,
+        //     tracks: {
+        //       items: tracks,
+        //     },
+        //   };
+        //   commit('setAlbum', trakk);
+        // });
 
         commit('setIsLoading', false);
       })

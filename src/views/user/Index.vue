@@ -34,12 +34,12 @@
           />
 
           <div
-            class="w-full"
+            class="w-full px-4"
             v-if="playlist"
           >
             <div class="flex w-full justify-between">
 
-              <div class="text-xl font-bold">En çok dinlenenler </div>
+              <div class="text-xl font-bold">Bu ayın en çok dinlenen parçaları</div>
 
               <router-link
                 :to="`${this.$route.path}/top/tracks`"
@@ -121,13 +121,17 @@
 
     beforeRouteUpdate(to) {
       this.$store.dispatch('getProfile', to.params.id);
+      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id || '37i9dQZF1EQpVaHRDcozEz');
+    },
+
+    mounted() {
+      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id || '37i9dQZF1EQpVaHRDcozEz');
     },
 
     created() {
       this.$store.dispatch('getplaylistData');
       this.$store.dispatch('getProfile', this.$route.params.id);
       this.$store.dispatch('getArtists');
-      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id);
     },
   };
 </script>

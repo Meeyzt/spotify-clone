@@ -27,7 +27,10 @@
     <td class="py-2 text-left text-base font-normal max-w-[14rem] pr-4">
       <div class="flex w-full flex-row gap-2">
 
-        <div class="min-w-[40px] h-10">
+        <div
+          class="min-w-[40px] h-10"
+          v-if="type !== 'album'"
+        >
           <img
             :src="track.album.images[0].url"
             alt="profileImg" class="w-full h-full bg-contain"
@@ -57,7 +60,7 @@
       <a
         class="hover:underline w-full"
         :class="type === 'playlist' ? 'text-xs text-normalColor' : 'text-s text-normalColor'"
-        :href="track.album.external_urls.spotify"
+        v-if="type !== 'album'"
       >
         <span class="truncate">
           {{ type === 'playlist' || type === 'liked' || type === 'profile' ?  track.album.name : '16.000.000' }}
