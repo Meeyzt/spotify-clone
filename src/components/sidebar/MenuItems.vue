@@ -116,7 +116,7 @@ export default {
 
   methods: {
     createPlaylist() {
-      this.$store.dispatch('createPlaylist');
+      this.$store.dispatch('pages/playlist/createPlaylist', null, { root: true });
     },
   },
 };

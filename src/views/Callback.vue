@@ -14,14 +14,16 @@ export default {
   },
 
   created() {
-    this.$store.commit('setAccessToken', this.$route.query.access_token);
-    this.$store.commit('setConfig');
+    console.log('CALLBACK CREATED');
+    // this.$store.commit('auth/setAccessToken', this.$route.query.access_token, { root: true });
 
-    this.$store.dispatch('getUserData').then(() => {
-      this.$store.dispatch('initProject');
+    // this.$store.dispatch('currentUser/getCurrentUsersData', null, { root: true }).then(() => {
+    //     this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+    //     this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true });
+    //     this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
 
-      this.$router.push('/');
-    });
+    //   this.$router.push('/');
+    // });
   },
 };
 </script>

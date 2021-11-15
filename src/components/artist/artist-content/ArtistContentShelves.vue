@@ -39,7 +39,7 @@ export default {
     },
 
     created() {
-        this.$store.dispatch('getplaylistData');
+        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
     },
 
     components: {

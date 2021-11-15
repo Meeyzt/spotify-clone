@@ -60,16 +60,20 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getplaylistData');
-    this.$store.dispatch('getFeatured').then(() => {
+    this.$store.dispatch('placeholder/getPlaceholderPlaylists');
+    this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists').then(() => {
       this.$store.commit('setIsLoading', false);
     });
   },
 
   computed: {
     ...mapGetters([
-      'playlists',
-      'featureds',
+      {
+        playlists: 'placeholder/placeholderPlaylists',
+      },
+      {
+        featured: 'placeholder/placeholderFeaturedPLaylists',
+      },
     ]),
   },
 };

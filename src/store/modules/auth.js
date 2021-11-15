@@ -37,14 +37,19 @@ export default {
     refreshToken: null,
     expiresAt: 3600000,
 
-    currentUser: null,
-
-    currentUserGetting: false,
-    currentUserGettingError: null,
-    currentUserGettingErrorDescription: null,
+    isAuthenticated: false,
   }),
 
   mutations: {
+    setAccessToken(state, payload) {
+      state.accessToken = payload;
+      localStorage.setItem('access_token', payload);
+    },
+
+    setIsAuthenticated(state, payload) {
+      state.isAuthenticated = payload;
+    },
+
     setTokenGetting(state, payload) {
       state.tokenGetting = payload;
     },
@@ -64,18 +69,6 @@ export default {
 
     setExpiresAt(state, payload) {
       state.expiresAt = payload;
-    },
-
-    setCurrentUserGetting(state, payload) {
-      state.currentUserGetting = payload;
-    },
-
-    setCurrentUserGettingError(state, payload) {
-      state.currentUserGettingError = payload;
-    },
-
-    setCurrentUserGettingErrorDescription(state, payload) {
-      state.currentUserGettingErrorDescription = payload;
     },
   },
   actions: {
@@ -140,6 +133,12 @@ export default {
           commit('setTokenGetting', false);
         });
       });
+    },
+
+    accessTokenTimer({ state, dispatch }, time) {
+      setTimeout(() => {
+        dispatch('getToken', { code: state.refreshToken, type: 'refreshToken' });
+      }, time);
     },
   },
 };

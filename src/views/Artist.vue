@@ -43,9 +43,9 @@ created() {
     this.$store.commit('setIsLoading', true);
 
     if (artistID) {
-        this.$store.dispatch('getArtist', artistID);
-        this.$store.dispatch('getArtistTopTracks', artistID).then(() => {
-            this.$store.commit('setIsLoading', false);
+        this.$store.dispatch('pages/artist/getArtistsData', artistID);
+        this.$store.dispatch('pages/artist/getArtistTopTracks', artistID).then(() => {
+            this.$store.commit('setIsLoading', false, { root: true });
         });
     }
 },

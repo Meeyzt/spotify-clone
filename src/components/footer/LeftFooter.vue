@@ -36,7 +36,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getCurrentPlayingTrack');
+    this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true });
   },
 };
 </script>

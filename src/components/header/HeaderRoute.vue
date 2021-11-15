@@ -22,8 +22,14 @@
 import ArrowIcon from '../icons/ArrowIcon.vue';
 
 export default {
-    components: {
-        ArrowIcon,
+  components: {
+    ArrowIcon,
+  },
+
+  methods: {
+    hasHistory() {
+      return (window.history.length > 2);
     },
+  },
 };
 </script>

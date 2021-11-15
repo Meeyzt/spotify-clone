@@ -32,11 +32,10 @@ export default {
 
   mounted() {
     if (this.$route.query.code && this.$route.query.state) {
-      this.$store.dispatch('getToken', { code: this.$route.query.code })
+      this.$store.dispatch('getToken', { code: this.$route.query.code }, { root: true })
         .then(() => {
-          this.$store.commit('setIsAuthenticated', true);
-          this.$store.dispatch('getUserData').then(() => {
-            this.$store.dispatch('initProject');
+          this.$store.commit('setIsAuthenticated', true, { root: true });
+          this.$store.dispatch('currentUser/getCurrentUsersData', null, { root: true }).then(() => {
             this.$router.push('/');
           });
         });

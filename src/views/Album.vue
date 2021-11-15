@@ -1,21 +1,21 @@
 <template>
   <div class="text-white bg-contentColor overflow-y-auto h-full">
 
-      <playlist-header
-        v-if="album"
-        :key="album.id"
-        :name="album.name"
-        :picture="album.images[0].url"
-        :author="album.artists[0].name"
-        :song-count="album.total_tracks"
-        :author-picture="album.images[2].url"
-        :likeCount="album.release_date"
-        author-link=""
-        type="album"
-        description=""
-      />
+    <playlist-header
+      v-if="album"
+      :key="album.id"
+      :name="album.name"
+      :picture="album.images[0].url"
+      :author="album.artists[0].name"
+      :song-count="album.total_tracks"
+      :author-picture="album.images[2].url"
+      :likeCount="album.release_date"
+      author-link=""
+      type="album"
+      description=""
+    />
 
-     <div class="w-full px-4 pt-10">
+    <div class="w-full px-8 pr-14 pt-10">
       <table
         class="w-full"
         v-if="album"
@@ -83,7 +83,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getAlbum', this.$route.params.id);
+    this.$store.dispatch('pages/album/getAlbum', this.$route.params.id, { root: true });
   },
 
 };

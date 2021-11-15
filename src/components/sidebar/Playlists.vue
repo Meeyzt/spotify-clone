@@ -24,7 +24,7 @@ import { mapGetters } from 'vuex';
 export default {
 
   mounted() {
-    this.$store.dispatch('getUserPlaylists');
+    this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
   },
 
   computed: {

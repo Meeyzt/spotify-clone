@@ -57,7 +57,8 @@
 
     <td class="hidden md:table-cell max-w-[12rem] truncate pr-4">
 
-      <a
+      <router-link
+        :to="type !== 'album' ? `/album/${track.album.id}` : ''"
         class="hover:underline w-full"
         :class="type === 'playlist' ? 'text-xs text-normalColor' : 'text-s text-normalColor'"
         v-if="type !== 'album'"
@@ -65,10 +66,10 @@
         <span class="truncate">
           {{ type === 'playlist' || type === 'liked' || type === 'profile' ?  track.album.name : '16.000.000' }}
         </span>
-      </a>
+      </router-link>
     </td>
 
-    <td v-if="type === 'playlist'" class="hidden lg:table-cell w-14">
+    <td v-if="type === 'playlist' || type=== 'liked'" class="hidden lg:table-cell w-14">
       {{ addTo(added_at) }}
     </td>
 

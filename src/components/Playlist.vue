@@ -18,7 +18,7 @@
         :name="playlist.name"
         :picture="playlist.images[0].url"
         :author="playlist.owner.display_name"
-        :song-count="playlist.tracks.total"
+        :song-count="playlist.tracks.total ? playlist.tracks.total : playlist.tracks.items.length"
         :author-picture="playlistAuthorProfilePic"
         :likeCount="playlist.followers.total"
         :author-link="playlist.owner.id"
