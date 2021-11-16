@@ -3,16 +3,23 @@
       id="app"
       @click.right="rightClick($event)"
     >
+
       <div class="wrapper">
         <Sidebar />
+
           <main class="flex flex-auto flex-col overflow-hidden relative">
             <Header/>
+
             <router-view v-show="!isLoading"/>
+
             <div class="w-full h-full flex justify-center items-center" v-show="isLoading">
               <loading/>
             </div>
+
           </main>
+
       </div>
+
       <Footer/>
   </div>
 </template>

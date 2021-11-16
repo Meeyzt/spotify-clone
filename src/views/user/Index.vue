@@ -1,11 +1,14 @@
 <template>
-  <div class="text-white h-full overflow-y-auto" v-if="profile && artists">
+  <div
+    class="text-white h-full overflow-y-auto"
+    v-if="profile && slicedCurrentUsersFollowedArtists()"
+  >
       <playlist-header
         :name="profile.display_name"
         type="profile"
         :likeCount="profile.followers.total"
         :picture="profile.images[0].url"
-        :songCount="artists.length"
+        :songCount="slicedCurrentUsersFollowedArtists().length"
         author="13"
       />
       <div class="bg-contentColor p-4">
@@ -20,17 +23,17 @@
             title="Bu ayın en çok dinlenen sanatçıları"
             :link="`${this.$route.path}/top/artists`"
             subTitle="Yalnızca sana görünür"
-            :data="playlists(6)"
-            v-if="playlists()"
+            :data="slicedPlaceholderPlaylists(6)"
+            v-if="slicedPlaceholderPlaylists()"
           />
 
           <shelf
             type="playlist"
             title="Herkese açık çalma listeleri"
             link=""
-            :data="playlists(3)"
+            :data="slicedPlaceholderPlaylists(3)"
             :row="1"
-            v-if="playlists()"
+            v-if="slicedPlaceholderPlaylists()"
           />
 
           <div
@@ -70,17 +73,17 @@
           <shelf
             type="artist"
             title="Takipçiler"
-            :data="slicedArtists(6)"
+            :data="slicedCurrentUsersFollowedArtists(6)"
             :link="`${this.$route.path}/followers`"
-            v-if="slicedArtists()"
+            v-if="slicedCurrentUsersFollowedArtists()"
           />
 
           <shelf
             type="artist"
             title="Takip edilenler"
-            :data="slicedArtists(6)"
+            :data="slicedCurrentUsersFollowedArtists(6)"
             :link="`${this.$route.path}/following`"
-            v-if="slicedArtists()"
+            v-if="slicedCurrentUsersFollowedArtists()"
           />
 
         </div>
@@ -90,6 +93,7 @@
 </template>
 
 <script>
+/* eslint-disable vue/no-unused-components */
   import { mapGetters, mapState } from 'vuex';
 
   import PlaylistHeader from '@/components/PlaylistHeader.vue';
@@ -99,16 +103,24 @@
 
   export default {
     computed: {
-      ...mapState([
+      ...mapState('pages/profile', [
         'profile',
-        'artists',
-        'playlist',
-        'userPlaylists',
       ]),
 
-      ...mapGetters([
-        'playlists',
-        'slicedArtists',
+      ...mapState('pages/playlist', [
+        'playlist',
+      ]),
+
+      ...mapState('currentUser', [
+        'currentUsersLikedTracks',
+      ]),
+
+      ...mapGetters('currentUser', [
+        'slicedCurrentUsersFollowedArtists',
+      ]),
+
+      ...mapGetters('placeholder', [
+        'slicedPlaceholderPlaylists',
       ]),
     },
 
@@ -120,18 +132,15 @@
     },
 
     beforeRouteUpdate(to) {
-      this.$store.dispatch('getProfile', to.params.id);
-      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id || '37i9dQZF1EQpVaHRDcozEz');
-    },
-
-    mounted() {
-      this.$store.dispatch('getPlaylist', this.userPlaylists[0].id || '37i9dQZF1EQpVaHRDcozEz');
+      this.$store.dispatch('pages/profile/getProfile', to.params.id, { root: true });
+      this.$store.dispatch('pages/playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true });
     },
 
     created() {
-      this.$store.dispatch('getplaylistData');
-      this.$store.dispatch('getProfile', this.$route.params.id);
-      this.$store.dispatch('getArtists');
+      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+      this.$store.dispatch('pages/profile/getProfile', this.$route.params.id, { root: true });
+      this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
+      this.$store.dispatch('pages/playlist/getPlaylist', '37i9dQZF1EIV4eiKpyhYqf', { root: true });
     },
   };
 </script>

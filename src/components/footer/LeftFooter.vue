@@ -1,6 +1,6 @@
 <template>
   <song-displayer
-    :track="currentTrack ? currentTrack : {
+    :track="currentUsersCurrentPlayingTrack ? currentUsersCurrentPlayingTrack : {
       name: 'Hasret',
       liked: true,
       artists: [
@@ -30,8 +30,8 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'currentTrack',
+    ...mapState('currentUser', [
+      'currentUsersCurrentPlayingTrack',
     ]),
   },
 

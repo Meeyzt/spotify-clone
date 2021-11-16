@@ -1,6 +1,6 @@
 <template>
   <header
-    v-if="currentUserData !== null"
+    v-if="currentUsersData !== null"
     class="bg-contentColor relative flex flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px]"
   >
     <header-route/>
@@ -33,10 +33,8 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      {
-        currentUserData: 'currentUser/currentUserData',
-      },
+    ...mapState('currentUser', [
+      'currentUsersData',
     ]),
   },
 

@@ -2,12 +2,12 @@
   <div class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-y-auto h-full w-full">
 
     <Shelf
-      v-if="usersLikedAlbums"
+      v-if="currentUsersFollowedAlbums"
       title="En çok dinlenen podcastler"
       type="album"
       link=""
       :row="2"
-      :data="usersLikedAlbums.items"
+      :data="currentUsersFollowedAlbums.items"
     />
 
   </div>
@@ -21,13 +21,13 @@ import Shelf from '@/components/Shelf.vue';
 
 export default {
   computed: {
-    ...mapState([
-      'usersLikedAlbums',
+    ...mapState('currentUser', [
+      'currentUsersFollowedAlbums',
     ]),
   },
 
   created() {
-    this.$store.dispatch('getUsersLikedAlbums').then();
+    this.$store.dispatch('currentUser/getCurrentUsersFollowedAlbums', null, { root: true }).then();
   },
 
   components: {

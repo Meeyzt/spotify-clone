@@ -5,7 +5,7 @@
         type="artist"
         :row="2"
         link=""
-        :data="artists"
+        :data="currentUsersFollowedArtists"
       />
   </div>
 </template>
@@ -17,8 +17,8 @@ import Shelf from '@/components/Shelf.vue';
 
 export default {
   computed: {
-    ...mapState([
-      'artists',
+    ...mapState('currentUser', [
+      'currentUsersFollowedArtists',
     ]),
   },
 
@@ -27,7 +27,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getArtists');
+    this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
   },
 };
 </script>

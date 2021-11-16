@@ -6,20 +6,20 @@
         subTitle="Yalnızca sana görünür"
         link=""
         :row="2"
-        :data="artists"
+        :data="currentUsersFollowedArtists"
       />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 import Shelf from '@/components/Shelf.vue';
 
 export default {
   computed: {
-    ...mapGetters([
-      'artists',
+    ...mapState('currentUser', [
+      'currentUsersFollowedArtists',
     ]),
   },
 
@@ -28,7 +28,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getArtists');
+    this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
   },
 };
 </script>

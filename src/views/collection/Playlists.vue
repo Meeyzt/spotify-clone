@@ -1,8 +1,9 @@
 <template>
   <div
     class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
-    v-if="savedTracks && saved && playlists"
+    v-if="slicedCurrentUsersLikedTracks() && slicedPlaceholderPlaylists()"
   >
+
     <section class="text-white mt-0 w-full h-full">
 
       <div class="mb-4 text-2xl font-bold">Çalma Listeleri</div>
@@ -17,7 +18,7 @@
 
           <div class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3 line-clamp-3 mr-4">
 
-            <span v-for="track in savedTracks(10)" :key="track.song" class="ml-1" >
+            <span v-for="track in slicedCurrentUsersLikedTracks(10).items" :key="track.track.id" class="ml-1" >
 
               <span v-text="track.track.artists[0].name"/>
 
@@ -35,46 +36,56 @@
 
             <div class="font-bold text-3xl">Beğenilen Şarkılar</div>
 
-            <div>{{saved.total }} beğenilen şarkılar</div>
+            <div>{{currentUsersLikedTracks.total }} beğenilen şarkılar</div>
 
           </div>
 
         </router-link>
 
-          <ShelfItem type="playlist" v-for="playlistInfo in playlists(13)" :playlistInfo="playlistInfo" :key="playlistInfo.id"/>
+          <ShelfItem
+            type="playlist"
+            v-for="playlistInfo in slicedPlaceholderPlaylists(13)"
+            :playlistInfo="playlistInfo"
+            :key="playlistInfo.id"
+          />
 
       </div>
     </section>
+
   </div>
 </template>
 
 <script>
+/* eslint-disable vue/no-unused-components */
+  import { mapGetters, mapState } from 'vuex';
 
-import { mapGetters, mapState } from 'vuex';
+  import ShelfItem from '@/components/shelf/Item.vue';
+  import PlayButton from '@/components/PlayButton.vue';
 
-import ShelfItem from '@/components/shelf/Item.vue';
-import PlayButton from '../../components/PlayButton.vue';
+  export default {
+    components: {
+      ShelfItem,
+      PlayButton,
+    },
 
-export default {
-  components: {
-    ShelfItem,
-    PlayButton,
-  },
-  created() {
-    this.$store.dispatch('getSaved');
-    this.$store.dispatch('getplaylistData');
-  },
+    created() {
+      this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true }).then(() => {
+        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+      });
+    },
 
-  computed: {
-    ...mapState([
-      'saved',
-    ]),
+    computed: {
+      ...mapState('currentUser', [
+        'currentUsersLikedTracks',
+      ]),
 
-    ...mapGetters([
-      'savedTracks',
-      'playlists',
-    ]),
-  },
+      ...mapGetters('currentUser', [
+          'slicedCurrentUsersLikedTracks',
+      ]),
 
-};
+      ...mapGetters('placeholder', [
+        'slicedPlaceholderPlaylists',
+      ]),
+    },
+  };
 </script>

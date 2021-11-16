@@ -18,7 +18,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('getCategoryData');
+    this.$store.dispatch('pages/search/getCategories', null, { root: true });
   },
 };
 </script>

@@ -17,11 +17,11 @@ export default new Vuex.Store({
   modules: {
     auth: authModule,
     currentUser: currentUserModule,
-    artist: artistModule,
     placeholder: placeholderModule,
     pages: {
       namespaced: true,
       modules: {
+        artist: artistModule,
         search: searchModule,
         profile: profileModule,
         playlist: playlistModule,
@@ -45,9 +45,9 @@ export default new Vuex.Store({
     },
 
     initLocalStorage(state, { accessToken, refreshToken, expiresAt }) {
-      state.accessToken = accessToken ?? null;
-      state.refreshToken = refreshToken ?? null;
-      state.expiresAt = expiresAt ?? null;
+      state.auth.accessToken = accessToken ?? null;
+      state.auth.refreshToken = refreshToken ?? null;
+      state.auth.expiresAt = expiresAt ?? null;
 
       axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
     },
@@ -55,17 +55,16 @@ export default new Vuex.Store({
 
   actions: {
     initAuth({ commit, dispatch }) {
-      commit('setIsLoading', true);
-
       return new Promise((resolve, reject) => {
+        commit('setIsLoading', true);
         try {
           const expiresAt = localStorage.expires_at || null;
           const refreshToken = localStorage.refresh_token || null;
           const accessToken = localStorage.access_token || null;
 
-          commit('initLocalStorage', { accessToken, refreshToken, expiresAt });
+          commit('initLocalStorage', { accessToken, refreshToken, expiresAt }, { root: true });
 
-          dispatch('tokenTimer', expiresAt - Date.now());
+          dispatch('auth/accessTokenTimer', expiresAt - Date.now(), { root: true });
 
           commit('setIsLoading', false);
 

@@ -44,7 +44,7 @@ import SliderItem from './SliderItem.vue';
 
 export default {
   computed: {
-    ...mapState([
+    ...mapState('pages/search', [
       'categories',
     ]),
   },

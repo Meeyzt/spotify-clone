@@ -17,7 +17,7 @@ export default {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 
-        axios.get(`https://api.spotify.com/v1/abums/${albumId}`).then((res) => {
+        axios.get(`https://api.spotify.com/v1/albums/${albumId}?market=TR`).then((res) => {
           commit('setAlbum', res.data);
 
           dispatch('likedSongsThePlaylist', res.data.tracks.items).then((tracks) => {

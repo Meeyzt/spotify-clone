@@ -4,18 +4,18 @@
             class="pt-10"
             title="Popüler yayınlar"
             type="playlist"
-            :data="playlists(6)"
+            :data="slicedPlaceholderPlaylists(6)"
             link=""
             :row="1"
-            v-if="playlists()"
+            v-if="slicedPlaceholderPlaylists()"
         />
         <Shelf
             class="pt-10"
             title="Albümler"
             type="playlist"
-            :data="playlists(6)"
+            :data="slicedPlaceholderPlaylists(6)"
             :row="1"
-            v-if="playlists()"
+            v-if="slicedPlaceholderPlaylists()"
         />
     </div>
 </template>
@@ -33,8 +33,8 @@ export default {
     },
 
     computed: {
-        ...mapGetters([
-            'playlists',
+        ...mapGetters('placeholder', [
+            'slicedPlaceholderPlaylists',
         ]),
     },
 

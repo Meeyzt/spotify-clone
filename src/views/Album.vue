@@ -71,7 +71,7 @@ import DurationIcon from '../components/icons/DurationIcon.vue';
 
 export default {
   computed: {
-    ...mapState([
+    ...mapState('pages/album', [
       'album',
     ]),
   },

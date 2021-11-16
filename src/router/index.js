@@ -12,14 +12,15 @@ const router = new VueRouter({
 });
 
 const beforeRoute = (to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.isAuthenticated) {
-    if (store.state.accessToken && to.name !== 'login') {
-      if (store.state.expiresAt <= Date.now()) {
-        store.dispatch('getToken', { code: store.state.refreshToken, type: 'refreshToken' }).then(() => next());
+  if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.auth.isAuthenticated) {
+    if (store.state.auth.accessToken && to.name !== 'login') {
+      if (store.state.auth.expiresAt <= Date.now()) {
+        store.dispatch('getToken', { code: store.state.auth.refreshToken, type: 'refreshToken' }).then(() => next());
       } else {
         next();
       }
     } else {
+      console.log(5);
       next('/login');
     }
   } else {
@@ -28,11 +29,11 @@ const beforeRoute = (to, from, next) => {
 };
 
 router.beforeEach((to, from, next) => {
-  if (store.state.appLoading) {
+  if (store.state.appFirstLoad) {
     store.dispatch('initAuth', null, { root: true }).then(() => {
-        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
-        this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true });
-        this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
+        store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+        store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true });
+        store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
       beforeRoute(to, from, next);
     });
   } else {

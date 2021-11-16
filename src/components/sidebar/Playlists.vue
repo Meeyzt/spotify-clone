@@ -1,13 +1,13 @@
 <template>
   <div
     class="px-6 flex-auto overflow-y-auto overflow-x-hidden relative mt-2 w-full h-full"
-    v-if="userPlaylists"
+    v-if="currentUsersLikedPlaylists"
   >
 
     <router-link
       tag="div"
       class="text-s cursor-pointer pt-2 px-2 text-normalColor hover:text-white truncate"
-      v-for="playlist in userPlaylists"
+      v-for="playlist in currentUsersLikedPlaylists"
       :key="playlist.id"
       :to="`/playlist/${playlist.id}`"
       ref="sidebarPlaylist"
@@ -19,18 +19,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+  import { mapState } from 'vuex';
 
-export default {
+  export default {
+    mounted() {
+      this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
+    },
 
-  mounted() {
-    this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
-  },
-
-  computed: {
-    ...mapGetters([
-      'userPlaylists',
-    ]),
-  },
-};
+    computed: {
+      ...mapState('currentUser', [
+        'currentUsersLikedPlaylists',
+      ]),
+    },
+  };
 </script>

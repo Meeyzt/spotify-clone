@@ -21,15 +21,17 @@ export default {
       state.playlist = payload;
     },
 
-    addPlaylistToCurrentUsersLikedTracks(state, payload) {
-      state.currentUsersLikedTracks.push(payload);
-      state.isLoading = false;
+    addPlaylistToCurrentUsersLikedPlaylists(state, payload) {
+      state.currentUser.currentUsersLikedPlaylists = {
+        ...state.currentUser.currentUsersLikedPlaylists,
+        payload,
+      };
     },
   },
   actions: {
-    getPlaylist({ state, commit, dispatch }, playlistId) {
+    getPlaylist({ rootState, commit, dispatch }, playlistId) {
       return new Promise((resolve, reject) => {
-        commit('setIsLoading', true);
+        commit('setIsLoading', true, { root: true });
 
         axios.get(`https://api.spotify.com/v1/playlists/${playlistId}?market=TR&fields=id%2Cname%2Cdescription%2Cfollowers.total%2Cimages.url%2Ctracks.total%2Ctracks.next%2Cowner(id%2Cdisplay_name)%2Ctracks.items(added_at%2Ctrack(id%2Cname%2Cduration_ms%2Cadded_at%2Cexternal_urls%2Calbum(id%2Cname%2Cimages%2Cexternal_urls)%2Cartists(id%2Cname%2Cexternal_urls)))`)
           .then((res) => {
@@ -44,11 +46,11 @@ export default {
                   },
                 };
 
-                state.currentUsersLikedTracks.forEach((track) => {
+                rootState.currentUser.currentUsersLikedPlaylists.forEach((track) => {
                   if (q.id === track.id) {
                     q = {
-                      ...res.data,
-                      liked: q.id === track.id,
+                      ...q,
+                      liked: true,
                     };
                   }
                 });
@@ -57,7 +59,7 @@ export default {
               })
               .catch(reject);
 
-            commit('setIsLoading', false);
+            commit('setIsLoading', false, { root: true });
 
             resolve();
         }).catch(reject);
@@ -95,7 +97,7 @@ export default {
     },
 
     createPlaylist({ commit }) {
-      commit('addPlaylistToCurrentUsersLikedTracks', {
+      commit('addPlaylistToCurrentUsersLikedPlaylists', {
         newPlaylist: true,
         images: [
           {

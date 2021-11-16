@@ -13,17 +13,17 @@ import Playlist from '@/components/Playlist.vue';
 
 export default {
   created() {
-    this.$store.dispatch('getSaved');
+    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
   },
 
   computed: {
-    ...mapState([
-      'userData',
-      'saved',
+    ...mapState('currentUser', [
+      'currentUsersData',
+      'currentUsersLikedTracks',
     ]),
 
     initPlaylistData() {
-      return this.saved !== null ? {
+      return this.currentUsersLikedTracks !== null ? {
         id: 'liked',
         name: 'Beğenilen Şarkılar',
         images: [
@@ -33,12 +33,12 @@ export default {
         ],
 
         owner: {
-          display_name: this.userData.display_name ?? null,
+          display_name: this.currentUsersData.display_name ?? null,
         },
 
-        tracks: this.saved ? {
-          items: this.saved.items,
-          total: this.saved.total,
+        tracks: this.currentUsersLikedTracks ? {
+          items: this.currentUsersLikedTracks.items,
+          total: this.currentUsersLikedTracks.total,
         } : null,
 
         followers: {

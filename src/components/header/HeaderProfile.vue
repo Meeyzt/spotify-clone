@@ -1,16 +1,20 @@
 <template>
-    <button class="group" v-if="userData">
+    <button class="group" v-if="currentUsersData">
         <span class="flex flex-row bg-black relative rounded-full items-center justify-center text-white text-s px-0.5 py-0.5 mx-4 hover:bg-hoverHeadbar group-focus-within:bg-hoverHeadbar">
 
             <div class="rounded-full h-7 w-7">
-                <img class="rounded-full overflow-hidden h-7 w-7 object-cover" :src="userData.images[0].url" alt="ProfilePicture" />
+                <img class="rounded-full overflow-hidden h-7 w-7 object-cover" :src="currentUsersData.images[0].url" alt="ProfilePicture" />
             </div>
 
             <div class="hidden lg:flex px-2 my-auto font-semibold items-center justify-center pt-1">
-                {{ userData.display_name }}
+                {{ currentUsersData.display_name }}
             </div>
 
-            <DownArrow class="hidden lg:block mr-1 group-focus-within:transform group-focus-within:rotate-180" :height="16" :width="16"/>
+            <DownArrow
+              class="hidden lg:block mr-1 group-focus-within:transform group-focus-within:rotate-180"
+              :height="16"
+              :width="16"
+            />
 
         </span>
         <div class="hidden w-48 right-8 mt-2 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded shadow-xl z-1 group-focus-within:flex cursor-default">
@@ -28,7 +32,7 @@
             </router-link>
 
             <router-link
-                :to="`/user/${userData.id}`"
+                :to="`/user/${currentUsersData.id}`"
                 class="mx-1 p-3 text-s hover:bg-player rounded flex justify-between"
             >
                 Profil
@@ -62,21 +66,25 @@ export default {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('expires_at');
-        this.$store.commit('setIsAuthenticated', false);
+
+        this.$store.commit('auth/setIsAuthenticated', false, { root: true });
+
         const state = { ...this.$store.state };
-        console.log(state);
+
         const newState = {};
+
         Object.keys(state).forEach((key) => {
           newState[key] = null;
         });
+
         this.$store.replaceState(newState);
         this.$router.go(0);
       },
     },
 
     computed: {
-        ...mapState([
-            'userData',
+        ...mapState('currentUser', [
+            'currentUsersData',
         ]),
     },
 };

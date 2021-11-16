@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 import Playlist from '@/components/Playlist.vue';
 
@@ -23,13 +23,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
+    ...mapState('pages/playlist', [
       'playlist',
     ]),
   },
 
   beforeRouteUpdate(to, from, next) {
-    this.$store.dispatch('getPlaylist', to.params.id);
+    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
+    this.$store.dispatch('pages/playlist/getPlaylist', to.params.id, { root: true });
 
     if (!(to.params.id === from.params.id)) {
       next();
@@ -37,7 +38,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getPlaylist', this.$route.params.id);
+    this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id, { root: true });
   },
 };
 </script>

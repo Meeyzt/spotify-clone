@@ -1,5 +1,8 @@
 <template>
-  <div v-if="$store.state.playlists !== null && $store.state.featured !== null " class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full">
+  <div
+    v-if="placeholderPlaylists && placeholderFeaturedPlaylists"
+    class="px-4 pt-6 lg:px-8 flex flex-col items-start bg-contentColor overflow-auto h-full"
+  >
 
     <div class="w-full">
 
@@ -11,7 +14,12 @@
 
           <div class="grid xsmall-grid-cols-1 xsmall:grid-cols-2 small:grid-cols-3 xxlarge:grid-cols-4 gap-4 overflow-y-hidden">
 
-            <HomeWelcomeItem class="ofSixHide ofFourHide ofTwoHide xsmall:ofSixShow small:ofFourShow xxlarge:ofTwoShow" v-for="playlist in $store.getters.playlists(8)" :data="playlist" :key="playlist.id"/>
+            <HomeWelcomeItem
+              class="ofSixHide ofFourHide ofTwoHide xsmall:ofSixShow small:ofFourShow xxlarge:ofTwoShow"
+              v-for="playlist in playlists(8)"
+              :data="playlist"
+              :key="playlist.id"
+            />
 
           </div>
         </div>
@@ -45,38 +53,40 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Shelf from '../components/Shelf.vue';
-import HomeWelcomeItem from '../components/home/HomeWelcomeItem.vue';
-import HomeWelcomeText from '../components/home/HomeWelcomeText.vue';
+  import { mapGetters, mapState } from 'vuex';
 
-export default {
-  name: 'Home',
+  import Shelf from '../components/Shelf.vue';
+  import HomeWelcomeItem from '../components/home/HomeWelcomeItem.vue';
+  import HomeWelcomeText from '../components/home/HomeWelcomeText.vue';
 
-  components: {
-    Shelf,
-    HomeWelcomeItem,
-    HomeWelcomeText,
-  },
+  export default {
+    name: 'Home',
 
-  mounted() {
-    this.$store.dispatch('placeholder/getPlaceholderPlaylists');
-    this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists').then(() => {
-      this.$store.commit('setIsLoading', false);
-    });
-  },
+    components: {
+      Shelf,
+      HomeWelcomeItem,
+      HomeWelcomeText,
+    },
 
-  computed: {
-    ...mapGetters([
-      {
-        playlists: 'placeholder/placeholderPlaylists',
-      },
-      {
-        featured: 'placeholder/placeholderFeaturedPLaylists',
-      },
-    ]),
-  },
-};
+    mounted() {
+      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+      this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true }).then(() => {
+        this.$store.commit('setIsLoading', false, { root: true });
+      });
+    },
+
+    computed: {
+      ...mapState('placeholder', [
+        'placeholderPlaylists',
+        'placeholderFeaturedPlaylists',
+      ]),
+
+      ...mapGetters('placeholder', {
+        playlists: 'slicedPlaceholderPlaylists',
+        featureds: 'slicedPlaceholderFeaturedPlaylists',
+      }),
+    },
+  };
 </script>
 
 <style scoped>

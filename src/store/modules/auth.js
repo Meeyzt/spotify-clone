@@ -24,6 +24,8 @@ const INITIAL_SCOPES = [
 ];
 
 export default {
+  namespaced: true,
+
   state: () => ({
     clientId: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
     clientSecret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET,
@@ -35,6 +37,7 @@ export default {
     tokenGettingErrorDescription: null,
 
     refreshToken: null,
+    accessToken: null,
     expiresAt: 3600000,
 
     isAuthenticated: false,
@@ -116,7 +119,7 @@ export default {
           localStorage.setItem('expires_at', time);
           axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
 
-          dispatch('tokenTimer', time - Date.now());
+          dispatch('accessTokenTimer', time - Date.now());
 
           resolve();
         }).catch((err) => {

@@ -1,5 +1,5 @@
 <template>
-  <aside v-if="userData !== null" class="w-[259px] pt-6 flex flex-col bg-menuColor">
+  <aside v-if="currentUserData !== null" class="w-[259px] pt-6 flex flex-col bg-menuColor">
 
     <div class="px-6 pb-5">
 
@@ -40,8 +40,8 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'userData',
+    ...mapState('currentUser', [
+      'currentUserData',
     ]),
   },
 };

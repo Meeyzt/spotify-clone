@@ -1,15 +1,20 @@
 import axios from 'axios';
 
 export default {
+  namespaced: true,
+
   state: {
     categories: null,
   },
+
   getters: {},
+
   mutations: {
     setCategories(state, payload) {
       state.categories = payload;
     },
   },
+
   actions: {
     getCategories({ commit }) {
       return new Promise((resolve, reject) => {

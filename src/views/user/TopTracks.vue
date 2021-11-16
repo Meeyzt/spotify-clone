@@ -64,9 +64,12 @@ import DurationIcon from '@/components/icons/DurationIcon.vue';
 
 export default {
   computed: {
-    ...mapState([
+    ...mapState('pages/playlist', [
       'playlist',
-      'userPlaylists',
+    ]),
+
+    ...mapState('currentUser', [
+      'currentUsersLikedTracks',
     ]),
   },
 
@@ -76,7 +79,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getPlaylist', this.userPlaylists[0].id || '37i9dQZF1EQpVaHRDcozEz');
+    this.$store.dispatch('playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true });
   },
 };
 </script>

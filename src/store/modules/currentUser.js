@@ -13,9 +13,9 @@ export default {
   },
 
   getters: {
-    slicedcurrentUsersFollowedArtists: (state) => (count) => state.currentUsersFollowedArtists.slice(0, count ?? 6),
+    slicedCurrentUsersFollowedArtists: (state) => (count) => state.currentUsersFollowedArtists.slice(0, count ?? 6),
 
-    slicedcurrentUsersLikedTracks: (state) => (count) => state.currentUsersLikedTracks.items.slice(0, count ?? 6),
+    slicedCurrentUsersLikedTracks: (state) => (count) => state.currentUsersLikedTracks ?? state.currentUsersLikedTracks.items.slice(0, count ?? 6),
   },
 
   mutations: {
@@ -139,10 +139,10 @@ export default {
           // TODO: ROOOT
           dispatch('pages/playlist/likedSongsThePlaylist', res.data.item, { root: true }).then((track) => {
             commit('setCurrentUsersCurrentPlayingTrack', track);
+            resolve(track);
           });
 
           commit('setIsLoading', false, { root: true });
-          resolve();
         })
         .catch(reject);
       });

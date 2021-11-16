@@ -30,7 +30,7 @@ export default {
           .then((res) => {
             commit('setPlaceholderPlaylists', res.data.playlists.items);
 
-            commit('setIsLoading', false);
+            commit('setIsLoading', false, { root: true });
 
             resolve();
           })
