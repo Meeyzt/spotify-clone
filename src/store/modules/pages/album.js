@@ -20,7 +20,7 @@ export default {
         axios.get(`https://api.spotify.com/v1/albums/${albumId}?market=TR`).then((res) => {
           commit('setAlbum', res.data);
 
-          dispatch('likedSongsThePlaylist', res.data.tracks.items).then((tracks) => {
+          dispatch('pages/playlist/likedSongsThePlaylist', res.data.tracks.items, { root: true }).then((tracks) => {
             const q = {
               ...res.data,
               tracks: {

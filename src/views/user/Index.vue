@@ -8,7 +8,7 @@
         type="profile"
         :likeCount="profile.followers.total"
         :picture="profile.images[0].url"
-        :songCount="slicedCurrentUsersFollowedArtists().length"
+        :songCount="currentUsersFollowedArtists.length"
         author="13"
       />
       <div class="bg-contentColor p-4">
@@ -113,6 +113,7 @@
 
       ...mapState('currentUser', [
         'currentUsersLikedTracks',
+        'currentUsersFollowedArtists',
       ]),
 
       ...mapGetters('currentUser', [
