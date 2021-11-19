@@ -1,10 +1,8 @@
 <template>
   <div
-    class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
-    v-if="slicedCurrentUsersLikedTracks() && slicedPlaceholderPlaylists()"
+    class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full text-white"
+    v-if="slicedCurrentUsersLikedTracks(10).items && slicedPlaceholderPlaylists(13)"
   >
-
-    <section class="text-white mt-0 w-full h-full">
 
       <div class="mb-4 text-2xl font-bold">Çalma Listeleri</div>
 
@@ -50,7 +48,6 @@
           />
 
       </div>
-    </section>
 
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <header
     v-if="currentUsersData !== null"
-    class="bg-contentColor relative flex flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px]"
+    class="bg-contentColor relative flex flex-shrink-0 flex-grow-0 justify-between items-center p-4 w-full z-10 gap-3 h-[60px] border-b border-white border-opacity-5"
   >
     <header-route/>
 

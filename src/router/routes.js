@@ -5,14 +5,14 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: '/search',
     name: 'Search',
     component: () => import(/* webpackChunkName: "Search" */'@/views/Search.vue'),
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
       showSearchInput: true,
     },
   },

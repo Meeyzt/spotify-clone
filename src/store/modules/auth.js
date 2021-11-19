@@ -121,6 +121,10 @@ export default {
 
           dispatch('accessTokenTimer', time - Date.now());
 
+          dispatch('auth/setIsAuthenticated', true, { root: true });
+
+          commit('setIsAuthenticated', true);
+
           resolve();
         }).catch((err) => {
           if (err.response) {

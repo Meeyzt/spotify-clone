@@ -38,14 +38,14 @@
               Daha fazla
               <DownArrow :width="16" :height="16" class="pb-1"/>
             </div>
-            <div class="hidden top-8 w-48 right-8 mt-2 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded shadow-xl z-1 group-focus-within:flex cursor-default">
-              <router-link class="mx-1 p-3 text-s hover:bg-player rounded flex justify-between">
+            <div class="hidden top-8 w-48 right-8 m-2 pb-1 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded z-1 group-focus-within:flex cursor-default">
+              <router-link to="/collection/albums" class="lg:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
+                Albümler
+              </router-link>
 
-                <span> Hesap </span>
-
-                <span> <browse-icon :height="16" :width="16"/> </span>
-
-            </router-link>
+              <router-link to="/collection/albums" class="xsmall:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
+                Sanatçılar
+              </router-link>
             </div>
         </button>
     </div>
@@ -53,12 +53,10 @@
 
 <script>
 import DownArrow from '../icons/DownArrow.vue';
-import BrowseIcon from '../icons/BrowseIcon.vue';
 
 export default {
     components: {
         DownArrow,
-        BrowseIcon,
     },
 };
 </script>

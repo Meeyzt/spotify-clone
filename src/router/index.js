@@ -19,7 +19,6 @@ const beforeRoute = (to, from, next) => {
         next();
       }
     } else {
-      console.log(5);
       next('/login');
     }
   } else {
@@ -30,9 +29,6 @@ const beforeRoute = (to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (store.state.appFirstLoad) {
     store.dispatch('initAuth', null, { root: true }).then(() => {
-        store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
-        store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true });
-        store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
       beforeRoute(to, from, next);
     });
   } else {
