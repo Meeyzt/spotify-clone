@@ -1,12 +1,30 @@
 <template>
   <div
-    v-if="currentUsersData"
-    class="w-[100vw] min-w-[759px] h-[5.625rem] items-center border-t border-gray-400 border-opacity-20 flex flex-row gap-2 justify-between bg-minimalColor px-4"
+  :class="`w-full h-[5.625rem] min-w-[759px] items-center border-t border-gray-400 border-opacity-20 flex flex-row gap-2 justify-between px-4 ${!isAuthenticated ? 'bg-gradient-to-r from-pink-600 via-purple-400 to-blue-300' : 'bg-contentColor'}`"
   >
 
-    <LeftFooter />
-    <MiddleFooter />
-    <RightFooter />
+    <LeftFooter v-if="isAuthenticated" />
+    <MiddleFooter v-if="isAuthenticated" />
+    <RightFooter v-if="isAuthenticated" />
+
+    <div
+      v-if="!isAuthenticated"
+      class="flex text-white justify-between w-full items-center"
+    >
+
+    <div class="pl-8">
+        <div class="text-xs block">SPOTİFY ÖNİZLEMESİ</div>
+        <div class="text-md pt-2 block">Şarkı ve podcast'lere sınırsız erişim ve aralarda çıkan reklamlar için kaydol. Kredi kartına gerek yok.</div>
+    </div>
+
+    <button
+      @click="$store.dispatch('auth/getAuthorize', null, { root: true })"
+      class="rounded-full bg-white text-blue-600 px-8 pt-1 whitespace-nowrap font-semibold tracking-[0.2rem] text-s h-10 hover:scale-105 shadow-lg"
+    >
+      ÜCRETSİZ KAYDOL
+    </button>
+
+  </div>
 
   </div>
 </template>
@@ -27,6 +45,10 @@ export default {
   computed: {
     ...mapState('currentUser', [
       'currentUsersData',
+    ]),
+
+    ...mapState('auth', [
+      'isAuthenticated',
     ]),
   },
 };

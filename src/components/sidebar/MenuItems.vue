@@ -35,9 +35,8 @@
       </router-link>
 
       <router-link
-        to="/collection"
-        active-class="bg-activeColor rounded text-white"
-        class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
+        :to="isAuthenticated ? '/collection' : '' "
+        :class="`text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white ${$route.meta.showCollectionTabs ? 'bg-activeColor rounded text-white': ''}`"
       >
 
           <div class="py-2">
@@ -53,7 +52,7 @@
       <li class="pt-8"></li>
 
       <li
-        @click="createPlaylist()"
+        @click="isAuthenticated ? createPlaylist() : null"
         class="group text-sm pl-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
       >
 
@@ -70,7 +69,7 @@
       </li>
 
       <router-link
-        to='/collection/tracks'
+        :to="isAuthenticated ? '/collection/tracks' : ''"
         tag="li"
         active-class="opacity-100"
         class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100  text-white"
@@ -92,6 +91,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import HomeIcon from '@/components/icons/HomeIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import CollectionIcon from '@/components/icons/CollectionIcon.vue';
@@ -113,6 +114,12 @@ export default {
     PlusIcon,
     HeartIcon,
   },
+
+   computed: {
+      ...mapState('auth', [
+        'isAuthenticated',
+      ]),
+    },
 
   methods: {
     createPlaylist() {

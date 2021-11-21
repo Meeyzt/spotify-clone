@@ -29,7 +29,7 @@ export default {
   state: () => ({
     clientId: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
     clientSecret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET,
-    redirectUri: `${window.location.origin}/login`,
+    redirectUri: `${window.location.origin}/callback`,
     scopes: INITIAL_SCOPES,
 
     tokenGetting: false,
@@ -121,8 +121,6 @@ export default {
 
           dispatch('accessTokenTimer', time - Date.now());
 
-          dispatch('auth/setIsAuthenticated', true, { root: true });
-
           commit('setIsAuthenticated', true);
 
           resolve();
@@ -139,6 +137,37 @@ export default {
         }).finally(() => {
           commit('setTokenGetting', false);
         });
+      });
+    },
+
+    getGuestToken({ state, commit }) {
+      return new Promise((resolve, reject) => {
+        try {
+          const url = 'https://accounts.spotify.com/api/token';
+
+          const Authorization = `Basic ${window.btoa(`${state.clientId}:${state.clientSecret}`)}`;
+          const data = qs.stringify({ grant_type: 'client_credentials' });
+
+          const options = {
+            method: 'POST',
+            url,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              Authorization,
+            },
+            data,
+          };
+
+          axios(options).then((response) => {
+            commit('setAccessToken', response.data.access_token);
+            axios.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
+            resolve();
+          }).catch((error) => {
+            console.error(error);
+          });
+        } catch (e) {
+          reject(e);
+        }
       });
     },
 

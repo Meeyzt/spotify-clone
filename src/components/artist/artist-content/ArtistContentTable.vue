@@ -1,16 +1,15 @@
 <template>
     <table
       class="w-full"
-      v-if="artistTopTracks"
+      v-if="artistsTopTracks"
     >
 
         <tbody>
 
             <tr><td class="pt-4"/></tr>
 
-        <!-- TODO: 5 tane gizleme yapılacak -->
             <table-item
-              v-for="(track, index) in artistTopTracks"
+              v-for="(track, index) in artistsTopTracks"
               :key="track.id"
               :index="index"
               :track="track"
@@ -24,16 +23,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import TableItem from '../../TableItem.vue';
 
 export default {
-    components: { TableItem },
+  computed: {
+    ...mapState('pages/artist', [
+      'artistsTopTracks',
+    ]),
+  },
 
-    props: {
-        artistTopTracks: {
-            type: Array,
-            required: true,
-        },
-    },
+  components: { TableItem },
 };
 </script>

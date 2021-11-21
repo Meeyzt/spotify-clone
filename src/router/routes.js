@@ -5,14 +5,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { requiresAuth: false },
+    meta: {},
   },
   {
     path: '/search',
     name: 'Search',
     component: () => import(/* webpackChunkName: "Search" */'@/views/Search.vue'),
     meta: {
-      requiresAuth: false,
       showSearchInput: true,
     },
   },
@@ -20,13 +19,11 @@ const routes = [
     path: '/playlist/:id',
     name: 'playlist',
     component: () => import(/* webpackChunkName: "Playlist" */'@/views/Playlist.vue'),
-    meta: { requiresAuth: true },
   },
   {
     path: '/album/:id',
     name: 'album',
     component: () => import(/* webpackChunkName: "Album" */'@/views/Album.vue'),
-    meta: { requiresAuth: true },
   },
   {
     path: '/login',
@@ -43,13 +40,11 @@ const routes = [
     path: '/loading',
     name: 'loading',
     component: () => import(/* webpackChunkName: "Playlist" */'@/views/Loading.vue'),
-    meta: { requiresAuth: true },
   },
   {
     path: '/artist/:id',
     name: 'artist',
     component: () => import(/* webpackChunkName: "Artist" */'@/views/Artist.vue'),
-    meta: { requiresAuth: true },
   },
   {
     path: '/callback',
@@ -59,7 +54,6 @@ const routes = [
   {
     path: '/user/:id',
     component: () => import(/* webpackChunkName: "Login" */'@/views/User.vue'),
-    meta: { requiresAuth: true },
     children: [
       {
         name: 'userProfile',

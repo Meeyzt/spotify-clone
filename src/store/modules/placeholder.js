@@ -22,7 +22,7 @@ export default {
     },
   },
   actions: {
-    getPlaceholderPlaylists({ commit }) {
+    getPlaceholderFeaturedPlaylists({ commit }) {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 
@@ -38,7 +38,7 @@ export default {
       });
     },
 
-    getPlaceholderFeaturedPlaylists({ commit }) {
+    getPlaceholderPlaylists({ commit }) {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 

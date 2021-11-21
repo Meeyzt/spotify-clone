@@ -21,31 +21,31 @@
         :song-count="playlist.tracks.total ? playlist.tracks.total : playlist.tracks.items.length"
         :author-picture="playlistAuthorProfilePic"
         :likeCount="playlist.followers.total"
-        :author-link="playlist.owner.id"
+        :author-link="`/user/${playlist.owner.id}`"
         :type="type"
         :description="playlist.description"
       />
 
       <div class="shadow-inner bg-contentColor w-full pt-6 px-4 lg:px-7">
 
-      <div class="flex flex-row items-center gap-6">
+        <div class="flex flex-row items-center gap-6">
 
-          <play-button :width="32" :height="32"/>
+            <play-button :width="32" :height="32"/>
 
-          <component
-            :is="playlist.liked ? 'FilledHeartIcon' : 'HeartIcon'"
-            :class="!playlist.liked ? 'opacity-60 hover:opacity-100 text-white':'text-spotifyGreen'"
-            :width="32"
-            :height="32"
-          />
+            <component
+              :is="playlist.liked ? 'FilledHeartIcon' : 'HeartIcon'"
+              :class="!playlist.liked ? 'opacity-60 hover:opacity-100 text-white':'text-spotifyGreen'"
+              :width="32"
+              :height="32"
+            />
 
-          <div class="text-3xl flex justify-center opacity-60 hover:opacity-100">
+            <div class="text-3xl flex justify-center opacity-60 hover:opacity-100">
 
-            <details-icon/>
+              <details-icon/>
 
-          </div>
+            </div>
 
-      </div>
+        </div>
 
         <playlist-content
           v-if="playlist.tracks.items"

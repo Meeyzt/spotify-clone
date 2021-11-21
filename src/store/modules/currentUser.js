@@ -13,7 +13,7 @@ export default {
   },
 
   getters: {
-    slicedCurrentUsersFollowedArtists: (state) => (count) => state.currentUsersFollowedArtists.slice(0, count ?? 6),
+    slicedCurrentUsersFollowedArtists: (state) => (count) => state.currentUsersFollowedArtists ?? state.currentUsersFollowedArtists.slice(0, count ?? 6),
 
     slicedCurrentUsersLikedTracks: (state) => (count) => state.currentUsersLikedTracks ?? state.currentUsersLikedTracks.items.slice(0, count ?? 6),
   },

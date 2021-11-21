@@ -22,7 +22,7 @@
           class="text-normalColor text-[12px] hover:underline cursor-pointer font-bold tracking-widest pt-4 overflow-clip whitespace-nowrap"
           tag="a"
           v-if="link !== ''"
-          :to="link"
+          :to="link !== '#' ? link : ''"
         >
           HEPSİNİ GÖR
         </router-link>

@@ -10,6 +10,7 @@ import albumModule from './modules/pages/album';
 import playlistModule from './modules/pages/playlist';
 import profileModule from './modules/pages/profile';
 import searchModule from './modules/pages/search';
+import guestModule from './modules/guest';
 
 Vue.use(Vuex);
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
         profile: profileModule,
         playlist: playlistModule,
         album: albumModule,
+        guest: guestModule,
       },
     },
   },
@@ -62,13 +64,29 @@ export default new Vuex.Store({
           const refreshToken = localStorage.refresh_token || null;
           const accessToken = localStorage.access_token || null;
 
-          commit('initLocalStorage', { accessToken, refreshToken, expiresAt }, { root: true });
+          if (expiresAt && refreshToken && accessToken) {
+            commit('initLocalStorage', { accessToken, refreshToken, expiresAt }, { root: true });
 
-          dispatch('auth/accessTokenTimer', expiresAt - Date.now(), { root: true });
+            dispatch('auth/accessTokenTimer', expiresAt - Date.now(), { root: true });
 
+            dispatch('auth/getToken', { code: refreshToken, type: 'refreshToken' }, { root: true }).then(() => {
+              dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+              dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true }).then(() => {
+                commit('setIsLoading', false, { root: true });
+                resolve();
+              });
+            });
+          } else {
+            dispatch('auth/getGuestToken', null, { root: true }).then(() => {
+              commit('setAppFirstLoading', false);
+              dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+              dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true }).then(() => {
+                commit('setIsLoading', false, { root: true });
+                resolve();
+              });
+            });
+          }
           commit('setIsLoading', false);
-
-          resolve();
         } catch (e) {
           reject(e);
         }

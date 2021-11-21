@@ -8,7 +8,7 @@
 
       <div class="flex flex-col items-start gap-y-6">
 
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col w-full" v-if="isAuthenticated">
 
           <HomeWelcomeText/>
 
@@ -25,21 +25,21 @@
         </div>
 
         <Shelf
-          title="Yakınlarda çalınanlar"
           type="playlist"
+          :title="isAuthenticated ? 'Yakınlarda çalınanlar' : 'Günlük Müzik ihtiyacın'"
           :row="1"
           :data="playlists(6)"
         />
 
         <Shelf
-          title="Podcasts"
+          :title="isAuthenticated ? 'Podcasts' : 'Odaklan'"
           type="podcast"
           :row="1"
           :data="playlists(6)"
         />
 
         <Shelf
-          title="Meeyzt İçin Derlendi"
+          :title="isAuthenticated ? 'Yakınlarda çalınanlar' : 'Ruh hali'"
           sub-title="Daha çok dinledikçe daha iyi tavsiyeler al."
           type="playlist"
           :data="featureds(6)"
@@ -68,14 +68,9 @@
       HomeWelcomeText,
     },
 
-    mounted() {
-      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
-      this.$store.dispatch('placeholder/getPlaceholderFeaturedPlaylists', null, { root: true }).then(() => {
-        this.$store.commit('setIsLoading', false, { root: true });
-      });
-    },
-
     computed: {
+      ...mapState('auth', ['isAuthenticated']),
+
       ...mapState('placeholder', [
         'placeholderPlaylists',
         'placeholderFeaturedPlaylists',

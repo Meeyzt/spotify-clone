@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-full w-full text-white overflow-auto" v-show="!isLoading">
+    <div class="flex flex-col h-full w-full text-white overflow-auto" v-show="!isLoading" v-if="artistsData">
 
         <playlist-header
             v-if="artistsData"
@@ -10,9 +10,8 @@
         />
 
         <artist-content
-            v-if="artistsTopTracks"
-            :topTracks="artistsTopTracks"
-            :artistID="this.$route.params.id"
+          :artist-img="artistsData.images[0].url"
+          :artist-name="artistsData.name"
         />
     </div>
 </template>
@@ -30,13 +29,16 @@
     },
 
     computed: {
+      ...mapState('pages/artist', [
+          'artistsData',
+        ]),
+
         ...mapState([
             'isLoading',
         ]),
 
-        ...mapState('pages/artist', [
-          'artistsData',
-          'artistsTopTracks',
+        ...mapState('auth', [
+          'isAuthenticated',
         ]),
     },
 
@@ -44,7 +46,9 @@
       if (to.params.id) {
             this.$store.dispatch('pages/artist/getArtistsData', to.params.id, { root: true });
             this.$store.dispatch('pages/artist/getArtistTopTracks', to.params.id, { root: true }).then(() => {
+              this.$store.dispatch('pages/artist/getArtistsAlbums', to.params.id, { root: true }).then(() => {
                 this.$store.commit('setIsLoading', false, { root: true });
+              });
             });
         }
     },
@@ -57,7 +61,9 @@
         if (artistID) {
             this.$store.dispatch('pages/artist/getArtistsData', artistID, { root: true });
             this.$store.dispatch('pages/artist/getArtistTopTracks', artistID, { root: true }).then(() => {
+              this.$store.dispatch('pages/artist/getArtistsAlbums', artistID, { root: true }).then(() => {
                 this.$store.commit('setIsLoading', false, { root: true });
+              });
             });
         }
     },

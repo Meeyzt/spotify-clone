@@ -6,9 +6,12 @@ export default {
   state: {
     artistsData: null,
     artistsTopTracks: null,
+    artistsAlbums: null,
   },
   getters: {
     slicedArtistsData: (state) => (count) => state.artistsData.slice(0, count ?? 6),
+
+    slicedArtistsAlbums: (state) => (count) => state.artistsAlbums.slice(0, count ?? 6),
   },
   mutations: {
     setArtistsData(state, payload) {
@@ -17,6 +20,10 @@ export default {
 
     setArtistsTopTracks(state, payload) {
       state.artistsTopTracks = payload;
+    },
+
+    setArtistsAlbums(state, payload) {
+      state.artistsAlbums = payload;
     },
   },
   actions: {
@@ -35,22 +42,35 @@ export default {
       });
     },
 
-    getArtistTopTracks({ commit, dispatch }, artistID) {
+    getArtistTopTracks({ rootState, commit, dispatch }, artistID) {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 
         axios.get(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=TR`).then((res) => {
-          // TODO: Burada yok edilecek şeyler var
-          dispatch('pages/playlist/likedSongsThePlaylist', res.data.tracks, { root: true })
+          if (rootState.auth.isAuthenticated) {
+            dispatch('pages/playlist/likedSongsThePlaylist', res.data.tracks, { root: true })
             .then((track) => {
               commit('setArtistsTopTracks', track);
+              commit('setIsLoading', false, { root: true });
+              resolve();
             });
+          }
 
+          commit('setArtistsTopTracks', res.data.tracks);
           commit('setIsLoading', false, { root: true });
 
           resolve();
       })
         .catch(reject);
+      });
+    },
+
+    getArtistsAlbums({ commit }, artistId) {
+      return new Promise((resolve, reject) => {
+        axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums?market=TR&limit=10&offset=0`).then((res) => {
+          commit('setArtistsAlbums', res.data.items);
+          resolve();
+        }).catch(reject);
       });
     },
   },

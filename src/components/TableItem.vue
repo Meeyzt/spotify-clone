@@ -69,7 +69,7 @@
       </router-link>
     </td>
 
-    <td v-if="type === 'playlist' || type=== 'liked'" class="hidden lg:table-cell w-14">
+    <td v-if="type === 'playlist' || type=== 'liked'" class="hidden lg:table-cell w-14 opacity-60">
       {{ addTo(added_at) }}
     </td>
 

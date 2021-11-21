@@ -13,25 +13,30 @@ export default {
     },
   },
   actions: {
-    getAlbum({ commit, dispatch }, albumId) {
+    getAlbum({ rootState, commit, dispatch }, albumId) {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 
         axios.get(`https://api.spotify.com/v1/albums/${albumId}?market=TR`).then((res) => {
           commit('setAlbum', res.data);
 
-          dispatch('pages/playlist/likedSongsThePlaylist', res.data.tracks.items, { root: true }).then((tracks) => {
-            const q = {
-              ...res.data,
-              tracks: {
-                items: tracks,
-              },
-            };
+          let q = {
+            ...res.data,
+          };
 
-            commit('setAlbum', q);
+          if (rootState.auth.isAuthenticated) {
+            dispatch('pages/playlist/likedSongsThePlaylist', q.tracks.items, { root: true }).then((tracks) => {
+               q = {
+                ...q,
+                tracks: {
+                  items: tracks,
+                },
+              };
 
-            resolve();
-          });
+              resolve();
+            });
+          }
+          commit('setAlbum', q);
 
           commit('setIsLoading', false, { root: true });
         })

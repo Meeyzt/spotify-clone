@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { cloneDeep } from 'lodash';
 
@@ -6,6 +7,7 @@ export default {
 
   state: {
     playlist: null,
+    counter: 0,
   },
   getters: {
     playlistTracksId: () => (playlist) => {
@@ -21,11 +23,8 @@ export default {
       state.playlist = payload;
     },
 
-    addPlaylistToCurrentUsersLikedPlaylists(state, payload) {
-      state.currentUser.currentUsersLikedPlaylists = {
-        ...state.currentUser.currentUsersLikedPlaylists,
-        payload,
-      };
+    setCounter(state, payload) {
+      state.counter = payload;
     },
   },
   actions: {
@@ -37,7 +36,8 @@ export default {
           .then((res) => {
             let q = res.data;
 
-            dispatch('likedSongsThePlaylist', res.data.tracks.items)
+            if (rootState.auth.isAuthenticated) {
+              dispatch('likedSongsThePlaylist', res.data.tracks.items)
               .then((tracks) => {
                 q = {
                   ...res.data,
@@ -58,6 +58,9 @@ export default {
                 commit('setPlaylist', q);
               })
               .catch(reject);
+            } else {
+              commit('setPlaylist', q);
+            }
 
             commit('setIsLoading', false, { root: true });
 
@@ -70,14 +73,15 @@ export default {
       return new Promise((resolve, reject) => {
         commit('setIsLoading', true, { root: true });
 
-        const playlistTrackIds = playlist.length > 1 ? getters.playlistTracksId(playlist) : playlist.id;
+        if (playlist) {
+        const playlistTrackIds = playlist?.length > 1 ? getters.playlistTracksId(playlist) : playlist.id;
 
         const url = `https://api.spotify.com/v1/me/tracks/contains?ids=${playlistTrackIds}`;
 
         axios.get(url).then((res) => {
           let nextPlaylist = cloneDeep(playlist);
 
-          if (nextPlaylist.length > 1) {
+          if (nextPlaylist?.length > 1) {
             nextPlaylist = nextPlaylist.map((item, index) => ({
               ...item,
               liked: res.data[index],
@@ -93,31 +97,41 @@ export default {
 
           resolve(nextPlaylist);
         }).catch(reject);
+      } else {
+        resolve(null);
+      }
       });
     },
 
-    createPlaylist({ commit }) {
-      commit('addPlaylistToCurrentUsersLikedPlaylists', {
-        newPlaylist: true,
-        images: [
-          {
-            url: '@/EmptyPlaylist.png',
+    createPlaylist({ rootState, state, commit }) {
+      commit('setCounter', state.counter + 1);
+
+      const p = [
+        {
+          newPlaylist: true,
+          images: [
+            {
+              url: '@/EmptyPlaylist.png',
+            },
+          ],
+          name: `${state.counter}. Çalma Listesi`,
+          tracks: {
+            items: {
+            },
+            total: '0',
           },
-        ],
-        name: '5. Çalma Listesi',
-        tracks: {
-          items: {
+          follower: {
+            total: '0',
           },
-          total: '0',
+          id: Math.ceil(Math.random(16000) * 1000000),
+          owner: {
+            display_name: 'Meeyzt',
+          },
         },
-        follower: {
-          total: '0',
-        },
-        id: Math.ceil(Math.random(16000) * 100),
-        owner: {
-          display_name: 'Meeyzt',
-        },
-      });
+        ...rootState.currentUser.currentUsersLikedPlaylists,
+      ];
+
+      commit('currentUser/setCurrentUsersLikedPlaylists', p, { root: true });
     },
   },
 };

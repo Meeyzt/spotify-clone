@@ -1,5 +1,5 @@
 <template>
-  <aside v-if="currentUserData !== null" class="w-[259px] pt-6 flex flex-col bg-menuColor">
+  <aside class="pt-6 min-w-[259px] w-[259px] flex flex-col bg-menuColor">
 
     <div class="px-6 pb-5">
 

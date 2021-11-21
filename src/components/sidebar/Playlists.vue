@@ -1,7 +1,7 @@
 <template>
   <div
     class="px-6 flex-auto overflow-y-auto overflow-x-hidden relative mt-2 w-full h-full"
-    v-if="currentUsersLikedPlaylists"
+    v-if=" currentUsersLikedPlaylists"
   >
 
     <router-link
@@ -22,14 +22,20 @@
   import { mapState } from 'vuex';
 
   export default {
-    mounted() {
-      this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
-    },
-
     computed: {
       ...mapState('currentUser', [
         'currentUsersLikedPlaylists',
       ]),
+
+      ...mapState('auth', [
+        'isAuthenticated',
+      ]),
+    },
+
+    watch: {
+      isAuthenticated() {
+        this.$store.dispatch('currentUser/getCurrentUsersLikedPlaylists', null, { root: true });
+      },
     },
   };
 </script>

@@ -34,19 +34,19 @@
         </router-link>
 
         <button class="group">
-            <div class="flex lg:hidden">
-              Daha fazla
-              <DownArrow :width="16" :height="16" class="pb-1"/>
-            </div>
-            <div class="hidden top-8 w-48 right-8 m-2 pb-1 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded z-1 group-focus-within:flex cursor-default">
-              <router-link to="/collection/albums" class="lg:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
-                Albümler
-              </router-link>
+          <div class="flex lg:hidden">
+            Daha fazla
+            <DownArrow :width="16" :height="16" class="pb-1"/>
+          </div>
+          <div class="hidden top-8 w-48 right-8 m-2 pb-1 pt-1 text-left text-white flex-col absolute bg-hoverHeadbar rounded z-1 group-focus-within:flex cursor-default">
+             <router-link to="/collection/artists" class="xsmall:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
+              Sanatçılar
+            </router-link>
 
-              <router-link to="/collection/albums" class="xsmall:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
-                Sanatçılar
-              </router-link>
-            </div>
+            <router-link to="/collection/albums" class="lg:hidden flex mx-1 p-3 text-s hover:bg-player rounded justify-between">
+              Albümler
+            </router-link>
+          </div>
         </button>
     </div>
 </template>

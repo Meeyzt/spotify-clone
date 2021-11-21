@@ -1,45 +1,38 @@
 <template>
-    <div>
+    <div v-if="artistsAlbums">
         <Shelf
             class="pt-10"
             title="Popüler yayınlar"
             type="playlist"
-            :data="slicedPlaceholderPlaylists(6)"
+            :data="slicedArtistsAlbums(6)"
             link=""
             :row="1"
-            v-if="slicedPlaceholderPlaylists()"
+            v-if="slicedArtistsAlbums()"
         />
         <Shelf
             class="pt-10"
             title="Albümler"
-            type="playlist"
-            :data="slicedPlaceholderPlaylists(6)"
+            type="album"
+            :data="slicedArtistsAlbums(6)"
             :row="1"
-            v-if="slicedPlaceholderPlaylists()"
+            v-if="slicedArtistsAlbums()"
         />
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import Shelf from '@/components/Shelf.vue';
 
 export default {
-    props: {
-        topTracks: {
-            type: Array,
-            required: true,
-        },
-    },
-
     computed: {
-        ...mapGetters('placeholder', [
-            'slicedPlaceholderPlaylists',
+        ...mapGetters('pages/artist', [
+          'slicedArtistsAlbums',
         ]),
-    },
 
-    created() {
-        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+        ...mapState('pages/artist', [
+          'artistsAlbums',
+        ]),
     },
 
     components: {
