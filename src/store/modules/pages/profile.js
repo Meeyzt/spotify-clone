@@ -20,8 +20,6 @@ export default {
         axios.get(`https://api.spotify.com/v1/users/${userId}`).then((res) => {
           commit('setProfile', res.data);
 
-          commit('setIsLoading', false, { root: true });
-
           resolve();
         })
         .catch(reject);

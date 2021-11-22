@@ -33,10 +33,26 @@ export default {
     ...mapState('currentUser', [
       'currentUsersCurrentPlayingTrack',
     ]),
+
+    ...mapState([
+      'isLoading',
+    ]),
+  },
+
+  methods: {
+    getCurrentUsersCurrentPlayingTrack(time) {
+      setTimeout(() => {
+        this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms));
+      }, time);
+    },
   },
 
   created() {
-    this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true });
+    if (this.isAuthenticated) {
+      this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(() => {
+        this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
+      });
+    }
   },
 };
 </script>

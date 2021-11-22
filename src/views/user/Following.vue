@@ -27,7 +27,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
+    this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false, { root: true });
+    });
   },
 };
 </script>

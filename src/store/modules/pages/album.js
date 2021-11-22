@@ -18,27 +18,23 @@ export default {
         commit('setIsLoading', true, { root: true });
 
         axios.get(`https://api.spotify.com/v1/albums/${albumId}?market=TR`).then((res) => {
-          commit('setAlbum', res.data);
-
           let q = {
             ...res.data,
           };
 
           if (rootState.auth.isAuthenticated) {
+            console.log(q.tracks.items);
             dispatch('pages/playlist/likedSongsThePlaylist', q.tracks.items, { root: true }).then((tracks) => {
-               q = {
+              q = {
                 ...q,
                 tracks: {
                   items: tracks,
                 },
               };
-
-              resolve();
-            });
+            }).catch();
           }
           commit('setAlbum', q);
-
-          commit('setIsLoading', false, { root: true });
+          resolve();
         })
         .catch(reject);
         });

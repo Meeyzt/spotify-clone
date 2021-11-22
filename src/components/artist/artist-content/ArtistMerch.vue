@@ -5,7 +5,7 @@
       <div>Turda</div>
 
       <div
-        class="pt-5 flex items-center"
+        class="pt-5 flex items-center cursor-pointer"
         v-for="index in 4"
         :key="index"
       >
@@ -29,7 +29,7 @@
       <div class="mb-5">Ürünler</div>
 
       <div
-        class="hover:bg-yellow-900 p-2 rounded-lg flex w-full"
+        class="hover:bg-hoverHeadbar p-2 rounded-lg flex w-full cursor-pointer"
         v-for="index in 3"
         :key="index"
       >

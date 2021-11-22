@@ -12,7 +12,7 @@
 
             <router-view v-show="!isLoading"/>
 
-            <div class="w-full h-full flex justify-center items-center" v-show="isLoading">
+            <div class="w-full h-full flex justify-center items-center bg-contentColor" v-show="isLoading">
               <loading/>
             </div>
 

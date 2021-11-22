@@ -55,8 +55,6 @@ export default {
 
             commit('auth/setIsAuthenticated', true, { root: true });
 
-            commit('setIsLoading', false, { root: true });
-
             resolve();
           })
           .catch((e) => {
@@ -76,8 +74,6 @@ export default {
           .then((res) => {
             commit('setCurrentUsersLikedTracks', { items: res.data.items, total: res.data.total });
 
-            commit('setIsLoading', false, { root: true });
-
             resolve();
           })
           .catch(reject);
@@ -92,8 +88,6 @@ export default {
           .then((res) => {
             commit('setCurrentUsersLikedPlaylists', res.data.items);
 
-            commit('setIsLoading', false, { root: true });
-
             resolve();
           })
           .catch(reject);
@@ -107,8 +101,6 @@ export default {
         axios.get('https://api.spotify.com/v1/me/albums?limit=50&offset=0&market=TR').then((res) => {
           commit('setCurrentUsersFollowedAlbums', res.data);
 
-          commit('setIsLoading', false, { root: true });
-
           resolve();
         })
         .catch(reject);
@@ -121,8 +113,6 @@ export default {
 
       axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50')
         .then((res) => {
-          commit('setIsLoading', false, { root: true });
-
           commit('setCurrentUsersFollowedArtists', res.data.artists.items);
 
           resolve();
@@ -136,13 +126,10 @@ export default {
         commit('setIsLoading', true, { root: true });
 
         axios.get('https://api.spotify.com/v1/me/player/currently-playing?market=TR').then((res) => {
-          // TODO: ROOOT
           dispatch('pages/playlist/likedSongsThePlaylist', res.data.item, { root: true }).then((track) => {
             commit('setCurrentUsersCurrentPlayingTrack', track);
             resolve(track);
           });
-
-          commit('setIsLoading', false, { root: true });
         })
         .catch(reject);
       });

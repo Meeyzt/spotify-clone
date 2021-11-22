@@ -68,6 +68,10 @@
       HomeWelcomeText,
     },
 
+    created() {
+      this.$store.commit('setIsLoading', false, { root: true });
+    },
+
     computed: {
       ...mapState('auth', ['isAuthenticated']),
 

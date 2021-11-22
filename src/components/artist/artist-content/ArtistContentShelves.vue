@@ -3,7 +3,7 @@
         <Shelf
             class="pt-10"
             title="Popüler yayınlar"
-            type="playlist"
+            type="album"
             :data="slicedArtistsAlbums(6)"
             link=""
             :row="1"

@@ -29,8 +29,13 @@ export default {
   },
 
   beforeRouteUpdate(to, from, next) {
+    this.$store.commit('pages/playlist/setPlaylist', null, { root: true });
+
     this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
-    this.$store.dispatch('pages/playlist/getPlaylist', to.params.id, { root: true });
+
+    this.$store.dispatch('pages/playlist/getPlaylist', to.params.id, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false);
+    });
 
     if (!(to.params.id === from.params.id)) {
       next();
@@ -38,7 +43,11 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id, { root: true });
+    this.$store.commit('pages/playlist/setPlaylist', null, { root: true });
+
+    this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false);
+    });
   },
 };
 </script>

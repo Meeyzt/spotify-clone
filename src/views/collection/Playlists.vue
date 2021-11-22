@@ -1,7 +1,7 @@
 <template>
   <div
     class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
-    v-if="slicedCurrentUsersLikedTracks() && slicedPlaceholderPlaylists()"
+    v-if="slicedCurrentUsersLikedTracks() && currentUsersLikedPlaylists"
   >
 
     <section class="text-white mt-0 w-full h-full">
@@ -44,7 +44,7 @@
 
           <ShelfItem
             type="playlist"
-            v-for="playlistInfo in slicedPlaceholderPlaylists(13)"
+            v-for="playlistInfo in currentUsersLikedPlaylists"
             :playlistInfo="playlistInfo"
             :key="playlistInfo.id"
           />
@@ -56,7 +56,6 @@
 </template>
 
 <script>
-/* eslint-disable vue/no-unused-components */
   import { mapGetters, mapState } from 'vuex';
 
   import ShelfItem from '@/components/shelf/Item.vue';
@@ -70,21 +69,20 @@
 
     created() {
       this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true }).then(() => {
-        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
+          this.$store.commit('setIsLoading', false, { root: true });
+        });
       });
     },
 
     computed: {
       ...mapState('currentUser', [
         'currentUsersLikedTracks',
+        'currentUsersLikedPlaylists',
       ]),
 
       ...mapGetters('currentUser', [
-          'slicedCurrentUsersLikedTracks',
-      ]),
-
-      ...mapGetters('placeholder', [
-        'slicedPlaceholderPlaylists',
+        'slicedCurrentUsersLikedTracks',
       ]),
     },
   };

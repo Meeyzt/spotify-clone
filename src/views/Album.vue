@@ -7,10 +7,10 @@
       :name="album.name"
       :picture="album.images[0].url"
       :author="album.artists[0].name"
+      :author-link="`/artist/${album.artists[0].id}`"
       :song-count="album.total_tracks"
       :author-picture="album.images[2].url"
       :likeCount="album.release_date"
-      author-link=""
       type="album"
       description=""
     />
@@ -83,7 +83,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('pages/album/getAlbum', this.$route.params.id, { root: true });
+    this.$store.dispatch('pages/album/getAlbum', this.$route.params.id, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false, { root: true });
+    });
   },
 
 };

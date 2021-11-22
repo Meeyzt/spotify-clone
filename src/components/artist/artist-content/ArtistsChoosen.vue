@@ -2,8 +2,8 @@
   <div class="pt-9">
     <div class="text-2xl font-bold tracking-tighter">Sanatçının seçtikleri</div>
     <div class="pt-4 flex">
-      <div class="w-[4.5rem] h-[4.5rem] shadow-lg mr-4 rounded-sm" mr-4>
-        <img :src="artistImg" alt="ArtistsChoosenItem">
+      <div class="w-[4.5rem] h-[4.5rem] shadow-lg mr-4 rounded-smmr-4 relative">
+        <img :src="albumImg" alt="ArtistsChoosenItem">
       </div>
       <div>
         <div class="flex p-0.5 bg-white rounded-full text-black items-center">
@@ -12,9 +12,10 @@
         </div>
         <div class="flex gap-2 flex-col pt-2">
           <router-link
+          class="hover:underline"
           :to="`/album/${albumId}`"
           >
-            Greatest Hits Vol. 1 AREA21
+            {{ albumName }}
           </router-link>
           <div class="text-s opacity-60">Çalma listesi</div>
         </div>
@@ -32,7 +33,17 @@ export default ({
       required: true,
     },
 
-     albumId: {
+    albumId: {
+      type: String,
+      required: true,
+    },
+
+    albumName: {
+      type: String,
+      required: true,
+    },
+
+    albumImg: {
       type: String,
       required: true,
     },

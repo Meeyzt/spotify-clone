@@ -49,7 +49,7 @@
 
         <router-link
           tag="div"
-          :to="authorLink"
+          :to="isAuthenticated ? authorLink : ''"
           class="text-sm h-full pt-1 cursor-pointer opacity-60"
           :class="type !== 'profile' ? 'hover:underline font-bold opacity-100' : ''"
         >
@@ -99,75 +99,79 @@
 
 <script>
 import { average } from 'color.js';
+import { mapState } from 'vuex';
+
 import VerifiedIcon from '@/components/icons/VerifiedIcon.vue';
 
 export default {
-props: {
-    name: {
+  props: {
+      name: {
+          type: String,
+          required: true,
+      },
+
+      type: {
+          type: String,
+          required: true,
+      },
+
+      likeCount: {
+          type: [Number, String],
+          required: true,
+      },
+
+      picture: {
+          type: String,
+          required: true,
+      },
+
+      author: {
+          type: String,
+      },
+
+      songCount: {
+          type: Number,
+      },
+
+      authorPicture: {
+          type: String,
+      },
+
+      description: {
+          type: String,
+      },
+
+      authorLink: {
         type: String,
-        required: true,
-    },
+      },
+  },
 
-    type: {
-        type: String,
-        required: true,
-    },
-
-    likeCount: {
-        type: [Number, String],
-        required: true,
-    },
-
-    picture: {
-        type: String,
-        required: true,
-    },
-
-    author: {
-        type: String,
-    },
-
-    songCount: {
-        type: Number,
-    },
-
-    authorPicture: {
-        type: String,
-    },
-
-    description: {
-        type: String,
-    },
-
-    authorLink: {
-      type: String,
-    },
-},
-
-components: {
+  components: {
     VerifiedIcon,
-},
+  },
 
-    data() {
-        return {
-            pictureColor: undefined,
-        };
-    },
+  data() {
+    return {
+      pictureColor: undefined,
+    };
+  },
 
-methods: {
+  methods: {
     setAverageColor(initialColor) {
-        average(initialColor, { format: 'hex' })
-            .then((color) => {
-                this.pictureColor = color;
-            });
+      average(initialColor, { format: 'hex' })
+        .then((color) => {
+          this.pictureColor = color;
+        });
     },
-},
+  },
 
-    created() {
-        this.setAverageColor(this.picture);
-    },
+  created() {
+    this.setAverageColor(this.picture);
+  },
 
-computed: {
+  computed: {
+    ...mapState('auth', ['isAuthenticated']),
+
     Count() {
         return this.likeCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     },
@@ -181,6 +185,6 @@ computed: {
       }
         return 'PLAYLİST';
     },
-},
+  },
 };
 </script>

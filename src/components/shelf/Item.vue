@@ -42,8 +42,8 @@
 
         <div
           class="text-normalColor text-s font-normal w-full truncate mt-1"
+          v-html="playlistInfo.description"
         >
-        {{ playlistInfo.description }}
         </div>
 
       </div>

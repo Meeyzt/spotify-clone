@@ -34,8 +34,6 @@ export default {
         axios.get(`https://api.spotify.com/v1/artists/${artistId}`).then((res) => {
           commit('setArtistsData', res.data);
 
-          commit('setIsLoading', false, { root: true });
-
           resolve();
         })
         .catch(reject);
@@ -51,13 +49,12 @@ export default {
             dispatch('pages/playlist/likedSongsThePlaylist', res.data.tracks, { root: true })
             .then((track) => {
               commit('setArtistsTopTracks', track);
-              commit('setIsLoading', false, { root: true });
+
               resolve();
             });
           }
 
           commit('setArtistsTopTracks', res.data.tracks);
-          commit('setIsLoading', false, { root: true });
 
           resolve();
       })
@@ -69,6 +66,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums?market=TR&limit=10&offset=0`).then((res) => {
           commit('setArtistsAlbums', res.data.items);
+
           resolve();
         }).catch(reject);
       });

@@ -1,7 +1,6 @@
 <template>
   <div
     class="flex flex-col text-white px-8 py-10 bg-contentColor h-full overflow-y-auto"
-    v-if="loaded"
   >
 
     <div class="text-2xl font-bold tracking-tighter">Sıraya Ekle</div>
@@ -19,6 +18,7 @@
           />
 
         </tbody>
+        <tbody v-else class="text-center"> Şuanda çalan bir şarkı yok. </tbody>
 
       </table>
 
@@ -28,7 +28,7 @@
           Sıradaki parça:
         </span>
 
-        <span class="opacity-60 hover:opacity-100 hover:underline cursor-pointer pl-1">
+        <span v-if="currentUsersCurrentPlayingTrack" class="opacity-60 hover:opacity-100 hover:underline cursor-pointer pl-1">
           {{ currentUsersCurrentPlayingTrack.name }}
         </span>
 
@@ -36,27 +36,29 @@
 
           <table
           class="w-full"
-          v-if="currentUsersCurrentPlayingTrack"
         >
 
-          <tbody v-if="currentUsersCurrentPlayingTrack">
+        <tbody v-if="currentUsersCurrentPlayingTrack">
 
-            <table-item
-              v-for="index in 10"
-              :key="index"
-              :track="currentUsersCurrentPlayingTrack"
-              type="profile"
-              :index="index"
-            />
+          <table-item
+            v-for="index in 10"
+            :key="index"
+            :track="currentUsersCurrentPlayingTrack"
+            type="profile"
+            :index="index"
+          />
 
-          </tbody>
+        </tbody>
 
-        </table>
+        <tbody v-else class="text-center"> Şuanda bir şarkı sırası yok. </tbody>
 
-        </div>
+      </table>
 
       </div>
+
     </div>
+
+  </div>
 </template>
 
 <script>
@@ -78,8 +80,9 @@ export default {
   },
 
   created() {
-    // eslint-disable-next-line no-return-assign
-    this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(() => this.loaded = true);
+    this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false);
+    });
   },
 };
 </script>

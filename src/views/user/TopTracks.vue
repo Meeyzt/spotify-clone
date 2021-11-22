@@ -79,7 +79,9 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true });
+    this.$store.dispatch('playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false, { root: true });
+    });
   },
 };
 </script>

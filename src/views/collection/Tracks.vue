@@ -13,7 +13,9 @@ import Playlist from '@/components/Playlist.vue';
 
 export default {
   created() {
-    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
+    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false, { root: true });
+    });
   },
 
   computed: {

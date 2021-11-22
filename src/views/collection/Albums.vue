@@ -27,7 +27,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('currentUser/getCurrentUsersFollowedAlbums', null, { root: true }).then();
+    this.$store.dispatch('currentUser/getCurrentUsersFollowedAlbums', null, { root: true }).then(() => {
+      this.$store.commit('setIsLoading', false, { root: true });
+    });
   },
 
   components: {

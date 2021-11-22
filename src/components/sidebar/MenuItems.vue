@@ -51,7 +51,7 @@
 
       <li class="pt-8"></li>
 
-      <li
+      <button
         @click="isAuthenticated ? createPlaylist() : null"
         class="group text-sm pl-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 text-normalColor hover:text-white"
       >
@@ -66,7 +66,7 @@
 
         <span class="pt-1 overflow-hidden"> Çalma Listesi Oluştur</span>
 
-      </li>
+      </button>
 
       <router-link
         :to="isAuthenticated ? '/collection/tracks' : ''"

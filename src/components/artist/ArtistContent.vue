@@ -5,15 +5,21 @@
 
         <div class="pt-6 tracking-tighter text-2xl font-bold">Popüler</div>
 
-        <artist-content-table />
+      <div class="flex flex-col small:flex-row">
+          <div>
+          <artist-content-table />
 
-        <div class="text-xs pt-10 cursor-default text-normalColor hover:text-white"> SEE MORE</div>
+          <div class="text-xs pt-10 cursor-default text-normalColor hover:text-white"> SEE MORE</div>
+        </div>
 
         <artists-choosen
           :artist-img="artistImg"
-          v-if="artistsAlbums"
+          :album-name="slicedArtistsAlbums(6)[0].name"
           :album-id="slicedArtistsAlbums(6)[0].id"
+          :album-img="slicedArtistsAlbums(6)[0].images[0].url"
+          v-if="artistsAlbums"
         />
+      </div>
 
         <artist-content-shelves />
 

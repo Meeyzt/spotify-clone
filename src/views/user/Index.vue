@@ -1,7 +1,7 @@
 <template>
   <div
     class="text-white h-full overflow-y-auto"
-    v-if="profile && slicedCurrentUsersFollowedArtists()"
+    v-if="profile && currentUsersFollowedArtists"
   >
       <playlist-header
         :name="profile.display_name"
@@ -9,22 +9,24 @@
         :likeCount="profile.followers.total"
         :picture="profile.images[0].url"
         :songCount="currentUsersFollowedArtists.length"
-        author="13"
+        author="3"
+        author-link=""
       />
       <div class="bg-contentColor p-4">
 
         <details-icon class="opacity-60 hover:opacity-100" :height="26" :width="26"/>
 
-        <div class="flex flex-col items-start gap-y-6">
+        <div class="flex flex-col items-start gap-10">
 
           <shelf
             class="pt-10"
             type="playlist"
+            :row="1"
             title="Bu ayın en çok dinlenen sanatçıları"
             :link="`${this.$route.path}/top/artists`"
             subTitle="Yalnızca sana görünür"
             :data="slicedPlaceholderPlaylists(6)"
-            v-if="slicedPlaceholderPlaylists()"
+            v-if="placeholderPlaylists"
           />
 
           <shelf
@@ -33,7 +35,7 @@
             link=""
             :data="slicedPlaceholderPlaylists(3)"
             :row="1"
-            v-if="slicedPlaceholderPlaylists()"
+            v-if="placeholderPlaylists"
           />
 
           <div
@@ -53,7 +55,7 @@
 
             </div>
 
-            <table class="w-full">
+            <table v-if="isAuthenticated" class="w-full">
               <tbody>
                 <table-item
                   class="w-full"
@@ -73,17 +75,19 @@
           <shelf
             type="artist"
             title="Takipçiler"
+            :row="1"
             :data="slicedCurrentUsersFollowedArtists(6)"
             :link="`${this.$route.path}/followers`"
-            v-if="slicedCurrentUsersFollowedArtists()"
+            v-if="currentUsersFollowedArtists"
           />
 
           <shelf
             type="artist"
+            :row="1"
             title="Takip edilenler"
             :data="slicedCurrentUsersFollowedArtists(6)"
             :link="`${this.$route.path}/following`"
-            v-if="slicedCurrentUsersFollowedArtists()"
+            v-if="currentUsersFollowedArtists"
           />
 
         </div>
@@ -93,7 +97,6 @@
 </template>
 
 <script>
-/* eslint-disable vue/no-unused-components */
   import { mapGetters, mapState } from 'vuex';
 
   import PlaylistHeader from '@/components/PlaylistHeader.vue';
@@ -107,8 +110,14 @@
         'profile',
       ]),
 
+      ...mapState('auth', ['isAuthenticated']),
+
       ...mapState('pages/playlist', [
         'playlist',
+      ]),
+
+      ...mapState('placeholder', [
+        'placeholderPlaylists',
       ]),
 
       ...mapState('currentUser', [
@@ -133,15 +142,25 @@
     },
 
     beforeRouteUpdate(to) {
-      this.$store.dispatch('pages/profile/getProfile', to.params.id, { root: true });
-      this.$store.dispatch('pages/playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true });
+      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
+        this.$store.dispatch('pages/profile/getProfile', to.params.id, { root: true }).then(() => {
+          this.$store.dispatch('pages/playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true }).then(() => {
+            this.$store.commit('setIsLoading', false, { root: true });
+          });
+        });
+      });
     },
 
     created() {
-      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
-      this.$store.dispatch('pages/profile/getProfile', this.$route.params.id, { root: true });
-      this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
-      this.$store.dispatch('pages/playlist/getPlaylist', '37i9dQZF1EIV4eiKpyhYqf', { root: true });
+      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
+        this.$store.dispatch('pages/profile/getProfile', this.$route.params.id, { root: true }).then(() => {
+          this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true }).then(() => {
+            this.$store.dispatch('pages/playlist/getPlaylist', '37i9dQZF1EIV4eiKpyhYqf', { root: true }).then(() => {
+              this.$store.commit('setIsLoading', false, { root: true });
+            });
+          });
+        });
+      });
     },
   };
 </script>
