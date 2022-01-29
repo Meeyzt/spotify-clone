@@ -1,7 +1,7 @@
 <template>
   <div
     class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
-    v-if="slicedCurrentUsersLikedTracks() && currentUsersLikedPlaylists"
+    v-if="currentUsersLikedPlaylists && currentUsersLikedTracks"
   >
 
     <section class="text-white mt-0 w-full h-full">
@@ -16,9 +16,10 @@
           class="group relative z-2 col-2-span bg-gradient-to-br from-gradientBlue justify-end to-gradientPurple rounded-md p-6 flex flex-col gap-3"
         >
 
-          <div class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3 line-clamp-3 mr-4">
-
-            <span v-for="track in slicedCurrentUsersLikedTracks(10).items" :key="track.track.id" class="ml-1" >
+          <div
+            class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3 line-clamp-3 mr-4"
+          >
+            <span v-for="track in slicedCurrentUsersLikedTracks(12).items" :key="track.track.id" class="ml-1" >
 
               <span v-text="track.track.artists[0].name"/>
 
@@ -67,12 +68,10 @@
       PlayButton,
     },
 
-    created() {
-      this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true }).then(() => {
-        this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
-          this.$store.commit('setIsLoading', false, { root: true });
-        });
-      });
+    async created() {
+      await this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
+      await this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true });
+      await this.$store.commit('setIsLoading', false, { root: true });
     },
 
     computed: {

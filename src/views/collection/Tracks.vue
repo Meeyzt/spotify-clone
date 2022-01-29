@@ -2,7 +2,7 @@
   <Playlist
     v-if="initPlaylistData !== null"
     :playlist="initPlaylistData"
-    playlistAuthorProfilePic="https://i.scdn.co/image/ab6775700000ee850d8934d06959380ede197038"
+    :playlistAuthorProfilePic="currentUsersData.images[0].url"
     type="liked"
   />
 </template>
@@ -12,10 +12,9 @@ import { mapState } from 'vuex';
 import Playlist from '@/components/Playlist.vue';
 
 export default {
-  created() {
-    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true }).then(() => {
-      this.$store.commit('setIsLoading', false, { root: true });
-    });
+  async created() {
+    await this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null);
+    this.$store.commit('setIsLoading', false);
   },
 
   computed: {
@@ -36,6 +35,7 @@ export default {
 
         owner: {
           display_name: this.currentUsersData.display_name ?? null,
+          id: this.currentUsersData.id ?? null,
         },
 
         tracks: this.currentUsersLikedTracks ? {

@@ -45,7 +45,7 @@
       />
 
       <tr>
-        <td class="pb-10"/>
+        <td class="pb-14"/>
       </tr>
     </tbody>
   </table>

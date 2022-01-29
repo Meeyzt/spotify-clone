@@ -141,26 +141,22 @@
       TableItem,
     },
 
-    beforeRouteUpdate(to) {
-      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
-        this.$store.dispatch('pages/profile/getProfile', to.params.id, { root: true }).then(() => {
-          this.$store.dispatch('pages/playlist/getPlaylist', this.currentUsersLikedTracks[0].id || '37i9dQZF1EQpVaHRDcozEz', { root: true }).then(() => {
-            this.$store.commit('setIsLoading', false, { root: true });
-          });
-        });
-      });
+    methods: {
+      async getUserDatas(id, likedTrackId) {
+        await this.$store.dispatch('placeholder/getPlaceholderPlaylists', null);
+        await this.$store.dispatch('pages/profile/getProfile', id);
+        await this.$store.dispatch('pages/playlist/getPlaylist', likedTrackId);
+        await this.$store.commit('setIsLoading', false);
+      },
     },
 
-    created() {
-      this.$store.dispatch('placeholder/getPlaceholderPlaylists', null, { root: true }).then(() => {
-        this.$store.dispatch('pages/profile/getProfile', this.$route.params.id, { root: true }).then(() => {
-          this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true }).then(() => {
-            this.$store.dispatch('pages/playlist/getPlaylist', '37i9dQZF1EIV4eiKpyhYqf', { root: true }).then(() => {
-              this.$store.commit('setIsLoading', false, { root: true });
-            });
-          });
-        });
-      });
+    beforeRouteUpdate(to) {
+      this.getUserDatas(to.params.id, this.currentUsersLikedTracks[0].id);
+    },
+
+    async created() {
+      this.getUserDatas(this.$route.params.id, '37i9dQZF1EIV4eiKpyhYqf');
+      await this.$store.dispatch('currentUser/getCurrentUsersFollowedArtists', null, { root: true });
     },
   };
 </script>

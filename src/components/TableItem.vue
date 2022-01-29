@@ -1,11 +1,10 @@
 <template>
   <tr
-    class="group hover:bg-activeColor text-[12px]"
+    class="group hover:bg-activeColor text-[12px] h-2"
   >
 
     <td
-      class="mt-10 text-right rounded-l text-base px-2"
-      :class="type === 'playlist' ? 'w-5' : 'w-10'"
+      class="mt-10 text-right rounded-l text-base px-2 w-10"
     >
 
       <div class="flex justify-center w-full">
@@ -153,12 +152,12 @@ export default {
     },
 
       getSeconds(miliseconds) {
-          const min = Math.floor((miliseconds / 1000 / 60));
-          const sec = Math.floor((miliseconds / 1000) % 60) < 10
-          ? `0${Math.floor((miliseconds / 1000) % 60)}`
-          : Math.floor((miliseconds / 1000) % 60);
+        const min = Math.floor((miliseconds / 1000 / 60));
+        const sec = Math.floor((miliseconds / 1000) % 60) < 10
+        ? `0${Math.floor((miliseconds / 1000) % 60)}`
+        : Math.floor((miliseconds / 1000) % 60);
 
-          return `${min}:${sec}`;
+        return `${min}:${sec}`;
       },
   },
 };

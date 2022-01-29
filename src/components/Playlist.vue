@@ -1,17 +1,11 @@
 <template>
   <div
-    class="w-full h-full text-white flex flex-col gap-6"
-    :class="{
-      'bg-gray-300': !pictureColor,
-    }"
-    :style="{
-      backgroundColor: pictureColor,
-    }"
+    class="text-white bg-contentColor overflow-y-auto w-full h-full"
     :key="playlist.id"
     v-if="playlist"
   >
 
-    <div class="h-full w-full pb-14 bg-gradient-to-b to-transparent from-[rgba(0,0,0,0.30)] overflow-auto">
+    <div class="h-full w-full bg-gradient-to-b to-transparent from-[rgba(0,0,0,0.30)] overflow-auto">
       <playlist-header
         v-if="type && playlist"
         :key="playlist.id"

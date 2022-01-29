@@ -34,6 +34,10 @@ export default {
       'currentUsersCurrentPlayingTrack',
     ]),
 
+    ...mapState('auth', [
+      'isAuthenticated',
+    ]),
+
     ...mapState([
       'isLoading',
     ]),
@@ -42,14 +46,16 @@ export default {
   methods: {
     getCurrentUsersCurrentPlayingTrack(time) {
       setTimeout(() => {
-        this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms));
+        this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null).then(() => {
+          this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
+        });
       }, time);
     },
   },
 
   created() {
     if (this.isAuthenticated) {
-      this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null, { root: true }).then(() => {
+      this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null).then(() => {
         this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
       });
     }

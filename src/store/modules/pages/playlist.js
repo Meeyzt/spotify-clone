@@ -244,10 +244,8 @@ export default {
       });
     },
 
-    likedSongsThePlaylist({ getters, commit }, playlist) {
+    likedSongsThePlaylist({ getters }, playlist) {
       return new Promise((resolve, reject) => {
-        commit('setIsLoading', true, { root: true });
-
         if (playlist) {
           let playlistTrackIds = '';
 

@@ -17,7 +17,9 @@
 
     <div class="flex flex-col gap-2 overflow-x-hidden">
 
-      <div v-if="type === 'artist'" class="flex flex-row gap-1 text-xs mb-3 items-center"><verified-icon/> Doğrulanmış Sanatçı</div>
+      <div v-if="type === 'artist'" class="flex flex-row gap-1 text-xs mb-3 items-center">
+        <verified-icon/> Doğrulanmış Sanatçı
+      </div>
 
       <div v-else class="text-[12px] mt-1 font-bold pb-1">
           {{ headerText }}
