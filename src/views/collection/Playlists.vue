@@ -3,7 +3,6 @@
     class="px-4 pt-6 w-full flex flex-col items-start bg-contentColor overflow-y-auto h-full"
     v-if="currentUsersLikedPlaylists && currentUsersLikedTracks"
   >
-
     <section class="text-white mt-0 w-full h-full">
 
       <div class="mb-4 text-2xl font-bold">Çalma Listeleri</div>
@@ -19,7 +18,7 @@
           <div
             class="group flex flex-row flex-wrap overflow-hidden max-h-[100px] mb-3 line-clamp-3 mr-4"
           >
-            <span v-for="track in slicedCurrentUsersLikedTracks(12).items" :key="track.track.id" class="ml-1" >
+            <span v-for="track in slicedCurrentUsersLikedTracks(12)" :key="track.track.id" class="ml-1" >
 
               <span v-text="track.track.artists[0].name"/>
 
