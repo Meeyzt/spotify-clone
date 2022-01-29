@@ -31,6 +31,10 @@ export default {
       state.currentUsersLikedPlaylists = payload;
     },
 
+    addPlaylistToCurrentUserLikedPlaylists(state, payload) {
+      state.currentUsersLikedPlaylists.unshift(payload);
+    },
+
     setCurrentUsersFollowedArtists(state, payload) {
       state.currentUsersFollowedArtists = payload;
     },

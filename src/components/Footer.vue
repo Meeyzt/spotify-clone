@@ -18,10 +18,9 @@
     </div>
 
     <button
-      @click="$store.dispatch('auth/getAuthorize', null, { root: true })"
       class="rounded-full bg-white text-blue-600 px-8 pt-1 whitespace-nowrap font-semibold tracking-[0.2rem] text-s h-10 hover:scale-105 shadow-lg"
     >
-      ÜCRETSİZ KAYDOL
+      <a href="https://www.spotify.com/tr/signup">ÜCRETSİZ KAYDOL</a>
     </button>
 
   </div>

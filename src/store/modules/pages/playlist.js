@@ -280,34 +280,18 @@ export default {
       });
     },
 
-    createPlaylist({ rootState, state, commit }) {
+    createPlaylist({ state, commit }) {
       commit('setCounter', state.counter + 1);
 
-      const p = [
-        {
-          images: [
-            {
-              url: '@/EmptyPlaylist.png',
-            },
-          ],
-          name: `${state.counter}. Çalma Listesi`,
-          tracks: {
-            items: {
-            },
-            total: '0',
-          },
-          follower: {
-            total: '0',
-          },
-          id: Math.ceil(Math.random(16000) * 1000000),
-          owner: {
-            display_name: 'Meeyzt',
-          },
-        },
-        ...rootState.currentUser.currentUsersLikedPlaylists,
-      ];
+      const playlistDatas = {
+        name: `${state.counter}. Çalma Listesi`,
+        description: 'Yeni çalma listesi açıklaması',
+        public: false,
+      };
 
-      commit('currentUser/setCurrentUsersLikedPlaylists', p, { root: true });
+      axios.post('https://api.spotify.com/v1/users/them4nq4/playlists', playlistDatas).then((res) => {
+        commit('currentUser/addPlaylistToCurrentUserLikedPlaylists', res.data, { root: true });
+      });
     },
   },
 };
