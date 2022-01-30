@@ -9,7 +9,7 @@
 
         <div class="mb-4 relative">
 
-          <div class="w-full pb-[100%] relative">
+          <div v-if="playlistInfo.images.length > 0" class="w-full pb-[100%] relative">
             <img
               v-if="type !== 'artist'"
               class="w-full h-full left-0 absolute top-0 block object-cover object-center"
@@ -23,6 +23,12 @@
               :src="playlistInfo.images[0].url"
               alt="Photo"
             />
+          </div>
+          <div
+            v-else
+            class="shadow-xl w-48 h-48 object-cover min-w-[12rem] min-h-[12rem] max-w-[12rem] max-h-[12rem] flex items-center justify-center bg-contentColor text-white cursor-pointer"
+          >
+            <MusicIcon :width="60" :height="60"/>
           </div>
 
           <div
@@ -53,10 +59,12 @@
 
 <script>
 import PlayButton from '@/components/PlayButton.vue';
+import MusicIcon from '@/components/icons/MusicIcon.vue';
 
 export default {
   components: {
     PlayButton,
+    MusicIcon,
   },
 
   computed: {
