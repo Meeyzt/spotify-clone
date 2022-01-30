@@ -28,26 +28,28 @@ export default {
     ]),
   },
 
-  beforeRouteUpdate(to, from, next) {
-    this.$store.commit('pages/playlist/setPlaylist', null, { root: true });
+  async beforeRouteUpdate(to, from, next) {
+    await this.$store.commit('pages/playlist/setPlaylist', null);
 
-    this.$store.dispatch('currentUser/getCurrentUsersLikedTracks', null, { root: true });
+    await this.$store.dispatch('currentUser/getCurrentUsersLikedTracks');
 
-    this.$store.dispatch('pages/playlist/getPlaylist', to.params.id, { root: true }).then(() => {
-      this.$store.commit('setIsLoading', false);
-    });
+    await this.$store.dispatch('pages/playlist/getPlaylist', to.params.id);
+
+    await this.$store.commit('setIsLoading', false);
 
     if (!(to.params.id === from.params.id)) {
       next();
     }
   },
 
-  mounted() {
-    this.$store.commit('pages/playlist/setPlaylist', null, { root: true });
+  async mounted() {
+    await this.$store.commit('pages/playlist/setPlaylist', null);
 
-    this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id, { root: true }).then(() => {
-      this.$store.commit('setIsLoading', false);
-    });
+    await this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id);
+
+    await this.$store.commit('setIsLoading', false);
+
+    console.log(this.playlist);
   },
 };
 </script>

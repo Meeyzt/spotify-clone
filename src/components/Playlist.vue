@@ -10,7 +10,7 @@
         v-if="type && playlist"
         :key="playlist.id"
         :name="playlist.name"
-        :picture="playlist.images[0].url"
+        :picture="playlist.images.length > 0 ? playlist.images[0].url : null"
         :author="playlist.owner.display_name"
         :song-count="playlist.tracks.total ? playlist.tracks.total : playlist.tracks.items.length"
         :author-picture="playlistAuthorProfilePic"
@@ -104,8 +104,10 @@
       },
     },
 
-    created() {
-      this.setAverageColor(this.playlist.images[0].url);
+    async created() {
+      if (this.playlist.images.length > 0) {
+        await this.setAverageColor(this.playlist.images[0].url);
+      }
     },
 
   };

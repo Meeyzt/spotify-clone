@@ -35,7 +35,7 @@ export default {
           .then((res) => {
             let q = res.data;
 
-            if (rootState.auth.isAuthenticated) {
+            if (rootState.auth.isAuthenticated && res.data.tracks.items.length > 0) {
               dispatch('likedSongsThePlaylist', res.data.tracks.items)
               .then((tracks) => {
                 q = {
@@ -44,203 +44,22 @@ export default {
                     items: tracks,
                   },
                 };
-
-                rootState.currentUser.currentUsersLikedPlaylists.forEach((track) => {
-                  if (q.id === track.id) {
-                    q = {
-                      ...q,
-                      liked: true,
-                    };
-                  }
-                });
-
-                commit('setPlaylist', q);
               })
               .catch(reject);
-            } else {
-              commit('setPlaylist', q);
             }
+            rootState.currentUser.currentUsersLikedPlaylists.forEach((track) => {
+              if (q.id === track.id) {
+                q = {
+                  ...q,
+                  liked: true,
+                };
+              }
+            });
+
+            commit('setPlaylist', q);
 
             resolve();
-        }).catch(() => {
-          commit('setPlaylist', {
-            images: [
-              {
-                url: 'https://seed-mix-image.spotifycdn.com/v6/img/artist/7rEIUw67hRTgievwuKQGSj/tr/large',
-              },
-            ],
-            name: 'Boş çalma listesi',
-            tracks: {
-              items: [
-                {
-                  added_at: '1970-01-01T00:00:00Z',
-                  track: {
-                    album: {
-                      external_urls: {
-                        spotify: 'https://open.spotify.com/album/1rAOed7VySBV8B2EbHLqd3' },
-                        id: '1rAOed7VySBV8B2EbHLqd3',
-                        images:
-                          [{
-                            height: 640,
-                            url: 'https://i.scdn.co/image/ab67616d0000b273a4270d88e52e8e986310b366',
-                            width: 640,
-                          }],
-                        name: 'Selamiler Diyarı',
-                      },
-                    artists: [{
-                        external_urls: {
-                          spotify: 'https://open.spotify.com/artist/1dsKaRPU3HFSdlNyMmH5QI',
-                        },
-                        id: '1dsKaRPU3HFSdlNyMmH5QI',
-                        name: 'Fatma Turgut',
-                    }],
-                    duration_ms: 132526,
-                    external_urls: {
-                      spotify: 'https://open.spotify.com/track/0nN6jOrfJL72IThPB0v0cu',
-                    },
-                      id: '0nN6jOrfJL72IThPB0v0cu',
-                      name: 'Selamiler Diyarı',
-                    },
-                  liked: true,
-                },
-                {
-                  added_at: '1970-01-01T00:00:00Z',
-                  track: {
-                    album: {
-                      external_urls: {
-                        spotify: 'https://open.spotify.com/album/1rAOed7VySBV8B2EbHLqd3' },
-                        id: '1rAOed7VySBV8B2EbHLqd3',
-                        images:
-                          [{
-                            height: 640,
-                            url: 'https://i.scdn.co/image/ab67616d0000b273a4270d88e52e8e986310b366',
-                            width: 640,
-                          }],
-                        name: 'Selamiler Diyarı',
-                      },
-                    artists: [{
-                        external_urls: {
-                          spotify: 'https://open.spotify.com/artist/1dsKaRPU3HFSdlNyMmH5QI',
-                        },
-                        id: '1dsKaRPU3HFSdlNyMmH5QI',
-                        name: 'Fatma Turgut',
-                    }],
-                    duration_ms: 132526,
-                    external_urls: {
-                      spotify: 'https://open.spotify.com/track/0nN6jOrfJL72IThPB0v0cu',
-                    },
-                      id: '0nN6jOrfJL72IThPB0v0cu',
-                      name: 'Selamiler Diyarı',
-                    },
-                  liked: true,
-                },
-                {
-                  added_at: '1970-01-01T00:00:00Z',
-                  track: {
-                    album: {
-                      external_urls: {
-                        spotify: 'https://open.spotify.com/album/1rAOed7VySBV8B2EbHLqd3' },
-                        id: '1rAOed7VySBV8B2EbHLqd3',
-                        images:
-                          [{
-                            height: 640,
-                            url: 'https://i.scdn.co/image/ab67616d0000b273a4270d88e52e8e986310b366',
-                            width: 640,
-                          }],
-                        name: 'Selamiler Diyarı',
-                      },
-                    artists: [{
-                        external_urls: {
-                          spotify: 'https://open.spotify.com/artist/1dsKaRPU3HFSdlNyMmH5QI',
-                        },
-                        id: '1dsKaRPU3HFSdlNyMmH5QI',
-                        name: 'Fatma Turgut',
-                    }],
-                    duration_ms: 132526,
-                    external_urls: {
-                      spotify: 'https://open.spotify.com/track/0nN6jOrfJL72IThPB0v0cu',
-                    },
-                      id: '0nN6jOrfJL72IThPB0v0cu',
-                      name: 'Selamiler Diyarı',
-                    },
-                  liked: true,
-                },
-                {
-                  added_at: '1970-01-01T00:00:00Z',
-                  track: {
-                    album: {
-                      external_urls: {
-                        spotify: 'https://open.spotify.com/album/1rAOed7VySBV8B2EbHLqd3' },
-                        id: '1rAOed7VySBV8B2EbHLqd3',
-                        images:
-                          [{
-                            height: 640,
-                            url: 'https://i.scdn.co/image/ab67616d0000b273a4270d88e52e8e986310b366',
-                            width: 640,
-                          }],
-                        name: 'Selamiler Diyarı',
-                      },
-                    artists: [{
-                        external_urls: {
-                          spotify: 'https://open.spotify.com/artist/1dsKaRPU3HFSdlNyMmH5QI',
-                        },
-                        id: '1dsKaRPU3HFSdlNyMmH5QI',
-                        name: 'Fatma Turgut',
-                    }],
-                    duration_ms: 132526,
-                    external_urls: {
-                      spotify: 'https://open.spotify.com/track/0nN6jOrfJL72IThPB0v0cu',
-                    },
-                      id: '0nN6jOrfJL72IThPB0v0cu',
-                      name: 'Selamiler Diyarı',
-                    },
-                  liked: true,
-                },
-                {
-                  added_at: '1970-01-01T00:00:00Z',
-                  track: {
-                    album: {
-                      external_urls: {
-                        spotify: 'https://open.spotify.com/album/1rAOed7VySBV8B2EbHLqd3' },
-                        id: '1rAOed7VySBV8B2EbHLqd3',
-                        images:
-                          [{
-                            height: 640,
-                            url: 'https://i.scdn.co/image/ab67616d0000b273a4270d88e52e8e986310b366',
-                            width: 640,
-                          }],
-                        name: 'Selamiler Diyarı',
-                      },
-                    artists: [{
-                        external_urls: {
-                          spotify: 'https://open.spotify.com/artist/1dsKaRPU3HFSdlNyMmH5QI',
-                        },
-                        id: '1dsKaRPU3HFSdlNyMmH5QI',
-                        name: 'Fatma Turgut',
-                    }],
-                    duration_ms: 132526,
-                    external_urls: {
-                      spotify: 'https://open.spotify.com/track/0nN6jOrfJL72IThPB0v0cu',
-                    },
-                      id: '0nN6jOrfJL72IThPB0v0cu',
-                      name: 'Selamiler Diyarı',
-                    },
-                  liked: true,
-                },
-              ],
-              total: 5,
-            },
-            followers: {
-              total: '2',
-            },
-            id: Math.ceil(Math.random(16000) * 1000000),
-            owner: {
-              id: 123222,
-              display_name: 'Meeyzt',
-            },
-            description: 'Boş bir playlist',
-          });
-        });
+        }).catch(reject);
       });
     },
 
@@ -287,6 +106,12 @@ export default {
         name: `${state.counter}. Çalma Listesi`,
         description: 'Yeni çalma listesi açıklaması',
         public: false,
+        images: [
+          {
+            height: null,
+            width: null,
+          },
+        ],
       };
 
       axios.post('https://api.spotify.com/v1/users/them4nq4/playlists', playlistDatas).then((res) => {

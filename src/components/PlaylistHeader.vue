@@ -1,20 +1,26 @@
 <template>
   <div
     :style="type === 'artist' ? { backgroundImage:'url('+ picture +')' } : { backgroundColor: pictureColor }"
-    class="pt-[5.5rem] px-8 pb-6 bg-center bg-cover flex gap-6 flex-end items-end"
+    class="pt-[5.5rem] px-8 pb-6 bg-center bg-cover flex gap-6 flex-end items-end bg-gray-300"
     :class="{
-    'bg-gray-300': !pictureColor,
+    '!bg-contentColor': !pictureColor,
     }"
   >
 
     <img
+      v-if="picture && type !== 'artist'"
       class="shadow-xl w-48 h-48 object-cover min-w-[12rem] min-h-[12rem] max-w-[12rem] max-h-[12rem]"
       :class="type === 'profile' ? 'rounded-full' : ''"
       :src="picture"
       alt="Liked Songs"
-      v-if="type !== 'artist'"
     />
 
+    <div
+      v-else
+      class="shadow-xl w-48 h-48 object-cover min-w-[12rem] min-h-[12rem] max-w-[12rem] max-h-[12rem] flex items-center justify-center bg-contentColor hover:bg-hoverHeadbar cursor-pointer"
+    >
+      <MusicIcon :width="60" :height="60"/>
+    </div>
     <div class="flex flex-col gap-2 overflow-x-hidden">
 
       <div v-if="type === 'artist'" class="flex flex-row gap-1 text-xs mb-3 items-center">
@@ -63,14 +69,14 @@
           class="text-[14px] opacity-100"
           :to="`/user/${ $route.params.id }/followers`"
           >
-            • {{ Count }} Takipçi
+            • {{ count }} Takipçi
           </router-link>
 
         <div
           v-else-if="likeCount !== 0"
           class="text-[14px] opacity-70"
         >
-          • {{ type !== 'album' ? Count : likeCount.slice(0, 4) }} {{type !== 'album' ? 'beğenme' : ''}}
+          • {{ type !== 'album' ? count : likeCount.slice(0, 4) }} {{type !== 'album' ? 'beğenme' : ''}}
         </div>
 
         <router-link
@@ -104,6 +110,7 @@ import { average } from 'color.js';
 import { mapState } from 'vuex';
 
 import VerifiedIcon from '@/components/icons/VerifiedIcon.vue';
+import MusicIcon from '@/components/icons/MusicIcon.vue';
 
 export default {
   props: {
@@ -124,7 +131,6 @@ export default {
 
       picture: {
           type: String,
-          required: true,
       },
 
       author: {
@@ -150,11 +156,12 @@ export default {
 
   components: {
     VerifiedIcon,
+    MusicIcon,
   },
 
   data() {
     return {
-      pictureColor: undefined,
+      pictureColor: null,
     };
   },
 
@@ -168,13 +175,15 @@ export default {
   },
 
   created() {
-    this.setAverageColor(this.picture);
+    if (this.picture) {
+      this.setAverageColor(this.picture);
+    }
   },
 
   computed: {
     ...mapState('auth', ['isAuthenticated']),
 
-    Count() {
+    count() {
         return this.likeCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     },
 
