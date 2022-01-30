@@ -46,7 +46,7 @@ export default {
   methods: {
     getCurrentUsersCurrentPlayingTrack(time) {
       setTimeout(() => {
-        this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null).then(() => {
+        this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack').then(() => {
           this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
         });
       }, time);
@@ -55,8 +55,10 @@ export default {
 
   created() {
     if (this.isAuthenticated) {
-      this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack', null).then(() => {
-        this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
+      this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack').then(() => {
+        if (this.currentUsersCurrentPlayingTrack) {
+          this.getCurrentUsersCurrentPlayingTrack(this.currentUsersCurrentPlayingTrack.duration_ms);
+        }
       });
     }
   },

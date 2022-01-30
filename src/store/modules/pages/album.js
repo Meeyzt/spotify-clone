@@ -23,7 +23,6 @@ export default {
           };
 
           if (rootState.auth.isAuthenticated) {
-            console.log(q.tracks.items);
             dispatch('pages/playlist/likedSongsThePlaylist', q.tracks.items, { root: true }).then((tracks) => {
               q = {
                 ...q,

@@ -48,8 +48,6 @@ export default {
     await this.$store.dispatch('pages/playlist/getPlaylist', this.$route.params.id);
 
     await this.$store.commit('setIsLoading', false);
-
-    console.log(this.playlist);
   },
 };
 </script>
