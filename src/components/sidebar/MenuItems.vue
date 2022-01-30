@@ -3,7 +3,6 @@
       <router-link
         to="/"
         exact
-        active-class="bg-activeColor rounded text-white"
         class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
       >
 
@@ -19,7 +18,6 @@
 
       <router-link
         to="/search"
-        active-class="bg-activeColor rounded text-white"
         class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
       >
 
@@ -35,16 +33,16 @@
       </router-link>
 
       <router-link
-        :to="isAuthenticated ? '/collection' : '' "
-        :class="`text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white ${$route.meta.showCollectionTabs ? 'bg-activeColor rounded text-white': ''}`"
+        to="/collection"
+        class="text-sm mx-2 px-4 cursor-pointer flex font-bold flex-row gap-x-4 hover:text-white"
       >
 
           <div class="py-2">
-
             <CollectionIcon v-if="!$route.meta.showCollectionTabs"/>
-            <ActiveCollectionIcon v-else />
+            <ActiveCollectionIcon v-else/>
 
           </div>
+
           <span class="pt-3">Kitaplığın</span>
 
       </router-link>
@@ -71,7 +69,6 @@
       <router-link
         :to="isAuthenticated ? '/collection/tracks' : ''"
         tag="li"
-        :active-class="isAuthenticated ? 'opacity-100' : ''"
         class="text-sm pt-4 px-4 cursor-pointer flex font-semibold flex-row gap-x-4 mx-2 opacity-70 hover:opacity-100 text-white"
       >
 
@@ -103,7 +100,6 @@ import PlusIcon from '@/components/icons/PlusIcon.vue';
 import HeartIcon from '@/components/icons/FilledHeartIcon.vue';
 
 export default {
-
   components: {
     HomeIcon,
     SearchIcon,
@@ -115,11 +111,11 @@ export default {
     HeartIcon,
   },
 
-   computed: {
-      ...mapState('auth', [
-        'isAuthenticated',
-      ]),
-    },
+  computed: {
+    ...mapState('auth', [
+      'isAuthenticated',
+    ]),
+  },
 
   methods: {
     createPlaylist() {
