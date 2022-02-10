@@ -99,24 +99,20 @@ export default {
       });
     },
 
-    createPlaylist({ state, commit }) {
-      commit('setCounter', state.counter + 1);
+    createPlaylist({ state, commit }, username) {
+      if (username) {
+        commit('setCounter', state.counter + 1);
 
-      const playlistDatas = {
-        name: `${state.counter}. Çalma Listesi`,
-        description: 'Yeni çalma listesi açıklaması',
-        public: false,
-        images: [
-          {
-            height: null,
-            width: null,
-          },
-        ],
-      };
+        const playlistDatas = {
+          name: `${state.counter}. Çalma Listesi`,
+          description: 'Yeni çalma listesi açıklaması',
+          public: false,
+        };
 
-      axios.post('https://api.spotify.com/v1/users/them4nq4/playlists', playlistDatas).then((res) => {
-        commit('currentUser/addPlaylistToCurrentUserLikedPlaylists', res.data, { root: true });
-      });
+        axios.post(`https://api.spotify.com/v1/users/${username}/playlists`, playlistDatas).then((res) => {
+          commit('currentUser/addPlaylistToCurrentUserLikedPlaylists', res.data, { root: true });
+        });
+      }
     },
   },
 };

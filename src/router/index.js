@@ -13,7 +13,7 @@ const router = new VueRouter({
 
 const beforeRoute = (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth) && !store.state.auth.isAuthenticated) {
-    if (store.state.auth.accessToken && to.name !== 'login') {
+    if (store.state.auth.accessToken && to.name !== 'login' && to.path !== 'feedback') {
       if (store.state.auth.expiresAt <= Date.now()) {
         store.dispatch('getToken', { code: store.state.auth.refreshToken, type: 'refreshToken' }).then(() => next());
       } else {

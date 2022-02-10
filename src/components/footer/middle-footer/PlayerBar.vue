@@ -3,9 +3,9 @@
 
     <div
       v-if="where==='mid'"
-      class="mr-2 text-[10px] font-bold text-normalColor pt-1.5 cursor-default"
+      class="mr-2 w-4 text-[10px] font-bold text-normalColor pt-1.5 cursor-default"
     >
-      02:13
+      {{songPlayingTime}}
     </div>
 
     <div class="h-full w-full flex items-center">
@@ -26,9 +26,9 @@
 
     <div
       v-if="where==='mid'"
-      class="ml-2 text-[10px] font-bold text-normalColor pt-1.5 cursor-default"
+      class="ml-2 w-4 text-[10px] font-bold text-normalColor pt-1.5 cursor-default"
     >
-      4:27
+      {{songDuration}}
     </div>
 
   </div>
@@ -50,6 +50,16 @@ export default {
     duration: {
       type: Number,
       default: 50,
+    },
+
+    songDuration: {
+      type: String,
+      default: '4:27',
+    },
+
+    songPlayingTime: {
+      type: String,
+      default: '02:13',
     },
   },
 };

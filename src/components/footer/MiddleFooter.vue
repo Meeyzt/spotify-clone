@@ -14,7 +14,7 @@
 
       <NavigationIcon class="footerItem" />
 
-      <PlayButton color="white" :height="16" :width="16"/>
+      <PlayButton :isPlaying="true" color="white" :height="16" :width="16"/>
 
       <NavigationIcon class="footerItem rotate-180" />
 
@@ -30,11 +30,13 @@
 
     </div>
 
-    <PlayerBar :duration="56" where="mid"/>
+    <PlayerBar where="mid" :songPlayingTime="songPlayingTime" :songDuration="currentTrackDuration" :duration="duration"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import NavigationIcon from '@/components/icons/NavigationIcon.vue';
 import RepeatIcon from '@/components/icons/RepeatIcon.vue';
 import LockedRepeatIcon from '@/components/icons/LockedRepeatIcon.vue';
@@ -55,6 +57,12 @@ export default {
   data: () => ({
     shuffle: false,
     repeat: 0,
+    duration: 0,
+    songPlayingTime: '0:00',
+    currentPlayingSeconds: 0,
+    currentPlayingMinutes: 0,
+    currentTime: 0,
+    intervalId: '',
   }),
 
   methods: {
@@ -72,6 +80,85 @@ export default {
           this.repeat += 1;
           break;
       }
+    },
+
+    currentTrackPlayer() {
+      if (!this.currentUsersCurrentPlayingTrack) {
+        this.duration = 0;
+        this.songPlayingTime = '0:00';
+      }
+    },
+
+    currentSongTime() {
+      if (this.currentusersCurrentPlayingSong) {
+        clearInterval(this.intervalId);
+        this.clearSongDatas();
+      }
+
+      this.currentPlayingSeconds += 1;
+      this.currentTime += 1;
+
+      if (this.currentPlayingSeconds === 60) {
+        this.currentPlayingMinutes += 1;
+        this.currentPlayingSeconds = 0;
+      }
+
+      if (this.currentPlayingSeconds < 10) {
+        this.songPlayingTime = `${this.currentPlayingMinutes}:0${this.currentPlayingSeconds}`;
+      } else {
+        this.songPlayingTime = `${this.currentPlayingMinutes}:${this.currentPlayingSeconds}`;
+      }
+
+      const currentTrackSeconds = Math.floor(this.currentUsersCurrentPlayingTrack.duration_ms / 1000);
+
+      this.duration = Math.floor((this.currentTime / currentTrackSeconds) * 100);
+
+      if (this.currentTime === currentTrackSeconds) {
+        this.clearSongDatas();
+      }
+    },
+
+    async clearSongDatas() {
+      this.duration = 0;
+      this.songPlayingTime = '0:00';
+      this.currentPlayingSeconds = 0;
+      this.currentPlayingMinutes = 0;
+      this.currentTime = 0;
+      await this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack');
+    },
+  },
+
+  async created() {
+    await this.$store.dispatch('currentUser/getCurrentUsersCurrentPlayingTrack');
+    if (this.currentUsersCurrentPlayingTrack) {
+      this.intervalId = setInterval(this.currentSongTime, 1000);
+    }
+  },
+
+  beforeDestroy() {
+    clearInterval(this.intervalId);
+  },
+
+  computed: {
+    ...mapState('currentUser', [
+      'currentUsersCurrentPlayingTrack',
+    ]),
+
+    currentTrackDuration() {
+      if (this.currentUsersCurrentPlayingTrack) {
+        const seconds = this.currentUsersCurrentPlayingTrack.duration_ms / 1000;
+        const minutes = Math.floor(seconds / 60);
+        let remainSeconds = Math.floor(seconds - (minutes * 60));
+
+        if (remainSeconds < 10) {
+          remainSeconds = `0${remainSeconds}`;
+        }
+
+        this.currentTrackPlayer();
+
+        return `${minutes}:${remainSeconds}`;
+      }
+      return '00:00';
     },
   },
 };

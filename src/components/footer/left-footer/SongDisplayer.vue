@@ -1,10 +1,10 @@
 <template>
-  <div
-    class="flex flex-row items-center min-w-[180px] max-w-[300px]"
-    v-if="track"
-  >
+  <div class="flex flex-row items-center min-w-[180px] max-w-[300px]">
 
-    <div class="w-[56px] h-[56px] group shadow-lg border-0 block m-0 z-0 flex-shrink-0 relative">
+    <div
+      v-if="track"
+      class="w-[56px] h-[56px] group shadow-lg border-0 block m-0 z-0 flex-shrink-0 relative"
+    >
 
       <div class="transition-all top-1 right-1 absolute hidden group-hover:block">
 
@@ -16,7 +16,10 @@
 
     </div>
 
-    <div class="pl-4 truncate">
+    <div
+      v-if="track"
+      class="pl-4 truncate"
+    >
 
       <div class="text-s break-all font-normal text-white cursor-pointer hover:underline truncate">
         {{ track.name }}
@@ -28,7 +31,10 @@
 
     </div>
 
-    <div class="text-spotifyGreen pl-5 flex flex-row gap-3">
+    <div
+      v-if="track"
+      class="text-spotifyGreen pl-5 flex flex-row gap-3"
+    >
 
       <component
         :is="track.liked ? 'FilledHeartIcon' : 'HeartIcon'"
@@ -60,7 +66,6 @@ import MiniScreen from '@/components/icons/MiniScreen.vue';
     props: {
       track: {
         type: Object,
-        required: true,
       },
     },
   };

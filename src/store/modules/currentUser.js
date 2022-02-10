@@ -133,7 +133,10 @@ export default {
             resolve(track);
           });
         })
-        .catch(reject);
+        .catch(() => {
+          commit('setCurrentUsersCurrentPlayingTrack', null);
+          reject();
+        });
       });
     },
   },

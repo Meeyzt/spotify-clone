@@ -30,11 +30,20 @@ export default {
       type: Number,
       default: 16,
     },
+
+    isPlaying: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
     playing: false,
   }),
+
+  created() {
+    this.playing = this.isPlaying;
+  },
 
   components: {
     PlayIcon,

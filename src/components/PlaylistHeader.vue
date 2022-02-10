@@ -16,11 +16,12 @@
     />
 
     <div
-      v-else
+      v-else-if="type !== 'artist'"
       class="shadow-xl w-48 h-48 object-cover min-w-[12rem] min-h-[12rem] max-w-[12rem] max-h-[12rem] flex items-center justify-center bg-contentColor hover:bg-hoverHeadbar cursor-pointer"
     >
       <MusicIcon :width="60" :height="60"/>
     </div>
+
     <div class="flex flex-col gap-2 overflow-x-hidden">
 
       <div v-if="type === 'artist'" class="flex flex-row gap-1 text-xs mb-3 items-center">
