@@ -115,11 +115,15 @@ export default {
     ...mapState('auth', [
       'isAuthenticated',
     ]),
+
+    ...mapState('currentUser', [
+      'currentUsersData',
+    ]),
   },
 
   methods: {
     createPlaylist() {
-      this.$store.dispatch('pages/playlist/createPlaylist', null, { root: true });
+      this.$store.dispatch('pages/playlist/createPlaylist', this.currentUsersData.id);
     },
   },
 };
